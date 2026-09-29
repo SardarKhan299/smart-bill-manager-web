@@ -1,21 +1,36 @@
-# Smart Bill Manager Website — Phase 1
+# Smart Bill Manager Website
 
-Next.js static-export marketing/SEO site for Smart Bill Manager.
+Next.js static-export marketing and SEO website for Smart Bill Manager.
 
-## Run
+## Run locally
+
+```bash
 npm install
 npm run dev
+```
 
-## Build
+## Production build
+
+```bash
 npm run build
+```
 
-Static output is generated in `out/`.
+The static production site is generated in `out/`.
 
-## Cloudflare Pages
-Build command: `npm run build`
-Output directory: `out`
+## Cloudflare deployment
+
+This project is intentionally deployed as a **static site**, not as a Next.js Worker/OpenNext application.
+
+Cloudflare deployment configuration:
+
+- Build command: `npm run build`
+- Build output: `out`
+- Deploy command: `npx wrangler deploy`
+
+The repository contains `wrangler.jsonc` configured to publish `./out` as Cloudflare static assets.
 
 ## Before production
+
 1. Replace `public/app-ads.txt` with the exact AdMob authorized seller entry.
 2. Add the real support contact.
 3. Review privacy/legal text against the production app.
