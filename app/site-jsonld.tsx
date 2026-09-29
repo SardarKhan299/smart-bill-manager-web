@@ -1,0 +1,5 @@
+export function SiteJsonLd(){
+  const organization={"@context":"https://schema.org","@type":"Organization","@id":"https://smartbillmanager.com/#organization","name":"Smart Bill Manager","url":"https://smartbillmanager.com/","logo":"https://smartbillmanager.com/icon.svg"};
+  const application={"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://smartbillmanager.com/#software","name":"Smart Bill Manager","operatingSystem":"Android","applicationCategory":"FinanceApplication","description":"A private household money assistant for tracking bills, subscriptions, expenses, upcoming commitments, Safe-to-Spend insights, planning, receipts and warranties.","url":"https://smartbillmanager.com/","downloadUrl":"https://play.google.com/store/apps/details?id=com.smartbillmanager","publisher":{"@id":"https://smartbillmanager.com/#organization"}};
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(organization)}}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(application)}}/></>;
+}
