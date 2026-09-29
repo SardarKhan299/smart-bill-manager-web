@@ -1,0 +1,2 @@
+# Replace this placeholder with the exact authorized seller line(s) from your AdMob account.
+# Example: google.com, pub-REPLACE_WITH_REAL_ADMOB_PUBLISHER_ID, DIRECT, f08c47fec0942fa0
