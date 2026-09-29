@@ -2,12 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "smart-bill-manager-web",
   "compatibility_date": "2026-09-26",
-  "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "directory": "./out",
+    "not_found_handling": "404-page"
   },
-  "main": ".open-next/worker.js",
   "observability": {
     "enabled": true
   }
