@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://smartbillmanager.com/sitemap.xml
+Sitemap: https://smart-bill-manager-web.sardar-khan299.workers.dev/sitemap.xml
