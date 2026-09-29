@@ -1,2 +1,1 @@
-# Replace this placeholder with the exact authorized seller line(s) from your AdMob account.
 google.com, pub-8012204298330764, DIRECT, f08c47fec0942fa0
