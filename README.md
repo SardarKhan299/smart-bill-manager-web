@@ -17,6 +17,10 @@ npm run build
 
 The static production site is generated in `out/`.
 
+## Website growth features
+
+The site includes a resources hub at `/blog/`, six evergreen household-finance guides, an FAQ hub at `/faq/`, and factual workflow comparisons at `/compare/`. These pages are included in the XML sitemap and linked from the global navigation/footer.
+
 ## Cloudflare deployment
 
 This project is intentionally deployed as a **static site**, not as a Next.js Worker/OpenNext application.
