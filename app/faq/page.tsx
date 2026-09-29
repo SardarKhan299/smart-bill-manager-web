@@ -1,0 +1,15 @@
+import Link from "next/link";
+export const metadata={title:"Frequently Asked Questions",description:"Answers about Smart Bill Manager, privacy, Safe-to-Spend, bills, subscriptions, Pro and Android availability.",alternates:{canonical:"/faq/"}};
+const faqs=[
+["What is Smart Bill Manager?","Smart Bill Manager is an Android household finance app for organising bills, subscriptions, everyday expenses, planning, receipts and warranties."],
+["Does Smart Bill Manager require a bank account connection?","No bank account connection is required for the core local record keeping described on this website. You enter and manage your financial records in the app."],
+["Where are my financial records stored?","The app is designed around local-first household financial management. Financial records are stored in the app’s local data layer. The production app may also use third-party services for analytics, crash reporting, advertising and subscription management."],
+["What is Safe-to-Spend?","Safe-to-Spend is a planning view that considers relevant financial commitments and spending records to provide a more contextual amount than looking only at a current balance."],
+["Is Safe-to-Spend a bank-authorised spending limit?","No. It is a planning aid based on the records and settings maintained in the app, not a transaction authorisation or guarantee."],
+["Can I track subscriptions?","Yes. The app includes subscription tracking, recurring cost views and price-change analysis."],
+["Can I track receipts and warranties?","Yes. The app supports purchase, receipt and warranty organisation, including receipt intelligence where supported."],
+["Is there a free version?","The app uses a freemium model. Current feature availability and pricing should be checked on Google Play."],
+["What is Smart Bill Manager Pro?","Pro provides access to additional advanced planning, analytics and convenience features according to the current Google Play offering. The exact offer can change."],
+["Is Smart Bill Manager available on Android?","Yes. Smart Bill Manager is distributed through Google Play for Android."]
+];
+export default function FAQ(){const jsonLd={"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqs.map(([q,a])=>({"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}}))};return <main className="page"><div className="container prose"><div className="kicker">FAQ</div><h1>Smart Bill Manager frequently asked questions.</h1><p className="lead">Clear answers about the app, privacy, Safe-to-Spend and everyday household money management.</p>{faqs.map(([q,a])=><section className="faq-item" key={q}><h2>{q}</h2><p>{a}</p></section>)}<p><Link className="btn btn-primary" href="/download/">Download Smart Bill Manager</Link></p></div><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/></main>}
