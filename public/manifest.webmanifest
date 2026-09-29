@@ -1,0 +1,9 @@
+{
+  "name":"Smart Bill Manager",
+  "short_name":"Smart Bill Manager",
+  "description":"A private household money assistant for bills, subscriptions, expenses and financial planning.",
+  "start_url":"/",
+  "display":"standalone",
+  "lang":"en-GB",
+  "icons":[{"src":"/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
