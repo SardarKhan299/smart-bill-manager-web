@@ -1,7 +1,7 @@
 {
-  "name":"Smart Bill Manager",
+  "name":"Smart Bill Manager – Bill Tracker & Budget App",
   "short_name":"Smart Bill Manager",
-  "description":"A private household money assistant for bills, subscriptions, expenses and financial planning.",
+  "description":"A private household money assistant for tracking bills, subscriptions, expenses, budgets and financial planning.",
   "start_url":"/",
   "display":"standalone",
   "lang":"en-GB",
