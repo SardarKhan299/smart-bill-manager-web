@@ -18,12 +18,19 @@ export const metadata:Metadata={
     url:SITE_URL,
     siteName:"Smart Bill Manager",
     type:"website",
-    locale:"en_GB"
+    locale:"en_GB",
+    images:[{
+      url:"/og-image.svg",
+      width:1200,
+      height:630,
+      alt:"Smart Bill Manager — private household money assistant"
+    }]
   },
   twitter:{
-    card:"summary",
+    card:"summary_large_image",
     title:"Smart Bill Manager – Bill Tracker, Budget & Expense App",
-    description:"Track bills, subscriptions, expenses and budgets. Know what you owe and what you can safely spend."
+    description:"Track bills, subscriptions, expenses and budgets. Know what you owe and what you can safely spend.",
+    images:["/og-image.svg"]
   },
   applicationName:"Smart Bill Manager",
   icons:{icon:"/icon.svg",shortcut:"/icon.svg",apple:"/icon.svg"},
