@@ -25,6 +25,8 @@ jobs:
         env:
           GOOGLE_TRANSLATE_API_KEY: ${{ secrets.GOOGLE_TRANSLATE_API_KEY }}
         run: npm run build
+      - name: SEO audit
+        run: npm run seo:audit
       - name: Verify static output
         run: |
           test -f out/index.html
