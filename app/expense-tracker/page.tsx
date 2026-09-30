@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Expense Tracker for Everyday Spending",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Expense Tracker"}]}/><div className="container prose">
     <div className="kicker">EXPENSE TRACKER</div>
     <h1>Understand where your household money is going.</h1>
     <p className="lead">Record everyday spending in Smart Bill Manager and bring expenses together with bills, subscriptions and planning.</p>
