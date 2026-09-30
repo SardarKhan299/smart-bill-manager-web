@@ -40,3 +40,24 @@ The repository contains `wrangler.jsonc` configured to publish `./out` as Cloudf
 3. Review privacy/legal text against the production app.
 4. Replace illustrative product preview values with approved screenshots.
 5. Verify `https://smartbillmanager.com/app-ads.txt` returns plain text.
+
+
+## Internationalization
+
+The production build includes a localization pipeline for the Google Play store-listing locale set documented by Google Play Console. The locale list is maintained in `scripts/locales.mjs`.
+
+`npm run build` first creates the canonical static Next.js site and then runs `scripts/localize-site.mjs`.
+
+To generate the localized HTML pages, configure the official Google Cloud Translation Basic API with a restricted API key and provide it as the `GOOGLE_TRANSLATE_API_KEY` environment variable. The build deliberately skips localization when the variable is absent so a normal English build remains deterministic.
+
+For GitHub Actions, add a repository secret named `GOOGLE_TRANSLATE_API_KEY`. Do not commit the key to the repository.
+
+The localization step:
+- translates page HTML plus SEO title/description metadata;
+- preserves scripts/structured data and the Smart Bill Manager brand name;
+- rewrites internal links to the locale path;
+- sets locale and RTL direction where applicable;
+- adds `hreflang` and Google machine-translation source markup;
+- regenerates the deployed sitemap with localized URLs.
+
+Google requires machine-translated pages that are published unchanged to be identified as machine translated. Post-edit translations before treating them as final marketing/legal copy.
