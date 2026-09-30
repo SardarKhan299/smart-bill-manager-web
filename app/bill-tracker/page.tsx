@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Bill Tracker & Bill Reminder App",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Bill Tracker"}]}/><div className="container prose">
     <div className="kicker">BILL TRACKER</div>
     <h1>Keep every household bill in view.</h1>
     <p className="lead">Smart Bill Manager helps you organise bills, due dates and recurring financial commitments so you can see what is coming up.</p>
