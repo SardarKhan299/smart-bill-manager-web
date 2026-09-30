@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Recurring Expense Tracker",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Recurring Expense Tracker"}]}/><div className="container prose">
     <div className="kicker">RECURRING EXPENSES</div>
     <h1>Make recurring spending easier to spot.</h1>
     <p className="lead">Smart Bill Manager helps you identify and review recurring household expenses so repeated spending does not disappear into day-to-day transactions.</p>
