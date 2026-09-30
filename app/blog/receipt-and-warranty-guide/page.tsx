@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../../breadcrumbs";
+import { BlogPostingJsonLd } from "../../blog-post-jsonld";
 
 export const metadata = {
   title: "How to Organise Receipts and Warranties",
@@ -9,7 +11,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <main className="page seo-page">
+    <main className="page seo-page"><Breadcrumbs items={[{name:"Blog",href:"/blog/"},{name:"How to Organise Receipts and Warranties"}]}/><BlogPostingJsonLd title={"How to Organise Receipts and Warranties"} description={"A simple system for keeping proof of purchase, return deadlines and warranty information organised."} path="/blog/receipt-and-warranty-guide/" />
       <div className="container prose">
         <div className="kicker">RECEIPT & WARRANTY GUIDE</div>
         <h1>How to Organise Receipts and Warranties</h1>
