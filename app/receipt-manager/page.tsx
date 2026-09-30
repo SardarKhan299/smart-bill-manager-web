@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Receipt & Warranty Manager",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Receipt & Warranty Manager"}]}/><div className="container prose">
     <div className="kicker">RECEIPTS & WARRANTIES</div>
     <h1>Keep receipts, purchases and warranties organised.</h1>
     <p className="lead">Smart Bill Manager brings purchase records, receipt information and warranty details into your household finance workspace.</p>
