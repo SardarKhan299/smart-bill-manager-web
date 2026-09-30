@@ -180,7 +180,7 @@ async function writeLocalizedPage(sourceRelative, sourceHtml, locale, targetLang
     extractMeta(sourceHtml, "name", "twitter:title"),
     extractMeta(sourceHtml, "name", "twitter:description"),
     "This page was machine translated for convenience. The English version is the official source.",
-    "#SmartBillManager #BillTracker #Budgeting #PersonalFinance",
+    "Smart Bill Manager, Bill Tracker, Budgeting, Personal Finance",
   ];
 
   const translatedHtml = (await translateBatch([protectedHtml], targetLanguage))[0];
