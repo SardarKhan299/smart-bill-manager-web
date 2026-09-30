@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Budget Planner for Household Spending",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Budget Planner"}]}/><div className="container prose">
     <div className="kicker">BUDGET PLANNER</div>
     <h1>Plan household spending with more context.</h1>
     <p className="lead">Smart Bill Manager brings budgets, everyday expenses and upcoming commitments together to support forward-looking household planning.</p>
