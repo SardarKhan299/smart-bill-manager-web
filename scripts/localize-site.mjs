@@ -140,8 +140,14 @@ function localizedUrl(sourceRelative, locale) {
 }
 
 function addLocalizationHead(html, locale, originalUrl) {
+  const sourceRelative = originalUrlToRelative(originalUrl);
   const hreflang = PLAY_STORE_LOCALES
-    .map(([code]) => `<link rel="alternate" hreflang="${code}" href="${localizedUrl(originalUrlToRelative(originalUrl), code)}">`)
+    .map(([code]) => {
+      const href = code === "en-US" || code === "en-GB"
+        ? originalUrl
+        : localizedUrl(sourceRelative, code);
+      return `<link rel="alternate" hreflang="${code}" href="${href}">`;
+    })
     .join("");
   const head = `<link rel="alternate machine-translated-from" hreflang="en" href="${originalUrl}">
 <link rel="alternate" hreflang="x-default" href="${originalUrl}">
@@ -160,9 +166,9 @@ function setHtmlLangAndDir(html, locale) {
   return html.replace(/<html[^>]*>/i, `<html lang="${lang}" dir="${dir}">`);
 }
 
-function addMachineTranslationNotice(html, locale) {
+function addMachineTranslationNotice(html, locale, translatedText) {
   const notice =
-    `<div class="machine-translation-notice" lang="${locale}-x-mtfrom-en">This page was machine translated for convenience. The English version is the official source.</div>`;
+    `<div class="machine-translation-notice" lang="${locale}-x-mtfrom-en">${translatedText || "This page was machine translated for convenience. The English version is the official source."}</div>`;
   return html.replace(/<footer>/i, `${notice}<footer>`);
 }
 
@@ -175,14 +181,11 @@ async function writeLocalizedPage(sourceRelative, sourceHtml, locale, targetLang
     extractMeta(sourceHtml, "property", "og:description"),
     extractMeta(sourceHtml, "name", "twitter:title"),
     extractMeta(sourceHtml, "name", "twitter:description"),
+    "This page was machine translated for convenience. The English version is the official source.",
+    "#SmartBillManager #BillTracker #Budgeting #PersonalFinance",
   ];
 
-  const chunks = [];
-  for (let i = 0; i < protectedHtml.length; i += 30000) {
-    chunks.push(protectedHtml.slice(i, i + 30000));
-  }
-
-  // The Basic API recommends smaller requests; translate each HTML page as one unit when possible.
+  // The Basic API accepts HTML input; keep each page as one translation unit so tags and paragraphs remain coherent.
   const translatedHtml = (await translateBatch([protectedHtml], targetLanguage))[0];
   const translatedMeta = await translateBatch(metadata, targetLanguage);
 
@@ -192,9 +195,18 @@ async function writeLocalizedPage(sourceRelative, sourceHtml, locale, targetLang
   html = replaceMeta(html, "property", "og:description", translatedMeta[2]);
   html = replaceMeta(html, "name", "twitter:title", translatedMeta[3]);
   html = replaceMeta(html, "name", "twitter:description", translatedMeta[4]);
+  html = html.replace(/(<link[^>]+rel=["']canonical["'][^>]+href=["'])[^"']+(["'][^>]*>)/i, `$1${localizedUrl(sourceRelative, locale)}$2`);
+  html = replaceMeta(html, "property", "og:url", localizedUrl(sourceRelative, locale));
+  html = html.replace(/(<link[^>]+rel=["']alternate machine-translated-from["'][^>]+hreflang=["']en["'][^>]+href=["'])[^"']+(["'][^>]*>)/i, `$1${publicUrlFromSource(sourceRelative)}$2`);
   html = localizeInternalLinks(html, locale);
   html = setHtmlLangAndDir(html, locale);
-  html = addMachineTranslationNotice(html, locale);
+  html = addMachineTranslationNotice(html, locale, translatedMeta[5]);
+  const translatedHashtags = translatedMeta[6]
+    .split(/\\s+/)
+    .filter(Boolean)
+    .map((tag) => tag.startsWith("#") ? tag : `#${tag}`)
+    .join(" ");
+  html = html.replace(/<footer>/i, `<div class="social-hashtags" aria-label="Localized social hashtags">${translatedHashtags}</div><footer>`);
 
   const originalUrl = publicUrlFromSource(sourceRelative);
   html = addLocalizationHead(html, locale, originalUrl);
