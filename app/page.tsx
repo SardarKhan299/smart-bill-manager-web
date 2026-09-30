@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Smart Bill Manager – Bill Tracker, Budget & Expense App",
+  description: "Smart Bill Manager is a private household finance app for tracking bills, subscriptions, expenses, budgets and upcoming commitments. See what you can safely spend.",
+  alternates: { canonical: "/" },
+};
 
 const features=[["01","Bills & reminders","Keep recurring bills, due dates and upcoming commitments organised in one place."],["02","Subscriptions","See recurring subscription costs and stay aware of what you commit to over time."],["03","Everyday spending","Record expenses and understand where your household money is going."],["04","Safe-to-Spend","Get a clearer view of what may be available after considering your financial commitments."],["05","Planning & forecasts","Use forward-looking insights to understand upcoming financial pressure points."],["06","Receipts & warranties","Keep purchase records, receipts and warranty information organised."]];
 
