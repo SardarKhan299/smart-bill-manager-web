@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/localize-site.mjs",
+    "build:site": "next build",
     "build:localized": "next build && node scripts/localize-site.mjs",
     "localize": "node scripts/localize-site.mjs"
   },
