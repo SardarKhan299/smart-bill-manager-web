@@ -12,7 +12,6 @@ export const metadata:Metadata={
     template:"%s | Smart Bill Manager"
   },
   description:"Smart Bill Manager is a private household finance app for tracking bills, subscriptions, expenses, budgets and upcoming commitments. See what you can safely spend.",
-  alternates:{canonical:"/"},
   openGraph:{
     title:"Smart Bill Manager – Bill Tracker, Budget & Expense App",
     description:"Track bills, subscriptions, expenses and budgets. Know what you owe and what you can safely spend.",
@@ -27,8 +26,10 @@ export const metadata:Metadata={
     description:"Track bills, subscriptions, expenses and budgets. Know what you owe and what you can safely spend."
   },
   applicationName:"Smart Bill Manager",
+  icons:{icon:"/icon.svg",shortcut:"/icon.svg",apple:"/icon.svg"},
+  manifest:"/manifest.webmanifest",
   category:"finance",
-  robots:{index:true,follow:true}
+  robots:{index:true,follow:true,googleBot:{index:true,follow:true,max-image-preview:"large",max-snippet:-1,max-video-preview:-1}},
 };
 
 export default function RootLayout({children}:{children:React.ReactNode}){
