@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Subscription Tracker",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Subscription Tracker"}]}/><div className="container prose">
     <div className="kicker">SUBSCRIPTION TRACKER</div>
     <h1>Know what your subscriptions cost over time.</h1>
     <p className="lead">Smart Bill Manager helps you keep recurring subscriptions organised and understand how they contribute to household spending.</p>
