@@ -5,7 +5,6 @@ import { PLAY_STORE_LOCALES, RTL_LOCALES, SITE_URL } from "./locales.mjs";
 const OUT_DIR = path.resolve("out");
 const API_KEY = process.env.GOOGLE_TRANSLATE_API_KEY;
 const SOURCE_LOCALE = "en";
-const BATCH_SIZE = 6;
 const MAX_RETRIES = 4;
 
 if (!API_KEY) {
@@ -43,7 +42,7 @@ async function translateBatch(strings, target) {
       );
       const body = await response.json();
       if (!response.ok) {
-        throw new Error(body?.error?.message || `Translation API HTTP ${response.status}`);
+        throw new Error(body?.error?.message || \`Translation API HTTP \${response.status}\`);
       }
       return (body?.data?.translations || []).map((item) => item.translatedText);
     } catch (error) {
@@ -69,11 +68,11 @@ async function listHtmlFiles(dir, relative = "") {
 function protectScripts(html) {
   const scripts = [];
   const protectedHtml = html.replace(
-    /<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi,
+    /<script\b[^>]*>[\s\S]*?<\/script>/gi,
     (block) => {
-      const token = `__SBM_SCRIPT_${scripts.length}__`;
+      const token = \`__SBM_SCRIPT_\${scripts.length}__\`;
       scripts.push(block);
-      return `<div translate="no">${token}</div>`;
+      return \`<div translate="no">\${token}</div>\`;
     }
   );
   return { protectedHtml, scripts };
@@ -81,8 +80,8 @@ function protectScripts(html) {
 
 function restoreScripts(html, scripts) {
   return html.replace(
-    /<div translate="no">(__SBM_SCRIPT_\\d+__)<\\/div>/g,
-    (_, token) => scripts[Number(token.match(/\\d+/)[0])] || ""
+    /<div translate="no">(__SBM_SCRIPT_\d+__)<\/div>/g,
+    (_, token) => scripts[Number(token.match(/\d+/)[0])] || ""
   );
 }
 
@@ -96,7 +95,7 @@ function restoreBrand(html) {
 
 function extractMeta(html, attr, value) {
   const pattern = new RegExp(
-    `<meta[^>]+\\b${attr}=["']${value}["'][^>]*\\bcontent=["']([^"']*)["'][^>]*>`,
+    \`<meta[^>]+\\b\${attr}=["']\${value}["'][^>]*\\bcontent=["']([^"']*)["'][^>]*>\`,
     "i"
   );
   return html.match(pattern)?.[1] || "";
@@ -105,71 +104,70 @@ function extractMeta(html, attr, value) {
 function replaceMeta(html, attr, value, translated) {
   if (!translated) return html;
   const pattern = new RegExp(
-    `(<meta[^>]+\\b${attr}=["']${value}["'][^>]*\\bcontent=["'])[^"']*(["'][^>]*>)`,
+    \`(<meta[^>]+\\b\${attr}=["']\${value}["'][^>]*\\bcontent=["'])[^"']*(["'][^>]*>)\`,
     "i"
   );
-  return html.replace(pattern, `$1${translated.replaceAll('"', "&quot;")}$2`);
+  return html.replace(pattern, \`$1\${translated.replaceAll('"', "&quot;")}$2\`);
 }
 
 function localizeInternalLinks(html, locale) {
-  return html.replace(/href=["'](\\/[^"'#?]*)(\\?[^"']*)?["']/g, (full, href, query = "") => {
-    if (href.startsWith(`/${locale}/`) || href.startsWith("/_next/")) return full;
-    const localized = href === "/" ? `/${locale}/` : `/${locale}${href}`;
-    return `href="${localized}${query}"`;
+  return html.replace(/href=["'](\/[^"'#?]*)(\?[^"']*)?["']/g, (full, href, query = "") => {
+    if (href.startsWith(\`/\${locale}/\`) || href.startsWith("/_next/")) return full;
+    const localized = href === "/" ? \`/\${locale}/\` : \`/\${locale}\${href}\`;
+    return \`href="\${localized}\${query}"\`;
   });
 }
 
 function localizedPath(sourceRelative, locale) {
-  const withoutExt = sourceRelative.replace(/\\.html$/, "");
+  const withoutExt = sourceRelative.replace(/\.html$/, "");
   if (withoutExt === "index") return path.join(locale, "index.html");
   return path.join(locale, withoutExt, "index.html");
 }
 
 function publicUrlFromSource(sourceRelative) {
-  const withoutExt = sourceRelative.replace(/\\.html$/, "");
+  const withoutExt = sourceRelative.replace(/\.html$/, "");
   return withoutExt === "index"
-    ? `${SITE_URL}/`
-    : `${SITE_URL}/${withoutExt}/`;
+    ? \`\${SITE_URL}/\`
+    : \`\${SITE_URL}/\${withoutExt}/\`;
 }
 
 function localizedUrl(sourceRelative, locale) {
-  const withoutExt = sourceRelative.replace(/\\.html$/, "");
+  const withoutExt = sourceRelative.replace(/\.html$/, "");
   return withoutExt === "index"
-    ? `${SITE_URL}/${locale}/`
-    : `${SITE_URL}/${locale}/${withoutExt}/`;
+    ? \`\${SITE_URL}/\${locale}/\`
+    : \`\${SITE_URL}/\${locale}/\${withoutExt}/\`;
 }
 
-function addLocalizationHead(html, locale, originalUrl) {
-  const sourceRelative = originalUrlToRelative(originalUrl);
+function originalUrlToRelative(url) {
+  const relative = url.replace(\`\${SITE_URL}/\`, "");
+  return relative.endsWith("/") ? (relative ? \`\${relative}index.html\` : "index.html") : relative;
+}
+
+function addLocalizationHead(html, sourceRelative, originalUrl) {
   const hreflang = PLAY_STORE_LOCALES
     .map(([code]) => {
       const href = code === "en-US" || code === "en-GB"
         ? originalUrl
         : localizedUrl(sourceRelative, code);
-      return `<link rel="alternate" hreflang="${code}" href="${href}">`;
+      return \`<link rel="alternate" hreflang="\${code}" href="\${href}">\`;
     })
     .join("");
-  const head = `<link rel="alternate machine-translated-from" hreflang="en" href="${originalUrl}">
-<link rel="alternate" hreflang="x-default" href="${originalUrl}">
-${hreflang}`;
-  return html.replace(/<head>/i, `<head>${head}`);
-}
-
-function originalUrlToRelative(url) {
-  const relative = url.replace(`${SITE_URL}/`, "");
-  return relative.endsWith("/") ? (relative ? `${relative}index.html` : "index.html") : relative;
+  const head = \`<link rel="alternate machine-translated-from" hreflang="en" href="\${originalUrl}">
+<link rel="alternate" hreflang="x-default" href="\${originalUrl}">
+\${hreflang}\`;
+  return html.replace(/<head>/i, \`<head>\${head}\`);
 }
 
 function setHtmlLangAndDir(html, locale) {
-  const lang = `${locale}-x-mtfrom-en`;
+  const lang = \`\${locale}-x-mtfrom-en\`;
   const dir = RTL_LOCALES.has(locale) ? "rtl" : "ltr";
-  return html.replace(/<html[^>]*>/i, `<html lang="${lang}" dir="${dir}">`);
+  return html.replace(/<html[^>]*>/i, \`<html lang="\${lang}" dir="\${dir}">\`);
 }
 
 function addMachineTranslationNotice(html, locale, translatedText) {
   const notice =
-    `<div class="machine-translation-notice" lang="${locale}-x-mtfrom-en">${translatedText || "This page was machine translated for convenience. The English version is the official source."}</div>`;
-  return html.replace(/<footer>/i, `${notice}<footer>`);
+    \`<div class="machine-translation-notice" lang="\${locale}-x-mtfrom-en">\${translatedText || "This page was machine translated for convenience. The English version is the official source."}</div>\`;
+  return html.replace(/<footer>/i, \`\${notice}<footer>\`);
 }
 
 async function writeLocalizedPage(sourceRelative, sourceHtml, locale, targetLanguage) {
@@ -185,7 +183,6 @@ async function writeLocalizedPage(sourceRelative, sourceHtml, locale, targetLang
     "#SmartBillManager #BillTracker #Budgeting #PersonalFinance",
   ];
 
-  // The Basic API accepts HTML input; keep each page as one translation unit so tags and paragraphs remain coherent.
   const translatedHtml = (await translateBatch([protectedHtml], targetLanguage))[0];
   const translatedMeta = await translateBatch(metadata, targetLanguage);
 
@@ -195,21 +192,27 @@ async function writeLocalizedPage(sourceRelative, sourceHtml, locale, targetLang
   html = replaceMeta(html, "property", "og:description", translatedMeta[2]);
   html = replaceMeta(html, "name", "twitter:title", translatedMeta[3]);
   html = replaceMeta(html, "name", "twitter:description", translatedMeta[4]);
-  html = html.replace(/(<link[^>]+rel=["']canonical["'][^>]+href=["'])[^"']+(["'][^>]*>)/i, `$1${localizedUrl(sourceRelative, locale)}$2`);
+  html = html.replace(
+    /(<link[^>]+rel=["']canonical["'][^>]+href=["'])[^"']+(["'][^>]*>)/i,
+    \`$1\${localizedUrl(sourceRelative, locale)}$2\`
+  );
   html = replaceMeta(html, "property", "og:url", localizedUrl(sourceRelative, locale));
-  html = html.replace(/(<link[^>]+rel=["']alternate machine-translated-from["'][^>]+hreflang=["']en["'][^>]+href=["'])[^"']+(["'][^>]*>)/i, `$1${publicUrlFromSource(sourceRelative)}$2`);
   html = localizeInternalLinks(html, locale);
   html = setHtmlLangAndDir(html, locale);
-  html = addMachineTranslationNotice(html, locale, translatedMeta[5]);
-  const translatedHashtags = translatedMeta[6]
-    .split(/\\s+/)
-    .filter(Boolean)
-    .map((tag) => tag.startsWith("#") ? tag : `#${tag}`)
-    .join(" ");
-  html = html.replace(/<footer>/i, `<div class="social-hashtags" aria-label="Localized social hashtags">${translatedHashtags}</div><footer>`);
 
+  const translatedHashtags = translatedMeta[6]
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((tag) => tag.startsWith("#") ? tag : \`#\${tag}\`)
+    .join(" ");
+  html = html.replace(
+    /<footer>/i,
+    \`<div class="social-hashtags" aria-label="Localized social hashtags">\${translatedHashtags}</div><footer>\`
+  );
+
+  html = addMachineTranslationNotice(html, locale, translatedMeta[5]);
   const originalUrl = publicUrlFromSource(sourceRelative);
-  html = addLocalizationHead(html, locale, originalUrl);
+  html = addLocalizationHead(html, sourceRelative, originalUrl);
 
   const outputRelative = localizedPath(sourceRelative, locale);
   const outputPath = path.join(OUT_DIR, outputRelative);
@@ -222,29 +225,24 @@ async function main() {
     .filter((file) => !file.startsWith("sitemap") && !file.startsWith("robots"))
     .sort();
 
-  console.log(`Localizing ${sourceFiles.length} generated pages into ${PLAY_STORE_LOCALES.length} Google Play locales.`);
+  console.log(\`Localizing \${sourceFiles.length} generated pages into \${PLAY_STORE_LOCALES.length} Google Play locales.\`);
 
   for (const [locale, targetLanguage] of PLAY_STORE_LOCALES) {
-    // Skip exact English source variants; the canonical English site already exists.
     if (locale === "en-US" || locale === "en-GB") {
-      console.log(`Skipping ${locale}: canonical English content is already available.`);
+      console.log(\`Skipping \${locale}: canonical English content is already available.\`);
       continue;
     }
 
-    console.log(`\\n== ${locale} -> ${targetLanguage} ==`);
-    for (let i = 0; i < sourceFiles.length; i += BATCH_SIZE) {
-      const batch = sourceFiles.slice(i, i + BATCH_SIZE);
-      for (const sourceFile of batch) {
-        const sourcePath = path.join(OUT_DIR, sourceFile);
-        const sourceHtml = await fs.readFile(sourcePath, "utf8");
-        await writeLocalizedPage(sourceFile, sourceHtml, locale, targetLanguage);
-        console.log(`  translated ${sourceFile}`);
-      }
+    console.log(\`\\n== \${locale} -> \${targetLanguage} ==\`);
+    for (const sourceFile of sourceFiles) {
+      const sourcePath = path.join(OUT_DIR, sourceFile);
+      const sourceHtml = await fs.readFile(sourcePath, "utf8");
+      await writeLocalizedPage(sourceFile, sourceHtml, locale, targetLanguage);
+      console.log(\`  translated \${sourceFile}\`);
     }
   }
 
-  // Add all generated localized URLs to the deployed sitemap.
-  const urls = [`${SITE_URL}/`];
+  const urls = [\`\${SITE_URL}/\`];
   for (const sourceFile of sourceFiles) {
     const baseUrl = publicUrlFromSource(sourceFile);
     if (!urls.includes(baseUrl)) urls.push(baseUrl);
@@ -257,13 +255,13 @@ async function main() {
   const sitemap = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...Array.from(new Set(urls), (url) => `  <url><loc>${url}</loc></url>`),
+    ...Array.from(new Set(urls), (url) => \`  <url><loc>\${url}</loc></url>\`),
     "</urlset>",
     "",
   ].join("\n");
 
   await fs.writeFile(path.join(OUT_DIR, "sitemap.xml"), sitemap, "utf8");
-  console.log(`\\nDone. Generated ${new Set(urls).size} sitemap URLs.`);
+  console.log(\`\\nDone. Generated \${new Set(urls).size} sitemap URLs.\`);
 }
 
 main().catch((error) => {
