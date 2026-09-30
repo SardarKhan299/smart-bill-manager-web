@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Safe-to-Spend Money Planner",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Safe-to-Spend"}]}/><div className="container prose">
     <div className="kicker">SAFE-TO-SPEND</div>
     <h1>Know what you can safely spend.</h1>
     <p className="lead">A current bank balance does not always show the money already committed to upcoming bills and planned spending. Smart Bill Manager puts those factors into a clearer planning view.</p>
