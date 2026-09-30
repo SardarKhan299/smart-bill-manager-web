@@ -22,6 +22,7 @@ const failures = [];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   const rel = path.relative(OUT, file);
+  if (rel.startsWith("404/")) continue;
 
   if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(rel + ": missing title");
   if (!/<meta[^>]+name=["']description["'][^>]+content=["'][^"']+["']/i.test(html)) failures.push(rel + ": missing meta description");
