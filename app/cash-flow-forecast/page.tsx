@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "../breadcrumbs";
 
 export const metadata = {
   title: "Cash-Flow Forecast for Household Finances",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <main className="page seo-page"><div className="container prose">
+  return <main className="page seo-page"><Breadcrumbs items={[{name:"Cash-Flow Forecast"}]}/><div className="container prose">
     <div className="kicker">CASH-FLOW FORECAST</div>
     <h1>See what may be coming before it arrives.</h1>
     <p className="lead">Smart Bill Manager helps you look ahead across bills, recurring expenses and planned spending so upcoming financial pressure points are easier to spot.</p>
