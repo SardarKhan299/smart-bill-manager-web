@@ -45,11 +45,11 @@ export default function RootLayout({children}:{children:React.ReactNode}){
     <header><div className="container nav">
       <Link className="logo" href="/"><span className="logo-mark">SB</span>Smart Bill Manager</Link>
       <nav className="nav-links" aria-label="Primary navigation">
-        <Link href="/features/">Features</Link><Link href="/bill-tracker/">Bill Tracker</Link><Link href="/blog/">Blog</Link><Link href="/faq/">FAQ</Link><Link href="/pricing/">Pricing</Link><Link href="/support/">Support</Link>
+        <Link href="/features/">Features</Link><Link href="/bill-tracker/">Bill Tracker</Link><Link href="/blog/">Blog</Link><Link href="/tools/">Tools</Link><Link href="/faq/">FAQ</Link><Link href="/pricing/">Pricing</Link><Link href="/support/">Support</Link>
       </nav>
       <Link className="btn btn-primary" href="/download/">Download</Link>
     </div></header>
     {children}
-    <footer><div className="container footer-grid"><span>© 2026 Smart Bill Manager</span><span><Link href="/blog/">Blog</Link> · <Link href="/faq/">FAQ</Link> · <Link href="/compare/">Compare</Link> · <Link href="/privacy/">Privacy</Link> · <Link href="/support/">Support</Link></span></div></footer>
+    <footer><div className="container footer-grid"><span>© 2026 Smart Bill Manager</span><span><Link href="/blog/">Blog</Link> · <Link href="/tools/">Tools</Link> · <Link href="/faq/">FAQ</Link> · <Link href="/compare/">Compare</Link> · <Link href="/privacy/">Privacy</Link> · <Link href="/support/">Support</Link></span></div></footer>
   </body></html>;
 }
