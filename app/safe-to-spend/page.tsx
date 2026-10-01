@@ -33,6 +33,6 @@ export default function Page() {
     <h2>Frequently asked questions</h2>
     {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
     <p><Link className="btn btn-primary" href="/download/">Try Smart Bill Manager</Link></p>
-    <p className="related"><Link href="/bill-tracker/">Bill tracker</Link> · <Link href="/budget-planner/">Budget planner</Link> · <Link href="/cash-flow-forecast/">Cash-flow forecast</Link> · <Link href="/blog/safe-to-spend-vs-bank-balance/">Guide: Safe-to-Spend vs bank balance</Link></p>
+    <p className="related"><Link href="/bill-tracker/">Bill tracker</Link> · <Link href="/budget-planner/">Budget planner</Link> · <Link href="/cash-flow-forecast/">Cash-flow forecast</Link> · <Link href="/blog/safe-to-spend-vs-bank-balance/">Guide: Safe-to-Spend vs bank balance</Link> · <Link href="/blog/how-safe-to-spend-is-calculated/">How Safe-to-Spend is calculated</Link></p>
   </div></main>;
 }
