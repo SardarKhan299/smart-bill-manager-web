@@ -7,6 +7,7 @@ const SITE_URL = "https://smart-bill-manager-web.sardar-khan299.workers.dev";
 
 export const metadata:Metadata={
   metadataBase:new URL(SITE_URL),
+  alternates:{canonical:"/"},
   title:{
     default:"Smart Bill Manager – Bill Tracker, Budget & Expense App",
     template:"%s | Smart Bill Manager"
