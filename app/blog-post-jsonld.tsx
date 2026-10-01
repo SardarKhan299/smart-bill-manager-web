@@ -1,24 +1,33 @@
 const SITE_URL = "https://smart-bill-manager-web.sardar-khan299.workers.dev";
-const OG_IMAGE = `${SITE_URL}/og-image.svg`;
+const DEFAULT_IMAGE = `${SITE_URL}/images/discover/household-budget.svg`;
 
 export function BlogPostingJsonLd({
   title,
   description,
   path,
   articleSection,
+  imagePath,
 }: {
   title: string;
   description: string;
   path: string;
   articleSection?: string;
+  imagePath?: string;
 }) {
   const url = new URL(path, SITE_URL).toString();
+  const image = new URL(imagePath ?? DEFAULT_IMAGE, SITE_URL).toString();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: title,
     description,
-    image: [OG_IMAGE],
+    image: [image],
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      "url": image,
+      "width": 1600,
+      "height": 900,
+    },
     articleSection,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
