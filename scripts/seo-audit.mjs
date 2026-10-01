@@ -40,7 +40,7 @@ for (const file of htmlFiles) {
 
 
   if (rel.startsWith("tools/")) {
-    const scripts = [...html.matchAll(/<script[^>]+type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)];
+    const scripts = [...html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
     const breadcrumb = scripts.find((match) => /"@type":"BreadcrumbList"/.test(match[1]));
     if (!breadcrumb) failures.push(rel + ": missing BreadcrumbList JSON-LD");
   }
