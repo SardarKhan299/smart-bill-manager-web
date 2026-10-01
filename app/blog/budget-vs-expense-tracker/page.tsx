@@ -1,5 +1,29 @@
 import Link from "next/link";
 import { Breadcrumbs } from "../../breadcrumbs";
 import { BlogPostingJsonLd } from "../../blog-post-jsonld";
-export const metadata={title:"Budget Planner vs Expense Tracker: What Each One Does",description:"Understand the difference between planning a household budget and recording actual everyday expenses.",alternates:{canonical:"/blog/budget-vs-expense-tracker/"}};
-export default function Page(){return <main className="page seo-page"><Breadcrumbs items={[{name:"Blog",href:"/blog/"},{name:"Budget Planner vs Expense Tracker"}]}/><BlogPostingJsonLd title="Budget Planner vs Expense Tracker: What Each One Does" description="Understand the difference between planning a household budget and recording actual everyday expenses." path="/blog/budget-vs-expense-tracker/" articleSection="Budgeting"/><div className="container prose"><div className="kicker">BUDGETING</div><h1>Budget Planner vs Expense Tracker: What Each One Does</h1><p className="lead">A budget and an expense record answer different questions. Using both can give a household a clearer planning and review cycle.</p><h2>A budget is the plan</h2><p>A budget sets intended amounts for categories or commitments before or during a period. It describes what you plan to allocate.</p><h2>An expense tracker records what happened</h2><p>An expense tracker captures actual purchases and spending. Those records provide context for reviewing whether the plan matched real life.</p><h2>Use them together</h2><p>Start with a practical budget, record everyday spending, then compare the two. If a category repeatedly differs from the plan, review whether the spending pattern or the budget needs attention.</p><h2>Bring recurring commitments into the picture</h2><p>Bills and subscriptions can affect both the budget and the amount left for flexible spending. Reviewing them alongside everyday expenses avoids treating the variable part of the budget as the whole household plan.</p><p><Link className="btn btn-primary" href="/budget-planner/">Explore budget planning</Link></p><p className="related"><Link href="/expense-tracker/">Expense tracker</Link> · <Link href="/tools/budget-calculator/">Budget Calculator</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/download/">Download</Link></p></div></main>}
+import { BlogHeroImage } from "../../blog-hero-image";
+export const metadata = {
+  title: "Budget Planner vs Expense Tracker: What Each One Does",
+  description: "Understand the difference between planning a household budget and recording actual everyday expenses.",
+  alternates: { canonical: "/blog/budget-vs-expense-tracker/" },
+  openGraph: {
+    title: "Budget Planner vs Expense Tracker: What Each One Does",
+    description: "Understand the difference between planning a household budget and recording actual everyday expenses.",
+    url: "https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/budget-vs-expense-tracker/",
+    type: "article",
+    images: [{
+      url: "/images/discover/expense-tracking.svg",
+      width: 1600,
+      height: 900,
+      alt: "Budget Planner vs Expense Tracker: What Each One Does"
+    }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Budget Planner vs Expense Tracker: What Each One Does",
+    description: "Understand the difference between planning a household budget and recording actual everyday expenses.",
+    images: ["/images/discover/expense-tracking.svg"]
+  }
+};
+export default function Page(){return <main className="page seo-page"><Breadcrumbs items={[{name:"Blog",href:"/blog/"},{name:"Budget Planner vs Expense Tracker"}]}/><BlogPostingJsonLd title="Budget Planner vs Expense Tracker: What Each One Does" description="Understand the difference between planning a household budget and recording actual everyday expenses." path="/blog/budget-vs-expense-tracker/" articleSection="Budgeting" imagePath="/images/discover/expense-tracking.svg" /><div className="container prose"><div className="kicker">BUDGETING</div><h1>Budget Planner vs Expense Tracker: What Each One Does</h1><BlogHeroImage src="/images/discover/expense-tracking.svg" alt="Budget Planner vs Expense Tracker: What Each One Does" />
+<p className="lead">A budget and an expense record answer different questions. Using both can give a household a clearer planning and review cycle.</p><h2>A budget is the plan</h2><p>A budget sets intended amounts for categories or commitments before or during a period. It describes what you plan to allocate.</p><h2>An expense tracker records what happened</h2><p>An expense tracker captures actual purchases and spending. Those records provide context for reviewing whether the plan matched real life.</p><h2>Use them together</h2><p>Start with a practical budget, record everyday spending, then compare the two. If a category repeatedly differs from the plan, review whether the spending pattern or the budget needs attention.</p><h2>Bring recurring commitments into the picture</h2><p>Bills and subscriptions can affect both the budget and the amount left for flexible spending. Reviewing them alongside everyday expenses avoids treating the variable part of the budget as the whole household plan.</p><p><Link className="btn btn-primary" href="/budget-planner/">Explore budget planning</Link></p><p className="related"><Link href="/expense-tracker/">Expense tracker</Link> · <Link href="/tools/budget-calculator/">Budget Calculator</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/download/">Download</Link></p></div></main>}
