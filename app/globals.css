@@ -7,3 +7,4 @@
 
 
 .breadcrumbs{padding-top:1rem;padding-bottom:.25rem;font-size:.875rem;color:#667085}.breadcrumbs a{text-decoration:none}.breadcrumbs a:hover{text-decoration:underline}
+.tool-row{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin:12px 0}.prose label{display:grid;gap:8px;margin:18px 0;color:#374151;font-weight:700}.prose input{width:100%;min-height:46px;padding:12px 14px;border:1px solid #d1d5db;border-radius:12px;background:#fff;color:#111827;font:inherit}.tool-grid{margin-top:28px}.tool-grid .card h2{margin-top:0}.tool-grid .card p{margin:0 0 18px}@media(max-width:560px){.tool-row{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr}}
