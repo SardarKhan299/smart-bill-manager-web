@@ -310,9 +310,24 @@ Requirements:
 
 ## B6 — Content clusters
 
-Each commercial page should become the hub of a small topic cluster.
+Status: IMPLEMENTED — initial cluster expansion completed.
 
-Hub -> guide -> tool -> related hub -> app download.
+Each commercial page is now treated as the hub of a small topic cluster.
+
+Implemented supporting guides:
+- Bill tracking: /blog/how-to-track-monthly-bills/ + /blog/household-bill-checklist/
+- Subscription tracking: /blog/how-to-track-subscriptions/ + /blog/subscription-audit-guide/
+- Expense tracking: /blog/monthly-expense-categories/ + /blog/household-budget-guide/
+- Household budgeting: /blog/household-budget-guide/ + /blog/budget-vs-expense-tracker/
+- Safe-to-Spend: /blog/safe-to-spend-vs-bank-balance/ + /blog/how-safe-to-spend-is-calculated/
+- Cash flow: /blog/household-cash-flow-planning/ + /cash-flow-forecast/
+- Recurring expenses: /blog/recurring-expense-guide/ + /blog/recurring-expense-audit/
+- Receipts & warranties: /blog/receipt-and-warranty-guide/ + /blog/receipt-retention-warranty-guide/
+
+Internal linking now connects the main commercial hubs to their supporting guides, and supporting guides connect back to the relevant hub, related tools where available, related hubs and the app download path.
+
+Cluster rule:
+Hub -> guide -> tool where available -> related hub -> app download.
 
 Avoid publishing large numbers of thin AI-generated articles. Every article should answer a distinct user question and provide useful original explanation or a practical tool.
 
