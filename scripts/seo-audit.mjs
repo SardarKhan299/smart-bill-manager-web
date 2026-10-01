@@ -52,7 +52,13 @@ for (const file of htmlFiles) {
     else {
       if (!/"author":/.test(blogPosting[1])) failures.push(rel + ": BlogPosting missing author");
       if (!/"image":/.test(blogPosting[1])) failures.push(rel + ": BlogPosting missing image");
+      if (!/"primaryImageOfPage":/.test(blogPosting[1])) failures.push(rel + ": BlogPosting missing primaryImageOfPage");
       if (!/"headline":/.test(blogPosting[1])) failures.push(rel + ": BlogPosting missing headline");
+      const discoverImage = html.match(/<img[^>]+src=["']([^"']*\/images\/discover\/[^"']+)["'][^>]*alt=["']([^"']+)["']/i);
+      if (!discoverImage) failures.push(rel + ": missing Discover article image");
+      else if (!discoverImage[2].trim()) failures.push(rel + ": Discover article image missing alt text");
+      const ogImage = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
+      if (!ogImage || !ogImage[1].includes("/images/discover/")) failures.push(rel + ": blog og:image is not a Discover article image");
     }
   }
 }
