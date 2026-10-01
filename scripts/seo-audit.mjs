@@ -38,6 +38,13 @@ for (const file of htmlFiles) {
   if (html.includes("smartbillmanager.com")) failures.push(rel + ": contains old smartbillmanager.com domain");
   if (/<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(html)) failures.push(rel + ": contains noindex");
 
+
+  if (rel.startsWith("tools/")) {
+    const scripts = [...html.matchAll(/<script[^>]+type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)];
+    const breadcrumb = scripts.find((match) => /"@type":"BreadcrumbList"/.test(match[1]));
+    if (!breadcrumb) failures.push(rel + ": missing BreadcrumbList JSON-LD");
+  }
+
   if (rel.startsWith("blog/") && rel !== "blog/index.html") {
     const scripts = [...html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
     const blogPosting = scripts.find((match) => /"@type":"BlogPosting"/.test(match[1]));
