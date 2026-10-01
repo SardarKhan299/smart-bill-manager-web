@@ -1,21 +1,24 @@
 import Link from "next/link";
 import { Breadcrumbs } from "../../breadcrumbs";
 import { BlogPostingJsonLd } from "../../blog-post-jsonld";
+import { BlogHeroImage } from "../../blog-hero-image";
 
 export const metadata = {
   title: "How to Organise Receipts and Warranties",
-  description:
-    "A simple system for keeping proof of purchase, return deadlines and warranty information organised.",
+  description: "A simple system for keeping proof of purchase, return deadlines and warranty information organised.",
   alternates: { canonical: "/blog/receipt-and-warranty-guide/" },
+  openGraph: { title: "How to Organise Receipts and Warranties", description: "A simple system for keeping proof of purchase, return deadlines and warranty information organised.", url: "https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/receipt-and-warranty-guide/", type: "article", images: [{ url: "/images/discover/receipts-warranties.svg", width: 1600, height: 900, alt: "How to Organise Receipts and Warranties" }] },
+  twitter: { card: "summary_large_image", title: "How to Organise Receipts and Warranties", description: "A simple system for keeping proof of purchase, return deadlines and warranty information organised.", images: ["/images/discover/receipts-warranties.svg"] }
 };
 
 export default function Page() {
   return (
-    <main className="page seo-page"><Breadcrumbs items={[{name:"Blog",href:"/blog/"},{name:"How to Organise Receipts and Warranties"}]}/><BlogPostingJsonLd title={"How to Organise Receipts and Warranties"} description={"A simple system for keeping proof of purchase, return deadlines and warranty information organised."} path="/blog/receipt-and-warranty-guide/" articleSection="Receipts & Warranties" />
+    <main className="page seo-page"><Breadcrumbs items={[{name:"Blog",href:"/blog/"},{name:"How to Organise Receipts and Warranties"}]}/><BlogPostingJsonLd title={"How to Organise Receipts and Warranties"} description={"A simple system for keeping proof of purchase, return deadlines and warranty information organised."} path="/blog/receipt-and-warranty-guide/" articleSection="Receipts & Warranties" imagePath="/images/discover/receipts-warranties.svg" />
       <div className="container prose">
         <div className="kicker">RECEIPT & WARRANTY GUIDE</div>
         <h1>How to Organise Receipts and Warranties</h1>
-        <p className="lead">
+        <BlogHeroImage src="/images/discover/receipts-warranties.svg" alt="How to Organise Receipts and Warranties" />
+<p className="lead">
           Receipts matter when you need a return, warranty claim or proof of
           purchase. Keeping them attached to purchase records reduces the hunt
           for old paperwork.
