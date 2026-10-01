@@ -32,6 +32,6 @@ export default function Page() {
     <h2>Frequently asked questions</h2>
     {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
     <p><Link className="btn btn-primary" href="/download/">Download Smart Bill Manager</Link></p>
-    <p className="related"><Link href="/expense-tracker/">Expense tracker</Link> · <Link href="/features/">All features</Link> · <Link href="/support/">Support</Link> · <Link href="/blog/receipt-and-warranty-guide/">Guide: receipts and warranties</Link></p>
+    <p className="related"><Link href="/expense-tracker/">Expense tracker</Link> · <Link href="/features/">All features</Link> · <Link href="/support/">Support</Link> · <Link href="/blog/receipt-and-warranty-guide/">Guide: receipts and warranties</Link> · <Link href="/blog/receipt-retention-warranty-guide/">Receipt retention & warranty guide</Link></p>
   </div></main>;
 }
