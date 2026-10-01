@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/how-it-works/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/features/</loc></url>
@@ -10,20 +10,20 @@
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/faq/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-to-track-monthly-bills/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/safe-to-spend-vs-bank-balance/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-to-track-subscriptions/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/household-budget-guide/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/recurring-expense-guide/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/receipt-and-warranty-guide/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/household-bill-checklist/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/subscription-audit-guide/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/monthly-expense-categories/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/budget-vs-expense-tracker/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-safe-to-spend-is-calculated/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/household-cash-flow-planning/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/recurring-expense-audit/</loc></url>
-  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/receipt-retention-warranty-guide/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-to-track-monthly-bills/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/bill-tracking.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/safe-to-spend-vs-bank-balance/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/safe-to-spend.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-to-track-subscriptions/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/subscription-tracking.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/household-budget-guide/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/household-budget.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/recurring-expense-guide/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/recurring-expenses.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/receipt-and-warranty-guide/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/receipts-warranties.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/household-bill-checklist/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/bill-tracking.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/subscription-audit-guide/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/subscription-tracking.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/monthly-expense-categories/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/expense-tracking.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/budget-vs-expense-tracker/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/expense-tracking.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-safe-to-spend-is-calculated/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/safe-to-spend.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/household-cash-flow-planning/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/cash-flow.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/recurring-expense-audit/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/recurring-expenses.svg</image:loc></image:image></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/receipt-retention-warranty-guide/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/receipts-warranties.svg</image:loc></image:image></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/bill-tracker/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/subscription-tracker/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/expense-tracker/</loc></url>
