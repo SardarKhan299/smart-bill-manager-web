@@ -349,14 +349,27 @@ Avoid excessive repeated footer-style keyword links.
 
 ## B8 — Image / Discover optimization
 
-Maintain:
-- Representative social image.
-- Descriptive image alt text.
-- Useful screenshots where they clarify the product.
-- Correct dimensions and efficient formats.
-- No decorative image used as the main content.
+Status: IMPLEMENTED — article imagery, preferred-image metadata, image sitemap signals and automated checks are now in place.
 
-Discover is not guaranteed. Treat it as an additional acquisition channel, not a traffic forecast.
+Implemented:
+- Added eight reusable 1600×900 topic illustrations under `/images/discover/` for bill tracking, subscriptions, household budgeting, expense tracking, Safe-to-Spend, cash flow, recurring expenses, and receipts/warranties.
+- Added relevant article hero images with descriptive alt text to the 14 supporting guides.
+- Added page-specific `og:image` and Twitter large-image metadata for each article instead of using the generic site social image.
+- Extended BlogPosting JSON-LD with the article image and `primaryImageOfPage`.
+- Kept `max-image-preview:large` enabled globally so large previews are permitted.
+- Added image sitemap entries to the existing XML sitemap.
+- Added automated SEO-audit checks for article imagery, alt text, preferred image metadata and article `og:image`.
+- Kept images crawlable through normal `<img src>` markup and the sitemap.
+
+Google's current Discover guidance recommends relevant, high-quality images at least 1200 px wide, with more than 300,000 total pixels, and notes that `max-image-preview:large` plus `og:image` or schema.org markup can influence the image selected for Discover. Google also recommends avoiding generic or text-heavy images as the preferred Discover image. This implementation uses 1600×900 topic illustrations rather than the generic logo/social image. Discover placement is not guaranteed.
+
+Operational rule:
+- Use a representative article image, not the site logo, as the preferred image for editorial content.
+- Keep alt text concise and contextual.
+- Prefer 16:9 landscape source artwork for Discover candidates.
+- Keep image URLs stable and crawlable.
+- Add future article images to both the page metadata/structured data and sitemap when appropriate.
+- Do not fabricate Discover traffic or Search Console image metrics; measure them after indexing.
 
 ## B9 — International SEO
 
