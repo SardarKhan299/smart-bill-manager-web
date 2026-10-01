@@ -30,7 +30,7 @@ export default function Page() {
     <h2>Keep your records local-first</h2>
     <p>Smart Bill Manager is designed as a local-first household finance app. Your financial records are intended to stay on your device, with no account or cloud database required for the core record-keeping experience.</p>
     <h2>Frequently asked questions</h2>
-    {faq.map((item) => <section className="faq-item" key={item.question}>><h3>{item.question}</h3><p>{item.answer}</p></section>)}
+    {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
     <p><Link className="btn btn-primary" href="/download/">Download Smart Bill Manager</Link></p>
     <p className="related"><Link href="/subscription-tracker/">Subscription tracker</Link> · <Link href="/budget-planner/">Budget planner</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/blog/recurring-expense-guide/">Guide: recurring expenses</Link></p>
   </div></main>;
