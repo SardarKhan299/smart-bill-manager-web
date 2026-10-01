@@ -32,6 +32,6 @@ export default function Page() {
     <h2>Frequently asked questions</h2>
     {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
     <p><Link className="btn btn-primary" href="/download/">Download Smart Bill Manager</Link></p>
-    <p className="related"><Link href="/budget-planner/">Budget planner</Link> · <Link href="/cash-flow-forecast/">Cash-flow forecast</Link> · <Link href="/receipt-manager/">Receipt manager</Link> · <Link href="/blog/household-budget-guide/">Guide: household budgeting</Link> · <Link href="/blog/monthly-expense-categories/">Monthly expense categories</Link></p>
+    <p className="related"><Link href="/budget-planner/">Budget planner</Link> · <Link href="/cash-flow-forecast/">Cash-flow forecast</Link> · <Link href="/receipt-manager/">Receipt manager</Link> · <Link href="/blog/household-budget-guide/">Guide: household budgeting</Link> · <Link href="/blog/monthly-expense-categories/">Monthly expense categories</Link> · <Link href="/tools/budget-calculator/">Budget Calculator</Link></p>
   </div></main>;
 }
