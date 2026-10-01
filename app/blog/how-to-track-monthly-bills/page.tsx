@@ -1,5 +1,29 @@
 import Link from "next/link";
 import { Breadcrumbs } from "../../breadcrumbs";
 import { BlogPostingJsonLd } from "../../blog-post-jsonld";
-export const metadata={title:"How to Track Monthly Bills Without Missing Due Dates",description:"Learn a simple system for recording household bills, due dates and recurring commitments.",alternates:{canonical:"/blog/how-to-track-monthly-bills/"}};
-export default function Page(){return <main className="page seo-page"><Breadcrumbs items={[{name:"Blog",href:"/blog/"},{name:"How to Track Monthly Bills Without Missing Due Dates"}]}/><BlogPostingJsonLd title={"How to Track Monthly Bills Without Missing Due Dates"} description={"Learn a simple system for recording household bills, due dates and recurring commitments."} path="/blog/how-to-track-monthly-bills/" articleSection="Bill Management" /><div className="container prose"><div className="kicker">BILL MANAGEMENT GUIDE</div><h1>How to Track Monthly Bills Without Missing Due Dates</h1><p className="lead">A bill tracker works best when it gives you one reliable place to record what is due, when it is due and how it affects the rest of your household plan.</p><h2>1. Record every recurring bill</h2><p>Start with utilities, rent or housing costs, insurance, internet, phone plans and other regular commitments. Record the expected amount and recurrence rather than relying on memory.</p><h2>2. Keep due dates visible</h2><p>A list of upcoming commitments makes it easier to see what is coming next. This is especially useful when several payments fall close together.</p><h2>3. Consider bills when planning spending</h2><p>A current balance does not tell the whole story if important payments are due soon. Combining bill information with everyday spending can give your planning more context.</p><h2>4. Review changing bills</h2><p>For variable bills, compare recent amounts so unusual changes can be noticed and reviewed.</p><div className="seo-callout"><strong>Smart Bill Manager</strong><p>Use the bill tracker to record recurring commitments and connect them with planning and Safe-to-Spend views.</p></div><p><Link className="btn btn-primary" href="/bill-tracker/">Explore the bill tracker</Link></p><p className="related"><Link href="/blog/">All guides</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/download/">Download</Link></p></div></main>}
+import { BlogHeroImage } from "../../blog-hero-image";
+export const metadata = {
+  title: "How to Track Monthly Bills Without Missing Due Dates",
+  description: "Learn a simple system for recording household bills, due dates and recurring commitments.",
+  alternates: { canonical: "/blog/how-to-track-monthly-bills/" },
+  openGraph: {
+    title: "How to Track Monthly Bills Without Missing Due Dates",
+    description: "Learn a simple system for recording household bills, due dates and recurring commitments.",
+    url: "https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-to-track-monthly-bills/",
+    type: "article",
+    images: [{
+      url: "/images/discover/bill-tracking.svg",
+      width: 1600,
+      height: 900,
+      alt: "How to Track Monthly Bills Without Missing Due Dates"
+    }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Track Monthly Bills Without Missing Due Dates",
+    description: "Learn a simple system for recording household bills, due dates and recurring commitments.",
+    images: ["/images/discover/bill-tracking.svg"]
+  }
+};
+export default function Page(){return <main className="page seo-page"><Breadcrumbs items={[{name:"Blog",href:"/blog/"},{name:"How to Track Monthly Bills Without Missing Due Dates"}]}/><BlogPostingJsonLd title={"How to Track Monthly Bills Without Missing Due Dates"} description={"Learn a simple system for recording household bills, due dates and recurring commitments."} path="/blog/how-to-track-monthly-bills/" articleSection="Bill Management" imagePath="/images/discover/bill-tracking.svg" /><div className="container prose"><div className="kicker">BILL MANAGEMENT GUIDE</div><h1>How to Track Monthly Bills Without Missing Due Dates</h1><BlogHeroImage src="/images/discover/bill-tracking.svg" alt="How to Track Monthly Bills Without Missing Due Dates" />
+<p className="lead">A bill tracker works best when it gives you one reliable place to record what is due, when it is due and how it affects the rest of your household plan.</p><h2>1. Record every recurring bill</h2><p>Start with utilities, rent or housing costs, insurance, internet, phone plans and other regular commitments. Record the expected amount and recurrence rather than relying on memory.</p><h2>2. Keep due dates visible</h2><p>A list of upcoming commitments makes it easier to see what is coming next. This is especially useful when several payments fall close together.</p><h2>3. Consider bills when planning spending</h2><p>A current balance does not tell the whole story if important payments are due soon. Combining bill information with everyday spending can give your planning more context.</p><h2>4. Review changing bills</h2><p>For variable bills, compare recent amounts so unusual changes can be noticed and reviewed.</p><div className="seo-callout"><strong>Smart Bill Manager</strong><p>Use the bill tracker to record recurring commitments and connect them with planning and Safe-to-Spend views.</p></div><p><Link className="btn btn-primary" href="/bill-tracker/">Explore the bill tracker</Link></p><p className="related"><Link href="/blog/">All guides</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/download/">Download</Link></p></div></main>}
