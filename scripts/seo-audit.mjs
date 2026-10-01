@@ -30,8 +30,13 @@ for (const file of htmlFiles) {
   if (!/<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/smart-bill-manager-web\.sardar-khan299\.workers\.dev\//i.test(html)) failures.push(rel + ": missing workers.dev canonical");
   if (!/<html[^>]+lang=["'][^"']+["']/i.test(html)) failures.push(rel + ": missing html lang");
   if (!/<meta[^>]+name=["']viewport["']/i.test(html)) failures.push(rel + ": missing viewport");
-  if (!html.includes(`property="og:image"`) || !html.includes(OG_IMAGE_URL)) failures.push(rel + ": missing production og:image");
-  if (!html.includes(`name="twitter:image"`) || !html.includes(OG_IMAGE_URL)) failures.push(rel + ": missing production twitter:image");
+  const isBlogArticle = rel.startsWith("blog/") && rel !== "blog/index.html";
+  if (!html.includes(`property="og:image"`)) failures.push(rel + ": missing og:image");
+  else if (isBlogArticle && !html.includes("/images/discover/")) failures.push(rel + ": blog og:image is not a Discover image");
+  else if (!isBlogArticle && !html.includes(OG_IMAGE_URL)) failures.push(rel + ": missing production og:image");
+  if (!html.includes(`name="twitter:image"`)) failures.push(rel + ": missing twitter:image");
+  else if (isBlogArticle && !html.includes("/images/discover/")) failures.push(rel + ": blog twitter:image is not a Discover image");
+  else if (!isBlogArticle && !html.includes(OG_IMAGE_URL)) failures.push(rel + ": missing production twitter:image");
 
   const h1s = html.match(/<h1\b/gi) ?? [];
   if (h1s.length !== 1) failures.push(rel + ": expected exactly one h1, found " + h1s.length);
