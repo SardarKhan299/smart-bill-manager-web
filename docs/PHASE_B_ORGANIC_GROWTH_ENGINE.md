@@ -410,79 +410,21 @@ Quality rule:
 - Localized pages must translate the main content, not only navigation.
 - Keep country-specific wording/pricing/currency only when the product actually supports a meaningful regional variation.
 - Measure each locale in Search Console before expanding the translation set.
-
 ## B10 — Search performance monitoring
 
-Monthly baseline dashboard:
-- clicks
-- impressions
-- CTR
-- average position
-- top non-branded queries
-- top landing pages
-- top countries
-- indexed pages
-- new queries
-- declining pages
-- high-impression / low-CTR opportunities
-- calculator/tool performance once launched
+Status: IMPLEMENTED — repeatable Search Console monitoring and offline report generation are now in place.
 
-Use before/after comparisons when changing titles, descriptions or content.
+Implemented:
+- Documented weekly and monthly Search Console review cadence.
+- Defined current-vs-previous period KPIs: clicks, impressions, CTR and average position.
+- Added monitoring for queries, landing pages, countries and devices.
+- Added high-impression / low-CTR opportunity analysis with human review required before changing titles/descriptions/content.
+- Added declining-page and new-query investigation rules.
+- Added international locale/country monitoring aligned with B9.
+- Added B8 Discover/multimodal monitoring guidance.
+- Added scripts/search-performance-report.mjs for offline CSV analysis.
+- Added npm run seo:performance.
+- Documented Search Console aggregation, anonymization, export and preliminary-data limitations.
+- Intentionally did not invent a live baseline or add a credential-dependent API integration.
 
-## B11 — Conversion optimization
-
-Track the funnel:
-
-Search impression
--> organic click
--> landing page
--> Google Play click
--> install
--> activation
--> recurring usage
--> Pro conversion
-
-Website changes should be evaluated against conversion signals, not just page views.
-
-## B12 — Continuous iteration
-
-Every iteration should have:
-- hypothesis
-- target page
-- change
-- date
-- reason
-- Search Console baseline
-- result window
-- decision: keep / revise / revert
-
-Do not claim an SEO improvement unless measured data supports it.
-
-## Implementation order
-
-1. B1 access + baseline
-2. B2 keyword/topic map
-3. B3 upgrade commercial landing pages
-4. B5 build calculators
-5. B6/B7 strengthen content clusters and internal links
-6. B4 expand factual comparisons
-7. B8 image/Discover work
-8. B9 localization
-9. B10/B11 measurement + conversion optimization
-10. B12 ongoing iteration
-
-## Quality gate
-
-Before each Phase B release:
-- npm run build
-- npm run seo:audit
-- sitemap contains all production pages
-- canonical URLs use workers.dev
-- no old smartbillmanager.com references
-- exactly one H1 per page
-- metadata matches page intent
-- internal links resolve
-- calculator formulas have unit tests or deterministic test cases
-- no unsupported financial claims
-- no fabricated SEO metrics
-- mobile layout checked
+Operational source of truth: Google Search Console. The local report is an analysis aid for exported data, not a replacement for Search Console.
