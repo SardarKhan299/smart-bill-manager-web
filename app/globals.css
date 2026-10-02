@@ -24,3 +24,9 @@
   font-size:.9rem;
   color:#66736d;
 }
+
+.conversion-trust{margin-top:18px;color:#56616f;font-size:13px;line-height:1.6}
+.conversion-panel{margin:30px 0;padding:28px;border:1px solid #dfe3e8;border-radius:20px;background:#fff;box-shadow:0 8px 28px rgba(15,23,42,.04)}
+.conversion-panel h2{font-size:28px;margin-top:0}
+.conversion-panel li{margin:.45rem 0}
+.cta-note{margin:12px 0 0;color:#aeb7c5;font-size:13px}
