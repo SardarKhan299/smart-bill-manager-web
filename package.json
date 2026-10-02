@@ -8,7 +8,8 @@
     "build:site": "next build",
     "build:localized": "next build && node scripts/localize-site.mjs",
     "localize": "node scripts/localize-site.mjs",
-    "seo:audit": "node scripts/seo-audit.mjs"
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:performance": "node scripts/search-performance-report.mjs"
   },
   "dependencies": {
     "next": "15.5.26",
