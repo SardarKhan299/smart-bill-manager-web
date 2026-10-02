@@ -9,3 +9,24 @@ export const PLAY_STORE_LOCALES = [
 ];
 
 export const RTL_LOCALES = new Set(["ar","fa","fa-AE","fa-AF","fa-IR","he","iw-IL"]);
+
+
+// SEO localization set: focused on the initial international markets defined for the web growth plan.
+// English regional variants use the existing canonical English page when the content is identical.
+export const SEO_LOCALES = [
+  ["en-GB", "en", "/"],
+  ["en-US", "en", "/"],
+  ["en-AU", "en", "/"],
+  ["en-CA", "en", "/"],
+  ["nl-NL", "nl", "/nl-NL/"],
+  ["de-DE", "de", "/de-DE/"],
+  ["fr-FR", "fr", "/fr-FR/"],
+  ["fr-CA", "fr", "/fr-CA/"],
+  ["es-ES", "es", "/es-ES/"],
+  ["it-IT", "it", "/it-IT/"],
+  ["pt-PT", "pt-PT", "/pt-PT/"],
+  ["ar", "ar", "/ar/"],
+  ["ur-PK", "ur", "/ur-PK/"],
+  ["hi-IN", "hi", "/hi-IN/"],
+  ["zh-CN", "zh-CN", "/zh-CN/"],
+];
