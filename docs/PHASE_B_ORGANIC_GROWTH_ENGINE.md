@@ -373,16 +373,43 @@ Operational rule:
 
 ## B9 — International SEO
 
-Initial localization candidates:
-- en-GB
-- en-US
-- en-CA
-- en-AU
-- nl-NL
-- de-DE
-- fr-FR
+Status: IMPLEMENTED — focused multilingual/localized SEO generation is now wired into the static build.
 
-Do not blindly translate every page first. Prioritize pages after Search Console/query evidence and validate translated content for natural language and local terminology.
+Implemented:
+- Added a focused 15-locale SEO set aligned with the web growth plan:
+  - English regional targets: en-GB, en-US, en-AU, en-CA
+  - Dutch: nl-NL
+  - German: de-DE
+  - French: fr-FR, fr-CA
+  - Spanish: es-ES
+  - Italian: it-IT
+  - Portuguese: pt-PT
+  - Arabic: ar
+  - Urdu/Pakistan: ur-PK
+  - Hindi/India: hi-IN
+  - Simplified Chinese/China: zh-CN
+- Non-English variants are generated under locale subdirectories such as `/nl-NL/`, `/de-DE/`, and `/ur-PK/`.
+- English regional variants reuse the existing English page when the content is identical rather than creating unnecessary duplicate copies.
+- Added reciprocal `hreflang` annotations to the HTML head of the canonical and localized pages.
+- Added reciprocal `hreflang` entries to the XML sitemap using the XHTML sitemap extension.
+- Added `x-default` pointing to the canonical English page.
+- Localized pages now use their actual locale in the HTML `lang` attribute and correct RTL direction for Arabic and Urdu.
+- Localized internal links stay inside the same locale path.
+- Localized canonical URLs and Open Graph URLs point to the localized page.
+- Preserved the B8 image-sitemap entries when the localization build rewrites the sitemap.
+- SEO audit now checks the international `hreflang` set and sitemap coverage.
+
+Build dependency:
+- The existing Google Cloud Translation API key remains a build-time secret. If it is unavailable, the normal English static build remains valid and localized pages are not generated.
+- Translations should be reviewed before treating a locale as fully localized marketing content; the current pipeline is machine translation for scalable first-pass coverage.
+
+Google's current guidance says each language/region version should reference itself and its alternatives, alternate URLs should be fully qualified, and `x-default` can be used as a fallback. Google supports HTML or sitemap annotations; this implementation uses both because the generated HTML and sitemap are already part of the site's static build pipeline. citeturn0search0turn0search5
+
+Quality rule:
+- Do not add locale pages merely to create more indexed URLs.
+- Localized pages must translate the main content, not only navigation.
+- Keep country-specific wording/pricing/currency only when the product actually supports a meaningful regional variation.
+- Measure each locale in Search Console before expanding the translation set.
 
 ## B10 — Search performance monitoring
 
