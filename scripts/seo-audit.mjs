@@ -4,6 +4,8 @@ import path from "node:path";
 const OUT = path.resolve("out");
 const SITE_HOST = "smart-bill-manager-web.sardar-khan299.workers.dev";
 const OG_IMAGE_URL = `https://${SITE_HOST}/og-image.svg`;
+const seoLocales = ["en-GB","en-US","en-AU","en-CA","nl-NL","de-DE","fr-FR","fr-CA","es-ES","it-IT","pt-PT","ar","ur-PK","hi-IN","zh-CN"];
+
 
 if (!fs.existsSync(OUT)) {
   console.error("SEO audit failed: out/ does not exist.");
@@ -42,6 +44,11 @@ for (const file of htmlFiles) {
   if (h1s.length !== 1) failures.push(rel + ": expected exactly one h1, found " + h1s.length);
   if (html.includes("smartbillmanager.com")) failures.push(rel + ": contains old smartbillmanager.com domain");
   if (/<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(html)) failures.push(rel + ": contains noindex");
+  if (!rel.match(/^nl-NL\\//) && !rel.match(/^de-DE\\//) && !rel.match(/^fr-FR\\//) && !rel.match(/^fr-CA\\//) && !rel.match(/^es-ES\\//) && !rel.match(/^it-IT\\//) && !rel.match(/^pt-PT\\//) && !rel.match(/^ar\\//) && !rel.match(/^ur-PK\\//) && !rel.match(/^hi-IN\\//) && !rel.match(/^zh-CN\\//)) {
+    const presentHreflang = [...html.matchAll(/<link[^>]+rel=["']alternate["'][^>]+hreflang=["']([^"']+)["'][^>]+href=["']([^"']+)["']/gi)].map((m) => m[1]);
+    if (presentHreflang.length && !seoLocales.every((locale) => presentHreflang.includes(locale))) failures.push(rel + ": incomplete hreflang set");
+    if (presentHreflang.length && !presentHreflang.includes("x-default")) failures.push(rel + ": missing x-default hreflang");
+  }
 
 
   if (rel.startsWith("tools/")) {
@@ -75,6 +82,11 @@ for (const required of ["robots.txt", "sitemap.xml", "app-ads.txt", "og-image.sv
 const sitemap = fs.readFileSync(path.join(OUT, "sitemap.xml"), "utf8");
 if (!sitemap.includes(SITE_HOST)) failures.push("sitemap.xml does not use the production workers.dev host");
 if (sitemap.includes("smartbillmanager.com")) failures.push("sitemap.xml contains old domain");
+if (sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"')) {
+  for (const locale of seoLocales) if (!sitemap.includes(`hreflang="${locale}"`)) failures.push("sitemap.xml missing hreflang " + locale);
+  if (!sitemap.includes('hreflang="x-default"')) failures.push("sitemap.xml missing x-default hreflang");
+}
+
 
 if (failures.length) {
   console.error("SEO audit failed:");
