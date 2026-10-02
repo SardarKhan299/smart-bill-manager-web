@@ -428,3 +428,18 @@ Implemented:
 - Intentionally did not invent a live baseline or add a credential-dependent API integration.
 
 Operational source of truth: Google Search Console. The local report is an analysis aid for exported data, not a replacement for Search Console.
+
+## B11 — Conversion optimization
+
+Status: IMPLEMENTED — the organic acquisition funnel now has reusable app CTAs, clearer value-to-CTA paths, trust context, conversion-ready placement attributes and an experiment/measurement framework.
+
+Implemented:
+- Added reusable \`app/conversion-cta.tsx\` for Google Play and download-page CTAs.
+- Added above-the-fold Google Play CTA and trust context to the homepage.
+- Added secondary conversion path around Safe-to-Spend.
+- Added final homepage Google Play CTA.
+- Reworked the download page around value → trust → Google Play CTA.
+- Added conversion placement attributes for future analytics without adding a tracking dependency.
+- Added \`docs/CONVERSION_OPTIMIZATION.md\` with funnel, KPIs, experiment backlog and guardrails.
+- Intentionally did not invent conversion metrics or add analytics without a privacy-approved provider.
+
