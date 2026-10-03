@@ -1,6 +1,12 @@
 "use client";
 
 import Link from "next/link";
+
+export const metadata = {
+  title: "Budget Calculator",
+  description: "Use a free household budget calculator to plan monthly spending and see what remains from the income you enter.",
+  alternates: { canonical: "/tools/budget-calculator/" },
+};
 import { useMemo, useState } from "react";
 import { CalculatorJsonLd } from "../../calculator-jsonld";
 import { Breadcrumbs } from "../../breadcrumbs";
