@@ -1,4 +1,10 @@
 import Link from "next/link";
+
+export const metadata = {
+  title: "Free Financial Calculators",
+  description: "Free household finance calculators for bills, budgets and Safe-to-Spend planning. Use simple numbers you enter without connecting to your bank.",
+  alternates: { canonical: "/tools/" },
+};
 import { Breadcrumbs } from "../breadcrumbs";
 
 const tools = [
