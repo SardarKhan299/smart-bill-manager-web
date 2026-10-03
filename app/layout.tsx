@@ -4,6 +4,7 @@ import Link from "next/link";
 import {SiteJsonLd} from "./site-jsonld";
 
 const SITE_URL = "https://smart-bill-manager-web.sardar-khan299.workers.dev";
+const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
 
 export const metadata:Metadata={
   metadataBase:new URL(SITE_URL),
@@ -20,12 +21,7 @@ export const metadata:Metadata={
     siteName:"Smart Bill Manager",
     type:"website",
     locale:"en_GB",
-    images:[{
-      url:"/og-image.svg",
-      width:1200,
-      height:630,
-      alt:"Smart Bill Manager — private household money assistant"
-    }]
+    images:[{url:"/og-image.svg",width:1200,height:630,alt:"Smart Bill Manager — private household money assistant"}]
   },
   twitter:{
     card:"summary_large_image",
@@ -37,6 +33,7 @@ export const metadata:Metadata={
   icons:{icon:"/icon.svg",shortcut:"/icon.svg",apple:"/icon.svg"},
   manifest:"/manifest.webmanifest",
   category:"finance",
+  ...(GOOGLE_SITE_VERIFICATION ? {verification:{google:GOOGLE_SITE_VERIFICATION}} : {}),
   robots:{index:true,follow:true,googleBot:{index:true,follow:true,"max-image-preview":"large","max-snippet":-1,"max-video-preview":-1}},
 };
 
