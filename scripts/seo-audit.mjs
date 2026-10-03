@@ -44,7 +44,8 @@ for (const file of htmlFiles) {
   if (h1s.length !== 1) failures.push(rel + ": expected exactly one h1, found " + h1s.length);
   if (html.includes("smartbillmanager.com")) failures.push(rel + ": contains old smartbillmanager.com domain");
   if (/<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(html)) failures.push(rel + ": contains noindex");
-  if (!rel.match(/^nl-NL\\//) && !rel.match(/^de-DE\\//) && !rel.match(/^fr-FR\\//) && !rel.match(/^fr-CA\\//) && !rel.match(/^es-ES\\//) && !rel.match(/^it-IT\\//) && !rel.match(/^pt-PT\\//) && !rel.match(/^ar\\//) && !rel.match(/^ur-PK\\//) && !rel.match(/^hi-IN\\//) && !rel.match(/^zh-CN\\//)) {
+  const isLocalized = seoLocales.some((locale) => rel.startsWith(locale + "/"));
+  if (!isLocalized) {
     const presentHreflang = [...html.matchAll(/<link[^>]+rel=["']alternate["'][^>]+hreflang=["']([^"']+)["'][^>]+href=["']([^"']+)["']/gi)].map((m) => m[1]);
     if (presentHreflang.length && !seoLocales.every((locale) => presentHreflang.includes(locale))) failures.push(rel + ": incomplete hreflang set");
     if (presentHreflang.length && !presentHreflang.includes("x-default")) failures.push(rel + ": missing x-default hreflang");
