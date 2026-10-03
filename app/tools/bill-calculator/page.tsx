@@ -1,6 +1,12 @@
 "use client";
 
 import Link from "next/link";
+
+export const metadata = {
+  title: "Bill Calculator",
+  description: "Use a free bill calculator to estimate what remains from monthly income after the household bills you enter.",
+  alternates: { canonical: "/tools/bill-calculator/" },
+};
 import { useMemo, useState } from "react";
 import { CalculatorJsonLd } from "../../calculator-jsonld";
 import { Breadcrumbs } from "../../breadcrumbs";
