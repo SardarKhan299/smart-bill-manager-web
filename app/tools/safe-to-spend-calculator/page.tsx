@@ -1,6 +1,12 @@
 "use client";
 
 import Link from "next/link";
+
+export const metadata = {
+  title: "Safe-to-Spend Calculator",
+  description: "Use a free Safe-to-Spend calculator to estimate a planning amount after committed bills and planned spending.",
+  alternates: { canonical: "/tools/safe-to-spend-calculator/" },
+};
 import { useMemo, useState } from "react";
 import { CalculatorJsonLd } from "../../calculator-jsonld";
 import { Breadcrumbs } from "../../breadcrumbs";
