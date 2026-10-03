@@ -33,6 +33,8 @@ Cloudflare deployment configuration:
 
 The repository contains `wrangler.jsonc` configured to publish `./out` as Cloudflare static assets.
 
+Google Search Console verification is served from `public/google7587fd459982fd40.html`.
+
 ## Before production
 
 1. Replace `public/app-ads.txt` with the exact AdMob authorized seller entry.
