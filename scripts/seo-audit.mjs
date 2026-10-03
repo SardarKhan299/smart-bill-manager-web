@@ -19,7 +19,7 @@ function files(dir) {
   });
 }
 
-const htmlFiles = files(OUT).filter((file) => file.endsWith(".html") && !file.endsWith("404.html"));
+const htmlFiles = files(OUT).filter((file) => file.endsWith(".html") && !file.endsWith("404.html") && !file.endsWith("google7587fd459982fd40.html"));
 const failures = [];
 
 for (const file of htmlFiles) {
