@@ -45,7 +45,7 @@ export default function RootLayout({children}:{children:React.ReactNode}){
       <nav className="nav-links" aria-label="Primary navigation">
         <Link href="/features/">Features</Link><Link href="/bill-tracker/">Bill Tracker</Link><Link href="/blog/">Blog</Link><Link href="/tools/">Tools</Link><Link href="/faq/">FAQ</Link><Link href="/pricing/">Pricing</Link><Link href="/support/">Support</Link>
       </nav>
-      <Link className="btn btn-primary" href="/download/">Download</Link>
+      <a className="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.smartbillmanager" target="_blank" rel="noopener noreferrer" aria-label="Download Smart Bill Manager on Google Play">Download</a>
     </div></header>
     {children}
     <footer><div className="container footer-grid"><span>© 2026 Smart Bill Manager</span><span><Link href="/blog/">Blog</Link> · <Link href="/tools/">Tools</Link> · <Link href="/faq/">FAQ</Link> · <Link href="/compare/">Compare</Link> · <Link href="/privacy/">Privacy</Link> · <Link href="/support/">Support</Link></span></div></footer>
