@@ -7,7 +7,10 @@
       "namespace": "android_app",
       "package_name": "com.smartbillmanager",
       "sha256_cert_fingerprints": [
-        "6B:66:6D:35:BF:F8:80:3D:8B:82:CF:1E:7D:85:7F:6F:AC:B0:22:B5:41:5C:5B:5E:43:DE:B0:13:88:A8:4F:7C"
+        "6B:66:6D:35:BF:F8:80:3D:8B:82:CF:1E:7D:85:7F:6F:AC:B0:22:B5:41:5C:5B:5E:43:DE:B0:13:88:A8:4F:7C",
+        "C4:9F:30:8B:71:C2:FF:16:27:21:FE:CA:E5:1A:3A:EE:B4:CE:6A:7B:2B:59:DD:16:6B:1E:5D:4E:0E:F9:04:E8",
+        "76:56:C8:9E:65:42:11:5E:8D:AD:E0:24:D1:8A:0D:EE:E1:2D:75:24:89:74:71:A7:08:A5:C8:AE:76:0E:B4:80",
+        "83:F7:37:3E:CD:22:90:ED:30:1F:AD:A8:2D:CB:3D:0F:E4:CC:B1:14:DF:EF:90:65:E0:71:5C:94:43:8E:D9:F3"
       ]
     }
   }
