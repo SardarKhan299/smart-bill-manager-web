@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.smartbillmanager",
+      "sha256_cert_fingerprints": [
+        "6B:66:6D:35:BF:F8:80:3D:8B:82:CF:1E:7D:85:7F:6F:AC:B0:22:B5:41:5C:5B:5E:43:DE:B0:13:88:A8:4F:7C"
+      ]
+    }
+  }
+]
