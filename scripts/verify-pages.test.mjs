@@ -119,3 +119,20 @@ test("sitemap.xml includes all 6 pain-point SEO pages and all 6 deep-link fallba
     assert.ok(sitemap.includes(`<loc>${SITE_HOST}/${page.slug}/</loc>`), `sitemap.xml missing /${page.slug}/`);
   }
 });
+
+test("FAQ and Blog hub pages link to all 6 pain-point pages and include Android deep links + Play CTAs", () => {
+  for (const hub of ["faq", "blog"]) {
+    const file = path.join(OUT, hub, "index.html");
+    assert.ok(fs.existsSync(file), `Missing out/${hub}/index.html`);
+    const html = fs.readFileSync(file, "utf8");
+    assert.ok(html.includes(`name="keywords"`), `${hub} missing keywords meta tag`);
+    assert.ok(html.includes(`class="actions"`), `${hub} missing standard .actions CTA layout class`);
+    assert.ok(html.includes("intent://"), `${hub} missing Android intent:// deep link`);
+    assert.ok(html.includes(PLAY_URL), `${hub} missing Google Play download link`);
+    for (const page of PAIN_POINT_PAGES) {
+      assert.ok(html.includes(`/${page.slug}/`), `${hub} missing link to /${page.slug}/`);
+    }
+  }
+  const faqHtml = fs.readFileSync(path.join(OUT, "faq", "index.html"), "utf8");
+  assert.ok(faqHtml.includes(`"@type":"FAQPage"`), "faq missing FAQPage JSON-LD");
+});
