@@ -58,10 +58,10 @@ export function ProblemLanding({
         </div>
         <div className="conversion-panel">
           <h2>Solve this directly in Smart Bill Manager</h2>
-          <p style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+          <div className="actions">
             <OpenInAppCta route={route} placement={`problem-${route}-open-top`} label={openLabel} />
             <PlayCta placement={`problem-${route}-play-top`} label="Download on Google Play" secondary />
-          </p>
+          </div>
         </div>
         <h2>{bulletsHeading}</h2>
         <ul>
@@ -82,10 +82,10 @@ export function ProblemLanding({
             <p>{item.answer}</p>
           </section>
         ))}
-        <p style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+        <div className="actions">
           <OpenInAppCta route={route} placement={`problem-${route}-open-bottom`} label={openLabel} />
           <PlayCta placement={`problem-${route}-play-bottom`} label="Download on Google Play" secondary />
-        </p>
+        </div>
         <p className="related">
           {relatedLinks.map((link, index) => (
             <span key={link.href}>

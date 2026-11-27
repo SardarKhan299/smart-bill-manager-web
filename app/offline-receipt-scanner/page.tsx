@@ -1,9 +1,22 @@
 import { ProblemLanding } from "../problem-page";
 
 export const metadata = {
-  title: "Offline AI Receipt Scanner App for Android – No Cloud Upload",
+  title: "Offline AI Receipt Scanner App for Android",
   description: "Scan receipts and bills offline with on-device AI OCR on Android. Extract merchants, totals and due dates privately in Smart Bill Manager.",
+  keywords: ["offline receipt scanner", "ai receipt scanner android", "ocr receipt scanner no cloud", "scan receipts to expense tracker", "private receipt scanner app"],
   alternates: { canonical: "/offline-receipt-scanner/" },
+  openGraph: {
+    title: "Offline AI Receipt Scanner App for Android | Smart Bill Manager",
+    description: "Extract merchant names, totals and due dates on-device without uploading receipts to the cloud.",
+    url: "/offline-receipt-scanner/",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager offline AI receipt scanner" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Offline AI Receipt Scanner App for Android | Smart Bill Manager",
+    description: "Extract merchant names, totals and due dates on-device without uploading receipts to the cloud.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {

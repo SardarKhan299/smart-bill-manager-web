@@ -1,9 +1,22 @@
 import { ProblemLanding } from "../problem-page";
 
 export const metadata = {
-  title: "Bill Reminder App for Android – Never Pay Late Fees Again",
+  title: "Bill Reminder App for Android – Never Pay Late Fees",
   description: "Get reliable offline bill due-date reminders, 1-tap preset bill entry and home-screen widgets on Android with Smart Bill Manager.",
+  keywords: ["bill reminder app", "monthly bill due date reminder", "offline bill reminder android", "bill payment tracker", "home screen bill widget"],
   alternates: { canonical: "/bill-reminder-app/" },
+  openGraph: {
+    title: "Bill Reminder App for Android | Smart Bill Manager",
+    description: "Reliable offline bill due-date alerts, 1-tap preset bills and a Material You home-screen widget.",
+    url: "/bill-reminder-app/",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager bill reminder app" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bill Reminder App for Android | Smart Bill Manager",
+    description: "Reliable offline bill due-date alerts, 1-tap preset bills and a Material You home-screen widget.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {

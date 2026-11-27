@@ -3,7 +3,20 @@ import { ProblemLanding } from "../problem-page";
 export const metadata = {
   title: "Warranty Tracker App & Receipt Vault for Android",
   description: "Never lose a paper receipt or miss a warranty expiry again. Store product warranties and receipts offline on Android with Smart Bill Manager.",
+  keywords: ["warranty tracker app", "warranty expiry reminder", "receipt and warranty vault", "product warranty manager android", "offline warranty storage"],
   alternates: { canonical: "/warranty-tracker/" },
+  openGraph: {
+    title: "Warranty Tracker App & Receipt Vault for Android | Smart Bill Manager",
+    description: "Store product warranties and receipt photos offline on Android with timely expiry reminders.",
+    url: "/warranty-tracker/",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager warranty tracker app" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Warranty Tracker App & Receipt Vault for Android | Smart Bill Manager",
+    description: "Store product warranties and receipt photos offline on Android with timely expiry reminders.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {

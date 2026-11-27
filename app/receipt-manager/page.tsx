@@ -32,7 +32,7 @@ export default function Page() {
     <p>Smart Bill Manager is designed as a local-first household finance app. Your financial records are intended to stay on your device, with no account or cloud database required for the core record-keeping experience.</p>
     <h2>Frequently asked questions</h2>
     {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
-    <p style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}><OpenInAppCta route="scan" placement="receipt-manager-open" label="Open Receipt Scanner in App"/><PlayCta placement="receipt-manager-play" label="Download on Google Play" secondary/></p>
+    <div className="actions"><OpenInAppCta route="scan" placement="receipt-manager-open" label="Open Receipt Scanner in App"/><PlayCta placement="receipt-manager-play" label="Download on Google Play" secondary/></div>
     <p className="related"><Link href="/expense-tracker/">Expense tracker</Link> · <Link href="/features/">All features</Link> · <Link href="/support/">Support</Link> · <Link href="/blog/receipt-and-warranty-guide/">Guide: receipts and warranties</Link> · <Link href="/blog/receipt-retention-warranty-guide/">Receipt retention & warranty guide</Link> · <Link href="/expense-tracker/">Expense tracker</Link></p>
   </div></main>;
 }

@@ -1,9 +1,22 @@
 import { ProblemLanding } from "../problem-page";
 
 export const metadata = {
-  title: "Personal Debt Tracker & Bill Splitter App (Offline Android)",
+  title: "Personal Debt Tracker & Bill Splitter App (Offline)",
   description: "Track who owes you money, manage personal debts, split shared bills and monitor savings goals offline on Android with Smart Bill Manager.",
+  keywords: ["personal debt tracker app", "who owes me money app", "offline bill splitter android", "iou tracker offline", "debt repayment reminder app"],
   alternates: { canonical: "/debt-tracker/" },
+  openGraph: {
+    title: "Personal Debt Tracker & Bill Splitter App | Smart Bill Manager",
+    description: "Track who owes you money, split shared household bills and manage debts offline on Android.",
+    url: "/debt-tracker/",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager debt tracker and bill splitter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Personal Debt Tracker & Bill Splitter App | Smart Bill Manager",
+    description: "Track who owes you money, split shared household bills and manage debts offline on Android.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {

@@ -39,10 +39,10 @@ export function DeepLinkLanding({
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <p style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+          <div className="actions">
             <OpenInAppCta route={route} placement={`deeplink-${route}-open`} label={openLabel} />
             <PlayCta placement={`deeplink-${route}-play`} label="Download on Google Play" secondary />
-          </p>
+          </div>
         </div>
         <p className="related">
           <Link href={relatedHref}>{relatedLabel}</Link> · <Link href="/features/">All features</Link> · <Link href="/download/">Download</Link> · <Link href="/privacy/">Privacy</Link>

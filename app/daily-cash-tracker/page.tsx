@@ -1,9 +1,22 @@
 import { ProblemLanding } from "../problem-page";
 
 export const metadata = {
-  title: "Daily Cash Expense Tracker & Offline Cashbook for Android",
+  title: "Daily Cash Expense Tracker & Offline Cashbook",
   description: "Log daily cash spending in 3 seconds, build no-spend streaks and track everyday expenses offline on Android with Smart Bill Manager.",
+  keywords: ["daily cash expense tracker", "offline cashbook app", "no spend day tracker", "cash spending log android", "private daily expense tracker"],
   alternates: { canonical: "/daily-cash-tracker/" },
+  openGraph: {
+    title: "Daily Cash Expense Tracker & Offline Cashbook | Smart Bill Manager",
+    description: "Log daily cash spending in 3 seconds, build no-spend streaks and export PDF/CSV statements offline.",
+    url: "/daily-cash-tracker/",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager daily cash tracker" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daily Cash Expense Tracker & Offline Cashbook | Smart Bill Manager",
+    description: "Log daily cash spending in 3 seconds, build no-spend streaks and export PDF/CSV statements offline.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {

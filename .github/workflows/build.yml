@@ -27,6 +27,8 @@ jobs:
         run: npm run build
       - name: SEO audit
         run: npm run seo:audit
+      - name: Page, Deep Link & SEO tests
+        run: npm test
       - name: Verify static output
         run: |
           test -f out/index.html

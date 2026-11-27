@@ -25,10 +25,10 @@ export default function Page() {
             <li>Review Safe-to-Spend information and analytics.</li>
             <li>Organise receipts, purchases and warranties privately.</li>
           </ul>
-          <p style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+          <div className="actions">
             <PlayCta placement="download-primary" label="Download on Google Play" />
             <OpenInAppCta route="bills" placement="download-open-app" label="Already installed? Open App" secondary />
-          </p>
+          </div>
         </div>
         <h2>Jump straight to a screen in the app</h2>
         <p className="related">

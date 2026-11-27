@@ -48,6 +48,6 @@ export default function RootLayout({children}:{children:React.ReactNode}){
       <a className="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.smartbillmanager" target="_blank" rel="noopener noreferrer" aria-label="Download Smart Bill Manager on Google Play">Download</a>
     </div></header>
     {children}
-    <footer><div className="container footer-grid"><span>© 2026 Smart Bill Manager</span><span><Link href="/blog/">Blog</Link> · <Link href="/tools/">Tools</Link> · <Link href="/faq/">FAQ</Link> · <Link href="/compare/">Compare</Link> · <Link href="/privacy/">Privacy</Link> · <Link href="/support/">Support</Link></span></div></footer>
+    <footer><div className="container footer-grid"><span>© 2026 Smart Bill Manager</span><span><Link href="/offline-budget-app/">Offline Budget</Link> · <Link href="/offline-receipt-scanner/">Receipt Scanner</Link> · <Link href="/warranty-tracker/">Warranty Vault</Link> · <Link href="/bill-reminder-app/">Bill Reminder</Link> · <Link href="/daily-cash-tracker/">Cash Log</Link> · <Link href="/debt-tracker/">Debt Tracker</Link> · <Link href="/blog/">Blog</Link> · <Link href="/tools/">Tools</Link> · <Link href="/faq/">FAQ</Link> · <Link href="/privacy/">Privacy</Link> · <Link href="/support/">Support</Link></span></div></footer>
   </body></html>;
 }

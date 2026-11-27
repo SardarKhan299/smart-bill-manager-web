@@ -31,7 +31,7 @@ export default function Page() {
     <p>Smart Bill Manager is designed as a local-first household finance app. Your financial records are intended to stay on your device; no account or cloud database is required for the core record-keeping experience.</p>
     <h2>Frequently asked questions</h2>
     {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
-    <p style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}><OpenInAppCta route="bills" placement="bill-tracker-open" label="Open Bills in App"/><PlayCta placement="bill-tracker-play" label="Download on Google Play" secondary/></p>
+    <div className="actions"><OpenInAppCta route="bills" placement="bill-tracker-open" label="Open Bills in App"/><PlayCta placement="bill-tracker-play" label="Download on Google Play" secondary/></div>
     <p className="related"><Link href="/subscription-tracker/">Subscription tracker</Link> · <Link href="/budget-planner/">Budget planner</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/blog/how-to-track-monthly-bills/">Guide: how to track monthly bills</Link> · <Link href="/blog/household-bill-checklist/">Household bill checklist</Link> · <Link href="/tools/bill-calculator/">Bill Calculator</Link></p>
   </div></main>;
 }
