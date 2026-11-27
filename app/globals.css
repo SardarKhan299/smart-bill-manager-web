@@ -30,3 +30,7 @@
 .conversion-panel h2{font-size:28px;margin-top:0}
 .conversion-panel li{margin:.45rem 0}
 .cta-note{margin:12px 0 0;color:#aeb7c5;font-size:13px}
+.skip-link{position:absolute;left:-9999px;top:12px;z-index:1000;padding:10px 16px;border-radius:10px;background:#111827;color:#fff;font-weight:700;font-size:14px}
+.skip-link:focus,.skip-link:focus-visible{left:16px;outline:3px solid #64748b;outline-offset:3px}
+a:focus-visible,.prose input:focus-visible,.prose select:focus-visible,.btn-remove:focus-visible{outline:3px solid #334155;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

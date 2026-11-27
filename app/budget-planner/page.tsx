@@ -1,37 +1,97 @@
 import Link from "next/link";
 import { Breadcrumbs } from "../breadcrumbs";
+import { OpenInAppCta, PlayCta } from "../conversion-cta";
 import { SeoFaqJsonLd } from "../seo-faq";
 
 export const metadata = {
-  title: "Budget Planner for Household Spending",
-  description: "Plan household spending with budgets, forecasts and what-if tools in Smart Bill Manager.",
+  title: "Budget Planner for Household Spending — Offline Category Caps",
+  description:
+    "Plan monthly household spending with category budgets, forecasts and Safe-to-Spend views privately on Android with Smart Bill Manager.",
+  keywords: [
+    "household budget planner",
+    "category budget app android",
+    "offline monthly budget planner",
+    "budgeting without bank login",
+  ],
   alternates: { canonical: "/budget-planner/" },
+  openGraph: {
+    title: "Budget Planner for Household Spending | Smart Bill Manager",
+    description:
+      "Set practical category budgets and compare planned vs. real household spending privately on Android.",
+    url: "/budget-planner/",
+    type: "website",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager Budget Planner" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Budget Planner for Household Spending | Smart Bill Manager",
+    description:
+      "Bring category budgets, everyday expenses and upcoming bills into one private Android planning view.",
+    images: ["/og-image.svg"],
+  },
 };
 
 const faq = [
-  { question: "What is a household budget planner?", answer: "A household budget planner helps organise planned spending by category and compare it with recorded expenses and upcoming commitments." },
-  { question: "Can I use bills in my budget planning?", answer: "Yes. Smart Bill Manager lets you consider bills and recurring commitments alongside category budgets and spending records." },
-  { question: "Does Smart Bill Manager support what-if planning?", answer: "Yes. Its what-if planning features are designed to help explore how potential expenses or changes may affect your household plan." },
+  {
+    question: "What is a household budget planner?",
+    answer:
+      "A household budget planner organises planned spending by category and compares it against recorded expenses and upcoming bill commitments.",
+  },
+  {
+    question: "Can I use bills in my budget planning?",
+    answer:
+      "Yes. Smart Bill Manager considers recurring bills and subscriptions alongside category budgets and everyday spending records.",
+  },
+  {
+    question: "Can I test a monthly budget in my browser first?",
+    answer:
+      "Yes. Use our free browser-only Budget Calculator to allocate income across categories before setting up persistent category caps in the Android app.",
+  },
 ];
 
 export default function Page() {
-  return <main className="page seo-page"><SeoFaqJsonLd items={faq}/><Breadcrumbs items={[{name:"Budget Planner"}]}/><div className="container prose">
-    <div className="kicker">BUDGET PLANNER</div>
-    <h1>Plan household spending with more context.</h1>
-    <p className="lead">Smart Bill Manager is a household budget planner that brings category budgets, everyday expenses and upcoming commitments into one planning view.</p>
-    <h2>Set practical category budgets</h2>
-    <p>Use category budgets and recorded spending to keep an organised view of planned household expenses.</p>
-    <h2>Compare your plan with real spending</h2>
-    <p>Review recorded expenses alongside your budget so your plan has context from what you have already spent.</p>
-    <h2>Look ahead before you spend</h2>
-    <p>Forecasting and what-if tools let you explore how upcoming expenses and potential changes can affect your plan.</p>
-    <h2>Example: plan around upcoming commitments</h2>
-    <p>When a month includes regular bills plus an unusual purchase, looking at budgets and upcoming commitments together can help you understand the effect on the rest of your planned spending.</p>
-    <h2>Private, local-first household planning</h2>
-    <p>Smart Bill Manager is designed as a local-first household finance app. Your financial records are intended to stay on your device, with no account or cloud database required for the core record-keeping experience.</p>
-    <h2>Frequently asked questions</h2>
-    {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
-    <p><Link className="btn btn-primary" href="/download/">Download Smart Bill Manager</Link></p>
-    <p className="related"><Link href="/expense-tracker/">Expense tracker</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/cash-flow-forecast/">Cash-flow forecast</Link> · <Link href="/blog/household-budget-guide/">Guide: household budgeting</Link> · <Link href="/blog/budget-vs-expense-tracker/">Budget vs expense tracker</Link> · <Link href="/tools/budget-calculator/">Budget Calculator</Link></p>
-  </div></main>;
+  return (
+    <main className="page seo-page">
+      <SeoFaqJsonLd items={faq} />
+      <Breadcrumbs items={[{ name: "Budget Planner" }]} />
+      <div className="container prose">
+        <div className="kicker">BUDGET PLANNER</div>
+        <h1>Plan household spending with more context.</h1>
+        <p className="lead">
+          Smart Bill Manager is a private household budget planner that brings category caps, everyday cash expenses and upcoming bills into one planning view.
+        </p>
+        <h2>Set practical category budgets</h2>
+        <p>
+          Use category budgets and recorded spending to keep a clear view of groceries, utilities, transport and discretionary limits without connecting a bank account.
+        </p>
+        <h2>Compare your plan with real spending</h2>
+        <p>
+          Review recorded expenses alongside your budget during the month so adjustments happen before categories overrun.
+        </p>
+        <h2>Private, local-first household planning</h2>
+        <p>
+          Your financial records stay locally on your Android device, with no cloud account required for core budgeting.
+        </p>
+        <h2>Frequently asked questions</h2>
+        {faq.map((item) => (
+          <section className="faq-item" key={item.question}>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </section>
+        ))}
+        <div className="actions">
+          <OpenInAppCta route="analytics" placement="budget-planner-open" label="Open Budget & Analytics in App" />
+          <PlayCta placement="budget-planner-play" label="Download on Google Play" secondary />
+        </div>
+        <p className="related">
+          <Link href="/offline-budget-app/">Offline budget app</Link> ·{" "}
+          <Link href="/tools/budget-calculator/">Budget Calculator</Link> ·{" "}
+          <Link href="/expense-tracker/">Expense tracker</Link> ·{" "}
+          <Link href="/safe-to-spend/">Safe-to-Spend</Link> ·{" "}
+          <Link href="/blog/household-budget-guide/">Guide: household budgeting</Link> ·{" "}
+          <Link href="/blog/budget-vs-expense-tracker/">Budget vs expense tracker</Link>
+        </p>
+      </div>
+    </main>
+  );
 }

@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import "./globals.css";
 import Link from "next/link";
 import {SiteJsonLd} from "./site-jsonld";
+import {buildPlayStoreUrl} from "./conversion-cta";
 
 const SITE_URL = "https://smart-bill-manager-web.sardar-khan299.workers.dev";
 const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
@@ -39,15 +40,16 @@ export const metadata:Metadata={
 
 export default function RootLayout({children}:{children:React.ReactNode}){
   return <html lang="en-GB"><body>
+    <a className="skip-link" href="#main-content">Skip to main content</a>
     <SiteJsonLd/>
     <header><div className="container nav">
       <Link className="logo" href="/"><span className="logo-mark">SB</span>Smart Bill Manager</Link>
       <nav className="nav-links" aria-label="Primary navigation">
         <Link href="/features/">Features</Link><Link href="/bill-tracker/">Bill Tracker</Link><Link href="/blog/">Blog</Link><Link href="/tools/">Tools</Link><Link href="/faq/">FAQ</Link><Link href="/pricing/">Pricing</Link><Link href="/support/">Support</Link>
       </nav>
-      <a className="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.smartbillmanager" target="_blank" rel="noopener noreferrer" aria-label="Download Smart Bill Manager on Google Play">Download</a>
+      <a className="btn btn-primary" href={buildPlayStoreUrl("header-nav")} target="_blank" rel="noopener noreferrer" data-conversion="play-download" data-conversion-placement="header-nav" aria-label="Download Smart Bill Manager on Google Play">Download</a>
     </div></header>
-    {children}
+    <div id="main-content">{children}</div>
     <footer><div className="container footer-grid"><span>© 2026 Smart Bill Manager</span><span><Link href="/offline-budget-app/">Offline Budget</Link> · <Link href="/offline-receipt-scanner/">Receipt Scanner</Link> · <Link href="/warranty-tracker/">Warranty Vault</Link> · <Link href="/bill-reminder-app/">Bill Reminder</Link> · <Link href="/daily-cash-tracker/">Cash Log</Link> · <Link href="/debt-tracker/">Debt Tracker</Link> · <Link href="/blog/">Blog</Link> · <Link href="/tools/">Tools</Link> · <Link href="/faq/">FAQ</Link> · <Link href="/privacy/">Privacy</Link> · <Link href="/support/">Support</Link></span></div></footer>
   </body></html>;
 }

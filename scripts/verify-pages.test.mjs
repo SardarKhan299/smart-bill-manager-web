@@ -207,3 +207,61 @@ test("all 4 free calculators have WebApplication free Offer JSON-LD, OG/Twitter 
     );
   }
 });
+
+test("all 14 blog articles and legacy feature pages include Android deep links, Play Install Referrer UTM attribution, skip-link, and SEO audit docs", () => {
+  const blogDir = path.join(OUT, "blog");
+  const blogSlugs = fs
+    .readdirSync(blogDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name);
+  assert.equal(blogSlugs.length, 14, `Expected 14 blog articles, found ${blogSlugs.length}`);
+
+  for (const slug of blogSlugs) {
+    const html = fs.readFileSync(path.join(blogDir, slug, "index.html"), "utf8");
+    assert.ok(html.includes(`name="keywords"`), `blog/${slug} missing keywords meta`);
+    assert.ok(html.includes(`class="actions"`), `blog/${slug} missing .actions CTA block`);
+    assert.ok(html.includes("intent://"), `blog/${slug} missing Android intent:// deep link`);
+    assert.ok(
+      html.includes("utm_source%3Dwebsite"),
+      `blog/${slug} missing Google Play Install Referrer UTM attribution`
+    );
+    assert.ok(html.includes(`"dateModified":"2026-11-27"`), `blog/${slug} missing BlogPosting dateModified`);
+    assert.ok(html.includes(`class="skip-link"`), `blog/${slug} missing accessibility skip-link`);
+  }
+
+  const featureSlugs = [
+    "features",
+    "how-it-works",
+    "pricing",
+    "compare",
+    "download",
+    "bill-tracker",
+    "subscription-tracker",
+    "budget-planner",
+    "cash-flow-forecast",
+    "expense-tracker",
+    "receipt-manager",
+    "recurring-expense-tracker",
+    "safe-to-spend",
+  ];
+  for (const slug of featureSlugs) {
+    const html = fs.readFileSync(path.join(OUT, slug, "index.html"), "utf8");
+    assert.ok(html.includes(`property="og:title"`), `${slug} missing og:title`);
+    assert.ok(html.includes(`name="twitter:title"`), `${slug} missing twitter:title`);
+    assert.ok(html.includes("intent://"), `${slug} missing Android intent:// deep link`);
+    assert.ok(html.includes("utm_source%3Dwebsite"), `${slug} missing Play Install Referrer UTM`);
+  }
+
+  const requiredDocs = [
+    "docs/SEO_BASELINE.md",
+    "docs/SEO_ROUTE_INVENTORY.csv",
+    "docs/SEO_ISSUES.md",
+    "docs/PRODUCT_DATA_AND_PRIVACY_FACTS.md",
+    "docs/PRODUCT_KNOWLEDGE.md",
+    "docs/AI_SEARCH_TEST_QUERIES.md",
+    "docs/PROBLEM_INTELLIGENCE_DASHBOARD.md",
+  ];
+  for (const doc of requiredDocs) {
+    assert.ok(fs.existsSync(path.resolve(doc)), `Missing required deliverable ${doc}`);
+  }
+});

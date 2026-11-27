@@ -29,6 +29,7 @@ export function BlogPostingJsonLd({
       "height": 900,
     },
     articleSection,
+    dateModified: "2026-11-27",
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
     author: {

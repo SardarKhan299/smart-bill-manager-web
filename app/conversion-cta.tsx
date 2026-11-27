@@ -1,6 +1,22 @@
 import Link from "next/link";
 
-const PLAY_URL = "https://play.google.com/store/apps/details?id=com.smartbillmanager";
+export const PLAY_URL = "https://play.google.com/store/apps/details?id=com.smartbillmanager";
+
+export function sanitizePlacement(placement: string): string {
+  return (
+    String(placement || "website")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "website"
+  );
+}
+
+export function buildPlayStoreUrl(placement: string = "website"): string {
+  const campaign = sanitizePlacement(placement);
+  const referrer = `utm_source=website&utm_medium=seo&utm_campaign=${campaign}`;
+  return `${PLAY_URL}&referrer=${encodeURIComponent(referrer)}`;
+}
 
 export function buildAndroidIntentUrl(route: string, playUrl: string = PLAY_URL): string {
   const cleanRoute = route.replace(/^\/+|\/+$/g, "") || "bills";
@@ -19,11 +35,11 @@ export function PlayCta({
   return (
     <a
       className={secondary ? "btn btn-secondary" : "btn btn-primary"}
-      href={PLAY_URL}
+      href={buildPlayStoreUrl(placement)}
       target="_blank"
       rel="noopener noreferrer"
       data-conversion="play-download"
-      data-conversion-placement={placement}
+      data-conversion-placement={sanitizePlacement(placement)}
     >
       {label}
     </a>
@@ -41,12 +57,14 @@ export function OpenInAppCta({
   label?: string;
   secondary?: boolean;
 }) {
+  const cleanPlacement = sanitizePlacement(placement);
+  const fallbackPlayUrl = buildPlayStoreUrl(cleanPlacement);
   return (
     <a
       className={secondary ? "btn btn-secondary" : "btn btn-primary"}
-      href={buildAndroidIntentUrl(route)}
+      href={buildAndroidIntentUrl(route, fallbackPlayUrl)}
       data-conversion="open-in-app"
-      data-conversion-placement={placement}
+      data-conversion-placement={cleanPlacement}
     >
       {label}
     </a>
@@ -65,7 +83,7 @@ export function AppCta({
       className="btn btn-primary"
       href="/download/"
       data-conversion="download-page"
-      data-conversion-placement={placement}
+      data-conversion-placement={sanitizePlacement(placement)}
     >
       {label}
     </Link>

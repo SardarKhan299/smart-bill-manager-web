@@ -2,10 +2,12 @@ import Link from "next/link";
 import { Breadcrumbs } from "../../breadcrumbs";
 import { BlogPostingJsonLd } from "../../blog-post-jsonld";
 import { BlogHeroImage } from "../../blog-hero-image";
+import { BlogArticleCta } from "../../blog-article-cta";
 
 export const metadata = {
   title: "How to Organise Receipts and Warranties",
   description: "A simple system for keeping proof of purchase, return deadlines and warranty information organised.",
+  keywords: ["how to organise receipts and warranties", "receipt and warranty tracker app", "offline receipt scanner guide"],
   alternates: { canonical: "/blog/receipt-and-warranty-guide/" },
   openGraph: { title: "How to Organise Receipts and Warranties", description: "A simple system for keeping proof of purchase, return deadlines and warranty information organised.", url: "https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/receipt-and-warranty-guide/", type: "article", images: [{ url: "/images/discover/receipts-warranties.svg", width: 1600, height: 900, alt: "How to Organise Receipts and Warranties" }] },
   twitter: { card: "summary_large_image", title: "How to Organise Receipts and Warranties", description: "A simple system for keeping proof of purchase, return deadlines and warranty information organised.", images: ["/images/discover/receipts-warranties.svg"] }
@@ -51,14 +53,17 @@ export default function Page() {
           functions.
         </p>
 
-        <p>
-          <Link className="btn btn-primary" href="/receipt-manager/">
-            Explore receipt management
-          </Link>
-        </p>
+        <BlogArticleCta
+          slug="receipt-and-warranty-guide"
+          route="scan"
+          heading="Scan receipts and store warranties offline"
+          openLabel="Open Receipt Scanner in App"
+        />
 
         <p className="related">
-          <Link href="/blog/">All guides</Link> ·{" "}
+          <Link href="/offline-receipt-scanner/">Offline receipt scanner</Link> ·{" "}
+          <Link href="/warranty-tracker/">Warranty vault</Link> ·{" "}
+          <Link href="/blog/receipt-retention-warranty-guide/">Receipt retention guide</Link> ·{" "}
           <Link href="/privacy/">Privacy</Link>
         </p>
       </div>

@@ -1,37 +1,92 @@
 import Link from "next/link";
 import { Breadcrumbs } from "../breadcrumbs";
+import { OpenInAppCta, PlayCta } from "../conversion-cta";
 import { SeoFaqJsonLd } from "../seo-faq";
 
 export const metadata = {
-  title: "Recurring Expense Tracker",
-  description: "Find and understand recurring household expenses with Smart Bill Manager.",
+  title: "Recurring Expense Tracker — Spot Repeated Household Costs",
+  description:
+    "Identify and review repeated household spending patterns alongside bills and subscriptions privately on Android with Smart Bill Manager.",
+  keywords: [
+    "recurring expense tracker",
+    "track recurring household costs",
+    "repeated expense detector android",
+    "offline recurring bill and expense app",
+  ],
   alternates: { canonical: "/recurring-expense-tracker/" },
+  openGraph: {
+    title: "Recurring Expense Tracker | Smart Bill Manager",
+    description:
+      "Surface repeated household spending patterns and connect them to your monthly budget and Safe-to-Spend plan.",
+    url: "/recurring-expense-tracker/",
+    type: "website",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager Recurring Expense Tracker" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Recurring Expense Tracker | Smart Bill Manager",
+    description:
+      "Spot repeated household expenses and review recurring commitments privately on Android.",
+    images: ["/og-image.svg"],
+  },
 };
 
 const faq = [
-  { question: "What is a recurring expense tracker?", answer: "A recurring expense tracker helps surface spending patterns that repeat over time so ongoing household costs are easier to review." },
-  { question: "Can recurring expenses be used in planning?", answer: "Yes. Smart Bill Manager can bring recurring expense patterns into views used to review household commitments and forward planning." },
-  { question: "Are recurring expenses the same as subscriptions?", answer: "Not necessarily. A subscription is one type of recurring cost; recurring expense detection can surface repeated spending patterns that may not have been recorded as subscriptions." },
+  {
+    question: "What is a recurring expense tracker?",
+    answer:
+      "A recurring expense tracker surfaces spending patterns that repeat over time in your recorded history so ongoing household costs are easier to plan around.",
+  },
+  {
+    question: "Does it scrape bank transactions automatically?",
+    answer:
+      "No. Smart Bill Manager analyses the bills and expenses you record or import locally on your device — without connecting to your bank.",
+  },
+  {
+    question: "Are recurring expenses the same as subscriptions?",
+    answer:
+      "Subscriptions are formal recurring contracts, whereas recurring expense patterns can also include repeated utility top-ups, transit passes or regular household refills.",
+  },
 ];
 
 export default function Page() {
-  return <main className="page seo-page"><SeoFaqJsonLd items={faq}/><Breadcrumbs items={[{name:"Recurring Expense Tracker"}]}/><div className="container prose">
-    <div className="kicker">RECURRING EXPENSES</div>
-    <h1>Make recurring spending easier to spot.</h1>
-    <p className="lead">Smart Bill Manager helps identify and review recurring household expenses so repeated spending does not disappear into day-to-day transactions.</p>
-    <h2>Review repeated spending patterns</h2>
-    <p>Recurring expense detection can help surface patterns in your recorded spending and bring them into a more useful view.</p>
-    <h2>Understand recurring costs beyond subscriptions</h2>
-    <p>A recurring expense does not have to be a subscription. Repeated household purchases or other ongoing spending patterns can also matter when reviewing your financial commitments.</p>
-    <h2>Connect recurring costs to planning</h2>
-    <ul><li>Review detected recurring expense patterns.</li><li>Understand repeated household costs.</li><li>Consider recurring costs in forward planning.</li><li>Keep financial records organised in one app.</li></ul>
-    <h2>Example: spot a repeated household cost</h2>
-    <p>If the same type of expense appears repeatedly in your recorded spending, recurring-expense insights can make the pattern easier to notice and consider during budgeting.</p>
-    <h2>Keep your records local-first</h2>
-    <p>Smart Bill Manager is designed as a local-first household finance app. Your financial records are intended to stay on your device, with no account or cloud database required for the core record-keeping experience.</p>
-    <h2>Frequently asked questions</h2>
-    {faq.map((item) => <section className="faq-item" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></section>)}
-    <p><Link className="btn btn-primary" href="/download/">Download Smart Bill Manager</Link></p>
-    <p className="related"><Link href="/subscription-tracker/">Subscription tracker</Link> · <Link href="/budget-planner/">Budget planner</Link> · <Link href="/safe-to-spend/">Safe-to-Spend</Link> · <Link href="/blog/recurring-expense-guide/">Guide: recurring expenses</Link> · <Link href="/blog/recurring-expense-audit/">Recurring expense audit</Link> · <Link href="/cash-flow-forecast/">Cash-flow forecast</Link></p>
-  </div></main>;
+  return (
+    <main className="page seo-page">
+      <SeoFaqJsonLd items={faq} />
+      <Breadcrumbs items={[{ name: "Recurring Expense Tracker" }]} />
+      <div className="container prose">
+        <div className="kicker">RECURRING EXPENSES</div>
+        <h1>Make recurring spending easier to spot.</h1>
+        <p className="lead">
+          Smart Bill Manager helps identify and review recurring household expenses in your local records so repeated costs don&apos;t disappear into everyday spending.
+        </p>
+        <h2>Review repeated spending patterns</h2>
+        <p>
+          On-device pattern detection highlights repeated merchants and intervals across your recorded expenses so you can convert important ones into tracked commitments.
+        </p>
+        <h2>Understand recurring costs beyond subscriptions</h2>
+        <p>
+          Combine formal subscriptions, utility bills and repeated household refills in a single forward-looking budget view.
+        </p>
+        <h2>Frequently asked questions</h2>
+        {faq.map((item) => (
+          <section className="faq-item" key={item.question}>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </section>
+        ))}
+        <div className="actions">
+          <OpenInAppCta route="bills" placement="recurring-expense-tracker-open" label="Open Recurring Bills in App" />
+          <PlayCta placement="recurring-expense-tracker-play" label="Download on Google Play" secondary />
+        </div>
+        <p className="related">
+          <Link href="/subscription-tracker/">Subscription tracker</Link> ·{" "}
+          <Link href="/tools/subscription-cost-calculator/">Subscription Cost Calculator</Link> ·{" "}
+          <Link href="/bill-reminder-app/">Bill reminder app</Link> ·{" "}
+          <Link href="/blog/recurring-expense-guide/">Guide: recurring expenses</Link> ·{" "}
+          <Link href="/blog/recurring-expense-audit/">Recurring expense audit</Link>
+        </p>
+      </div>
+    </main>
+  );
 }
