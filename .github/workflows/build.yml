@@ -36,3 +36,4 @@ jobs:
           test -f out/sitemap.xml
           test -f out/app-ads.txt
           test -f out/.well-known/assetlinks.json
+          test -f out/llms.txt

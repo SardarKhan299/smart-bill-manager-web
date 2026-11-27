@@ -27,9 +27,15 @@ export function SiteJsonLd(){
     "name":"Smart Bill Manager",
     "operatingSystem":"Android",
     "applicationCategory":"FinanceApplication",
-    "description":"A private household money assistant for tracking bills, subscriptions, expenses, upcoming commitments, Safe-to-Spend planning, receipts and warranties.",
+    "description":"A private, offline-first Android household money assistant for tracking bills, subscriptions, daily cash expenses, debts, Safe-to-Spend planning, on-device OCR receipts and warranties.",
     "url":`${SITE_URL}/`,
     "downloadUrl":"https://play.google.com/store/apps/details?id=com.smartbillmanager",
+    "installUrl":"https://play.google.com/store/apps/details?id=com.smartbillmanager",
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"USD"
+    },
     "publisher":{"@id":`${SITE_URL}/#organization`}
   };
 

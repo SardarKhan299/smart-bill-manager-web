@@ -136,3 +136,29 @@ test("FAQ and Blog hub pages link to all 6 pain-point pages and include Android 
   const faqHtml = fs.readFileSync(path.join(OUT, "faq", "index.html"), "utf8");
   assert.ok(faqHtml.includes(`"@type":"FAQPage"`), "faq missing FAQPage JSON-LD");
 });
+
+test("zero draft or placeholder text exists in production HTML, and /privacy/, /support/, /llms.txt are valid", () => {
+  const forbidden = ["this is a website draft", "replace this placeholder", "lorem ipsum", "todo:"];
+  const htmlFiles = walkHtml(OUT).filter((f) => !f.endsWith("google7587fd459982fd40.html"));
+  for (const file of htmlFiles) {
+    const rel = path.relative(OUT, file);
+    const lower = fs.readFileSync(file, "utf8").toLowerCase();
+    for (const phrase of forbidden) {
+      assert.ok(!lower.includes(phrase), `${rel} contains forbidden placeholder phrase "${phrase}"`);
+    }
+  }
+
+  const privacyHtml = fs.readFileSync(path.join(OUT, "privacy", "index.html"), "utf8");
+  assert.ok(privacyHtml.includes("sardarkhan.dev@gmail.com"), "privacy page missing verified contact email");
+  assert.ok(privacyHtml.includes("RevenueCat"), "privacy page missing RevenueCat disclosure");
+
+  const supportHtml = fs.readFileSync(path.join(OUT, "support", "index.html"), "utf8");
+  assert.ok(supportHtml.includes("mailto:sardarkhan.dev@gmail.com"), "support page missing working mailto link");
+  assert.ok(supportHtml.includes("intent://bills"), "support page missing Android deep link");
+
+  const llmsPath = path.join(OUT, "llms.txt");
+  assert.ok(fs.existsSync(llmsPath), "Missing out/llms.txt");
+  const llms = fs.readFileSync(llmsPath, "utf8");
+  assert.ok(llms.includes(PLAY_URL), "llms.txt missing Google Play URL");
+  assert.ok(llms.includes(`${SITE_HOST}/offline-budget-app/`), "llms.txt missing pain-point URLs");
+});

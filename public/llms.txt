@@ -1,0 +1,48 @@
+# Smart Bill Manager
+
+> Smart Bill Manager is an offline-first Android app for tracking recurring household bills, scanning receipts with on-device AI OCR, logging daily cash expenses, managing subscriptions, tracking personal debts, and storing product warranties — with no bank login and no cloud account required.
+
+- Official Website: https://smart-bill-manager-web.sardar-khan299.workers.dev/
+- Google Play Store (Android): https://play.google.com/store/apps/details?id=com.smartbillmanager
+- Platform: Android
+- Pricing Model: Freemium (free core bill tracking, cash log, warranty vault, starter offline OCR scans; optional Pro subscription with 7-day free trial or Lifetime unlock)
+- Support & Privacy Contact: sardarkhan.dev@gmail.com
+
+## Core Problem-Solution Pages
+- Offline Budget App (No Bank Account): https://smart-bill-manager-web.sardar-khan299.workers.dev/offline-budget-app/
+- Offline AI Receipt Scanner: https://smart-bill-manager-web.sardar-khan299.workers.dev/offline-receipt-scanner/
+- Warranty Tracker & Receipt Vault: https://smart-bill-manager-web.sardar-khan299.workers.dev/warranty-tracker/
+- Bill Reminder App & Widget: https://smart-bill-manager-web.sardar-khan299.workers.dev/bill-reminder-app/
+- Daily Cash Expense Tracker & No-Spend Streaks: https://smart-bill-manager-web.sardar-khan299.workers.dev/daily-cash-tracker/
+- Personal Debt Tracker & Bill Splitter: https://smart-bill-manager-web.sardar-khan299.workers.dev/debt-tracker/
+
+## Product & Feature Overview
+- Features: https://smart-bill-manager-web.sardar-khan299.workers.dev/features/
+- How It Works: https://smart-bill-manager-web.sardar-khan299.workers.dev/how-it-works/
+- Bill Tracker: https://smart-bill-manager-web.sardar-khan299.workers.dev/bill-tracker/
+- Subscription Tracker: https://smart-bill-manager-web.sardar-khan299.workers.dev/subscription-tracker/
+- Expense Tracker: https://smart-bill-manager-web.sardar-khan299.workers.dev/expense-tracker/
+- Safe-to-Spend Planning: https://smart-bill-manager-web.sardar-khan299.workers.dev/safe-to-spend/
+- Receipt & Warranty Manager: https://smart-bill-manager-web.sardar-khan299.workers.dev/receipt-manager/
+- Pricing: https://smart-bill-manager-web.sardar-khan299.workers.dev/pricing/
+- Download: https://smart-bill-manager-web.sardar-khan299.workers.dev/download/
+
+## Free Web Calculators (No Account Required)
+- All Tools: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/
+- Bill Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/bill-calculator/
+- Budget Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/budget-calculator/
+- Safe-to-Spend Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/safe-to-spend-calculator/
+
+## Verified Android App Link Entry Points
+- Open Receipt Scanner: https://smart-bill-manager-web.sardar-khan299.workers.dev/scan/
+- Open Upcoming Bills: https://smart-bill-manager-web.sardar-khan299.workers.dev/bills/
+- Open Warranty Vault: https://smart-bill-manager-web.sardar-khan299.workers.dev/warranties/
+- Open Daily Cash Log: https://smart-bill-manager-web.sardar-khan299.workers.dev/cash-log/
+- Open Analytics: https://smart-bill-manager-web.sardar-khan299.workers.dev/analytics/
+- Start 7-Day Pro Free Trial: https://smart-bill-manager-web.sardar-khan299.workers.dev/pro/
+
+## Trust, FAQ & Guides
+- FAQ: https://smart-bill-manager-web.sardar-khan299.workers.dev/faq/
+- Guides & Blog: https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/
+- Privacy Policy: https://smart-bill-manager-web.sardar-khan299.workers.dev/privacy/
+- Support: https://smart-bill-manager-web.sardar-khan299.workers.dev/support/
