@@ -8,7 +8,10 @@ const requiredPaths = [
   "/faq/", "/compare/", "/blog/", "/bill-tracker/", "/subscription-tracker/", "/expense-tracker/",
   "/budget-planner/", "/safe-to-spend/", "/cash-flow-forecast/", "/receipt-manager/",
   "/recurring-expense-tracker/", "/tools/", "/tools/bill-calculator/", "/tools/budget-calculator/",
-  "/tools/safe-to-spend-calculator/"
+  "/tools/safe-to-spend-calculator/", "/tools/subscription-cost-calculator/",
+  "/offline-budget-app/", "/offline-receipt-scanner/", "/warranty-tracker/",
+  "/bill-reminder-app/", "/daily-cash-tracker/", "/debt-tracker/",
+  "/scan/", "/bills/", "/warranties/", "/cash-log/", "/analytics/", "/pro/"
 ];
 
 const failures = [];
@@ -65,11 +68,15 @@ function parseSitemap(xml) {
 
 console.log("C1 production audit: " + SITE_URL);
 
-const [robots, sitemap, ads] = await Promise.all([
+const [robots, sitemap, ads, llms] = await Promise.all([
   fetchText(SITE_URL + "/robots.txt"),
   fetchText(SITE_URL + "/sitemap.xml"),
-  fetchText(SITE_URL + "/app-ads.txt")
+  fetchText(SITE_URL + "/app-ads.txt"),
+  fetchText(SITE_URL + "/llms.txt")
 ]);
+
+if (llms.status !== 200) failures.push("llms.txt returned HTTP " + llms.status);
+else if (!llms.body.includes("/tools/subscription-cost-calculator/")) failures.push("llms.txt missing /tools/subscription-cost-calculator/");
 
 if (robots.status !== 200) failures.push("robots.txt returned HTTP " + robots.status);
 if (!robots.body.includes("Sitemap: " + SITE_URL + "/sitemap.xml")) failures.push("robots.txt does not reference the production sitemap");

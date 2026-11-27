@@ -4,6 +4,19 @@ export const metadata = {
   title: "Spending Analytics & Cash Flow – Smart Bill Manager",
   description: "Open Spending Analytics in Smart Bill Manager or download on Google Play.",
   alternates: { canonical: "/analytics/" },
+  openGraph: {
+    title: "Spending Analytics & Cash Flow – Smart Bill Manager",
+    description: "Open Spending Analytics in Smart Bill Manager or download on Google Play.",
+    url: "/analytics/",
+    type: "website",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager Spending Analytics" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spending Analytics & Cash Flow – Smart Bill Manager",
+    description: "Open Spending Analytics in Smart Bill Manager or download on Google Play.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {
@@ -18,7 +31,7 @@ export default function Page() {
       highlights={[
         "Clear category donut charts and monthly spending comparisons.",
         "Safe-to-Spend clarity across recurring bills and daily cash log.",
-        "All financial analytics computed 100% locally on your phone.",
+        "Financial analytics computed locally on your phone.",
       ]}
       relatedHref="/cash-flow-forecast/"
       relatedLabel="Cash Flow Forecast"

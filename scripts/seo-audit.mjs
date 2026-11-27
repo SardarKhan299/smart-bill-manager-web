@@ -30,6 +30,10 @@ for (const file of htmlFiles) {
   if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(rel + ": missing title");
   if (!/<meta[^>]+name=["']description["'][^>]+content=["'][^"']+["']/i.test(html)) failures.push(rel + ": missing meta description");
   if (!/<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/smart-bill-manager-web\.sardar-khan299\.workers\.dev\//i.test(html)) failures.push(rel + ": missing workers.dev canonical");
+  const canonicalHref = html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i)?.[1];
+  const ogUrlHref = html.match(/<meta[^>]+property=["']og:url["'][^>]+content=["']([^"']+)["']/i)?.[1];
+  if (!ogUrlHref) failures.push(rel + ": missing og:url");
+  else if (canonicalHref && ogUrlHref !== canonicalHref) failures.push(rel + `: og:url (${ogUrlHref}) does not match canonical (${canonicalHref})`);
   if (!/<html[^>]+lang=["'][^"']+["']/i.test(html)) failures.push(rel + ": missing html lang");
   if (!/<meta[^>]+name=["']viewport["']/i.test(html)) failures.push(rel + ": missing viewport");
   const isBlogArticle = rel.startsWith("blog/") && rel !== "blog/index.html";

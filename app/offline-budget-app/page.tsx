@@ -2,19 +2,19 @@ import { ProblemLanding } from "../problem-page";
 
 export const metadata = {
   title: "Offline Budget App Without Bank Account",
-  description: "Track bills, receipts and daily spending on Android with a 100% offline budget app — no bank login, no account required, AES-256 local privacy.",
+  description: "Track bills, receipts and daily spending on Android with an offline-first budget app — no bank login, no cloud account required, and AES-256 encrypted local backups.",
   keywords: ["offline budget app", "budget app without bank account", "private expense tracker no login", "offline finance app android", "no bank linking budget app"],
   alternates: { canonical: "/offline-budget-app/" },
   openGraph: {
     title: "Offline Budget App Without Bank Account | Smart Bill Manager",
-    description: "Track bills, receipts and daily spending on Android 100% offline — no bank login or cloud account required.",
+    description: "Track bills, receipts and daily spending locally on Android — no bank login or cloud account required.",
     url: "/offline-budget-app/",
     images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager offline budget app" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Offline Budget App Without Bank Account | Smart Bill Manager",
-    description: "Track bills, receipts and daily spending on Android 100% offline — no bank login or cloud account required.",
+    description: "Track bills, receipts and daily spending locally on Android — no bank login or cloud account required.",
     images: ["/og-image.svg"],
   },
 };
@@ -29,7 +29,7 @@ export default function Page() {
       lead="Track household bills, daily expenses, subscriptions and Safe-to-Spend on Android without creating an account or syncing sensitive finances to the cloud."
       painCalloutTitle="Tired of finance apps demanding bank passwords?"
       painCalloutBody="Most budgeting apps force you to link bank credentials, create an online profile and upload your transaction history. Smart Bill Manager keeps your financial records strictly on your device."
-      bulletsHeading="What works 100% offline"
+      bulletsHeading="Core features that work offline"
       bullets={[
         "Bill due-date reminders, recurring schedules and Safe-to-Spend overview.",
         "On-device AI receipt scanning (OCR) without uploading receipt photos to external servers.",

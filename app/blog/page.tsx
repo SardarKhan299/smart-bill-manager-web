@@ -92,7 +92,7 @@ export default function Blog() {
 
         <div className="dark cta blog-cta">
           <div className="kicker">SMART BILL MANAGER</div>
-          <h2>Put the ideas into practice — 100% offline.</h2>
+          <h2>Put the ideas into practice — offline-first on Android.</h2>
           <p className="lead">Track bills, scan receipts, store warranties and manage daily cash in one private Android app.</p>
           <div className="actions">
             <PlayCta placement="blog-cta-play" label="Download on Google Play" secondary />

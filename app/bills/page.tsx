@@ -4,6 +4,19 @@ export const metadata = {
   title: "Upcoming Bills & Reminders – Smart Bill Manager",
   description: "Open your upcoming bills dashboard in Smart Bill Manager or download on Google Play.",
   alternates: { canonical: "/bills/" },
+  openGraph: {
+    title: "Upcoming Bills & Reminders – Smart Bill Manager",
+    description: "Open your upcoming bills dashboard in Smart Bill Manager or download on Google Play.",
+    url: "/bills/",
+    type: "website",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager Upcoming Bills" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Upcoming Bills & Reminders – Smart Bill Manager",
+    description: "Open your upcoming bills dashboard in Smart Bill Manager or download on Google Play.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {
@@ -17,8 +30,8 @@ export default function Page() {
       openLabel="Open Bills Dashboard"
       highlights={[
         "1-tap preset bill entry for rent, utilities, internet and subscriptions.",
-        "Timely due-date reminders that work offline.",
-        "AES-256 local encryption with optional biometric app lock.",
+        "Timely local due-date reminders that work offline.",
+        "AES-256-GCM encrypted local backups with optional biometric app lock.",
       ]}
       relatedHref="/bill-tracker/"
       relatedLabel="Bill Tracker Guide"

@@ -4,6 +4,19 @@ export const metadata = {
   title: "Warranty Vault – Smart Bill Manager",
   description: "Open your offline Warranty Vault in Smart Bill Manager or download on Google Play.",
   alternates: { canonical: "/warranties/" },
+  openGraph: {
+    title: "Warranty Vault – Smart Bill Manager",
+    description: "Open your offline Warranty Vault in Smart Bill Manager or download on Google Play.",
+    url: "/warranties/",
+    type: "website",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Smart Bill Manager Warranty Vault" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Warranty Vault – Smart Bill Manager",
+    description: "Open your offline Warranty Vault in Smart Bill Manager or download on Google Play.",
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function Page() {
@@ -18,7 +31,7 @@ export default function Page() {
       highlights={[
         "Track expiry dates for electronics, appliances and household purchases.",
         "Attach receipt photos directly to each warranty record.",
-        "100% offline local storage with zero cloud account required.",
+        "Offline-first local storage with zero cloud account required.",
       ]}
       relatedHref="/receipt-manager/"
       relatedLabel="Receipt & Warranty Manager"

@@ -27,7 +27,14 @@
 | **Accessibility & Attribution** | No skip link, no `prefers-reduced-motion`, unattributed Play Store links | Skip-to-main-content link, `:focus-visible` outlines, `prefers-reduced-motion`, and privacy-safe Google Play Install Referrer (`utm_source=website&utm_medium=seo&utm_campaign=...`) |
 | **Automated Verification** | Basic SEO audit only | `seo-audit.mjs` (**50 HTML pages**) + `node --test` suite covering HTML/SEO invariants, calculator edge-case math, and Phase 7 Problem Intelligence scoring |
 
-## 3. Exact Build, Audit, Test & Deployment Commands
+## 3. AI Search & Crawler Access Policy (Phase 6, Section 8.3)
+
+- **Deliberate Crawler Policy (`public/robots.txt`):** `User-agent: *` with `Allow: /` and `Sitemap: https://smart-bill-manager-web.sardar-khan299.workers.dev/sitemap.xml`.
+- **Permitted Search & Answer-Engine Crawlers:** Googlebot, Bingbot, `OAI-SearchBot`, `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `Applebot`, and `Google-Extended` are **deliberately allowed** on all public canonical pages so answer engines and browser agents can read verified product capabilities, calculators, and guides.
+- **Boundary Protection:** No private, user-authenticated, or financial-record endpoints exist on the static web origin (`smart-bill-manager-web.sardar-khan299.workers.dev`). All calculator inputs remain in client memory only.
+- **Canonical Machine Index:** `/llms.txt` lists only verified, public canonical URLs and mirrors `docs/PRODUCT_KNOWLEDGE.md`.
+
+## 4. Exact Build, Audit, Test & Deployment Commands
 
 ```bash
 # 1. Install dependencies

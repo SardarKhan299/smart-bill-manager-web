@@ -26,7 +26,7 @@ export default function Page() {
       breadcrumbName="Warranty Tracker"
       kicker="OFFLINE WARRANTY VAULT"
       title="Stop losing paper receipts right before a warranty claim."
-      lead="Store electronics, appliance and household purchase receipts alongside automatic warranty expiry reminders — 100% offline on your Android phone."
+      lead="Store electronics, appliance and household purchase receipts alongside automatic warranty expiry reminders — stored locally on your Android phone."
       painCalloutTitle="Why paper receipts fail when you need them most"
       painCalloutBody="Thermal receipts fade in drawers, emails get buried and warranties expire silently. Keeping receipt photos and expiry dates in one searchable Warranty Vault saves hundreds when an item breaks."
       bulletsHeading="What you can store in Warranty Vault"
