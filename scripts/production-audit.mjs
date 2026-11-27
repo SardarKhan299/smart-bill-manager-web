@@ -22,13 +22,13 @@ function absoluteUrl(value) {
   try { return new URL(value, SITE_URL).toString(); } catch { return null; }
 }
 function meta(html, attr, value) {
-  const a = new RegExp('<meta[^>]+'.concat(attr, '=["\']').concat(value, '["\'][^>]*content=["\']([^"\']+)["\'][^>]*>', "i");
-  const b = new RegExp('<meta[^>]+content=["\']([^"\']+)["\'][^>]*'.concat(attr, '=["\']').concat(value, '["\'][^>]*>', "i");
+  const a = new RegExp(`<meta[^>]+${attr}=["']${value}["'][^>]*content=["']([^"']+)["'][^>]*>`, "i");
+  const b = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]*${attr}=["']${value}["'][^>]*>`, "i");
   return html.match(a)?.[1] ?? html.match(b)?.[1] ?? null;
 }
 function linkRel(html, rel) {
-  const a = new RegExp('<link[^>]+rel=["\']'.concat(rel, '["\'][^>]*href=["\']([^"\']+)["\'][^>]*>', "i");
-  const b = new RegExp('<link[^>]+href=["\']([^"\']+)["\'][^>]*rel=["\']'.concat(rel, '["\'][^>]*>', "i");
+  const a = new RegExp(`<link[^>]+rel=["']${rel}["'][^>]*href=["']([^"']+)["'][^>]*>`, "i");
+  const b = new RegExp(`<link[^>]+href=["']([^"']+)["'][^>]*rel=["']${rel}["'][^>]*>`, "i");
   return html.match(a)?.[1] ?? html.match(b)?.[1] ?? null;
 }
 async function fetchText(url) {

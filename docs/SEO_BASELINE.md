@@ -34,7 +34,23 @@
 - **Boundary Protection:** No private, user-authenticated, or financial-record endpoints exist on the static web origin (`smart-bill-manager-web.sardar-khan299.workers.dev`). All calculator inputs remain in client memory only.
 - **Canonical Machine Index:** `/llms.txt` lists only verified, public canonical URLs and mirrors `docs/PRODUCT_KNOWLEDGE.md`.
 
-## 4. Exact Build, Audit, Test & Deployment Commands
+## 4. Measured Lighthouse Lab Scores & Live Production Smoke Test (2026-11-27)
+
+### 4.1 Live Production Smoke Test (`npm run seo:production`)
+- **Origin:** `https://smart-bill-manager-web.sardar-khan299.workers.dev`
+- **Verified Endpoints:** `/robots.txt` (`200`), `/sitemap.xml` (`200`), `/app-ads.txt` (`200`), `/llms.txt` (`200`), plus all **49** canonical HTML routes (`49 passed`, `0 failures`, `0 warnings`; `canonical === og:url === finalUrl` on every route).
+
+### 4.2 Headless Chrome Lighthouse Results (Lab Data — Not CrUX Field Data)
+> *Note (Section 11 & 14): The figures below are controlled Lighthouse lab measurements against the live Cloudflare Workers deployment, not Chrome UX Report (CrUX) 75th-percentile real-user field data.*
+
+| Live Production URL & Form Factor | Performance | Accessibility | Best Practices | SEO | FCP | LCP | TBT | CLS |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `/` — Mobile | **100** | **100** | **100** | **100** | 1.2 s | 1.2 s | 0 ms | 0 |
+| `/` — Desktop | **100** | **100** | **100** | **100** | 0.3 s | 0.3 s | 0 ms | 0 |
+| `/offline-budget-app/` — Mobile | **100** | **100** | **100** | **100** | 0.8 s | 0.8 s | 20 ms | 0 |
+| `/tools/subscription-cost-calculator/` — Mobile | **100** | **100** | **96** | **100** | 0.8 s | 0.8 s | 0 ms | 0 |
+
+## 5. Exact Build, Audit, Test & Deployment Commands
 
 ```bash
 # 1. Install dependencies
