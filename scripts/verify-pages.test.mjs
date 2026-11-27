@@ -161,4 +161,49 @@ test("zero draft or placeholder text exists in production HTML, and /privacy/, /
   const llms = fs.readFileSync(llmsPath, "utf8");
   assert.ok(llms.includes(PLAY_URL), "llms.txt missing Google Play URL");
   assert.ok(llms.includes(`${SITE_HOST}/offline-budget-app/`), "llms.txt missing pain-point URLs");
+  assert.ok(
+    llms.includes(`${SITE_HOST}/tools/subscription-cost-calculator/`),
+    "llms.txt missing subscription-cost-calculator URL"
+  );
+});
+
+test("all 4 free calculators have WebApplication free Offer JSON-LD, OG/Twitter tags, decimal inputs, aria-live, reset, and deep-link CTAs", () => {
+  const calculators = [
+    { slug: "bill-calculator", route: "bills" },
+    { slug: "budget-calculator", route: "analytics" },
+    { slug: "safe-to-spend-calculator", route: "bills" },
+    { slug: "subscription-cost-calculator", route: "bills" },
+  ];
+
+  const toolsHubHtml = fs.readFileSync(path.join(OUT, "tools", "index.html"), "utf8");
+  const sitemap = fs.readFileSync(path.join(OUT, "sitemap.xml"), "utf8");
+
+  for (const calc of calculators) {
+    const file = path.join(OUT, "tools", calc.slug, "index.html");
+    assert.ok(fs.existsSync(file), `Missing out/tools/${calc.slug}/index.html`);
+    const html = fs.readFileSync(file, "utf8");
+
+    assert.ok(html.includes(`name="keywords"`), `${calc.slug} missing keywords meta tag`);
+    assert.ok(html.includes(`property="og:title"`), `${calc.slug} missing og:title`);
+    assert.ok(html.includes(`name="twitter:title"`), `${calc.slug} missing twitter:title`);
+    assert.ok(html.includes(`"@type":"WebApplication"`), `${calc.slug} missing WebApplication JSON-LD`);
+    assert.ok(html.includes(`"price":"0"`), `${calc.slug} missing free Offer price:0 in JSON-LD`);
+    assert.ok(html.includes(`"priceCurrency":"USD"`), `${calc.slug} missing priceCurrency:USD in JSON-LD`);
+    assert.ok(html.includes(`"@type":"FAQPage"`), `${calc.slug} missing FAQPage JSON-LD`);
+    assert.ok(html.includes(`"@type":"BreadcrumbList"`), `${calc.slug} missing BreadcrumbList JSON-LD`);
+    assert.ok(html.includes(`inputMode="decimal"`) || html.includes(`inputmode="decimal"`), `${calc.slug} missing decimal inputMode`);
+    assert.ok(html.includes(`aria-live="polite"`), `${calc.slug} missing aria-live polite region`);
+    assert.ok(html.includes(`Reset example`), `${calc.slug} missing Reset example button`);
+    assert.ok(html.includes(`class="actions"`), `${calc.slug} missing .actions CTA container`);
+    assert.ok(
+      html.includes(`intent://${calc.route}#Intent;scheme=smartbillmanager;package=com.smartbillmanager;S.browser_fallback_url=`),
+      `${calc.slug} missing Android intent:// deep link for route "${calc.route}"`
+    );
+    assert.ok(html.includes(PLAY_URL), `${calc.slug} missing Google Play download link`);
+    assert.ok(toolsHubHtml.includes(`/tools/${calc.slug}/`), `/tools/ hub missing link to ${calc.slug}`);
+    assert.ok(
+      sitemap.includes(`<loc>${SITE_HOST}/tools/${calc.slug}/</loc>`),
+      `sitemap.xml missing /tools/${calc.slug}/`
+    );
+  }
 });

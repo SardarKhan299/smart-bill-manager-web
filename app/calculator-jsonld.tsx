@@ -3,9 +3,11 @@ const SITE_URL = "https://smart-bill-manager-web.sardar-khan299.workers.dev";
 export function CalculatorJsonLd({
   name,
   path,
+  description,
 }: {
   name: string;
   path: string;
+  description?: string;
 }) {
   const url = new URL(path, SITE_URL).toString();
   const jsonLd = {
@@ -16,7 +18,25 @@ export function CalculatorJsonLd({
         "@id": url + "#webpage",
         url,
         name,
+        ...(description ? { description } : {}),
         isPartOf: { "@id": SITE_URL + "/#website" },
+      },
+      {
+        "@type": "WebApplication",
+        "@id": url + "#calculator",
+        name,
+        url,
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "All",
+        browserRequirements: "Requires JavaScript",
+        ...(description ? { description } : {}),
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        isPartOf: { "@id": SITE_URL + "/#website" },
+        publisher: { "@id": SITE_URL + "/#organization" },
       },
       {
         "@type": "BreadcrumbList",

@@ -32,6 +32,7 @@
 - Bill Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/bill-calculator/
 - Budget Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/budget-calculator/
 - Safe-to-Spend Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/safe-to-spend-calculator/
+- Subscription Cost Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/subscription-cost-calculator/
 
 ## Verified Android App Link Entry Points
 - Open Receipt Scanner: https://smart-bill-manager-web.sardar-khan299.workers.dev/scan/

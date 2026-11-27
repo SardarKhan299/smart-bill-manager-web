@@ -17,6 +17,7 @@
 6. **Subscription Tracker, Debt Tracker, Bill Splitter & Savings Goals:** Tracks recurring subscriptions (with annualized cost), personal IOUs/repayments, split bills, and savings goals.
 7. **Analytics & Statement Export:** Category breakdowns, cash flow forecast, and local PDF/CSV statement export plus CSV import.
 8. **Privacy & Security:** Local Room/SQLite storage, no account or bank login required, optional biometric/PIN app lock, and encrypted local backup export.
+9. **Free Browser-Only Web Calculators:** Bill Calculator, Budget Calculator, Safe-to-Spend Calculator, and Subscription Cost Calculator (weekly/bi-weekly/monthly/quarterly/yearly annualized cost estimator) running 100% client-side under `/tools/` with zero financial inputs sent to servers.
 
 ## Verified Third-Party SDKs & Boundaries
 - **Google Play Billing & RevenueCat:** Handles optional Pro subscriptions (`monthly` `$1.49/mo` US + 7-day free trial, `yearly-annual` `$12.99/yr` US + 7-day free trial, and `lifetime` one-time unlock).
