@@ -89,7 +89,7 @@ export default function Page() {
           </section>
         ))}
         <div className="actions">
-          <OpenInAppCta route="bills" placement="subscription-tracker-open" label="Open Subscriptions in App" />
+          <OpenInAppCta route="subscriptions" placement="subscription-tracker-open" label="Open Subscriptions in App" />
           <PlayCta placement="subscription-tracker-play" label="Download on Google Play" secondary />
         </div>
         <p className="related">

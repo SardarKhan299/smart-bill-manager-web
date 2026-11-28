@@ -146,9 +146,9 @@ export default function Page() {
 
         <BlogArticleCta
           slug="import-bank-csv-offline-guide"
-          route="cash-log"
+          route="csv-import"
           heading="Import bank CSV files privately on Android"
-          openLabel="Open Cash Log in App"
+          openLabel="Import Bank CSV in App"
         />
 
         <p className="related">

@@ -22,7 +22,7 @@ export const metadata = {
 export default function Page() {
   return (
     <ProblemLanding
-      route="bills"
+      route="debt-tracker"
       breadcrumbName="Debt Tracker & Bill Splitter"
       kicker="DEBTS, IOUS & SHARED BILLS"
       title="Keep track of who owes you, personal debts and split bills — without messy notes."

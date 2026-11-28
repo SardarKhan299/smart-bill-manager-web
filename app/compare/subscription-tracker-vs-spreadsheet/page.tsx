@@ -32,7 +32,7 @@ export default function Page() {
   return (
     <SpreadsheetComparisonLanding
       slug="subscription-tracker-vs-spreadsheet"
-      route="bills"
+      route="subscriptions"
       breadcrumbName="Subscription Tracker vs Spreadsheet"
       kicker="WORKFLOW COMPARISON"
       title="Subscription Tracker App vs. Spreadsheet: Stop Surprise Auto-Renewals"

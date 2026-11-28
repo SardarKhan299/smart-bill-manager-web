@@ -13,7 +13,7 @@ const PAIN_POINT_PAGES = [
   { slug: "offline-receipt-scanner", route: "scan", keyword: "offline receipt scanner" },
   { slug: "bill-reminder-app", route: "add-bill", keyword: "bill reminder app" },
   { slug: "daily-cash-tracker", route: "cash-log", keyword: "daily cash expense tracker" },
-  { slug: "debt-tracker", route: "bills", keyword: "personal debt tracker app" },
+  { slug: "debt-tracker", route: "debt-tracker", keyword: "personal debt tracker app" },
 ];
 
 const DEEP_LINK_PAGES = [
@@ -184,11 +184,11 @@ test("all 9 free calculators have WebApplication free Offer JSON-LD, OG/Twitter 
     { slug: "bill-calculator", route: "bills" },
     { slug: "budget-calculator", route: "analytics" },
     { slug: "safe-to-spend-calculator", route: "bills" },
-    { slug: "subscription-cost-calculator", route: "bills" },
-    { slug: "debt-payoff-calculator", route: "bills" },
-    { slug: "bill-split-calculator", route: "bills" },
-    { slug: "savings-goal-calculator", route: "bills" },
-    { slug: "cash-flow-calculator", route: "analytics" },
+    { slug: "subscription-cost-calculator", route: "subscriptions" },
+    { slug: "debt-payoff-calculator", route: "debt-tracker" },
+    { slug: "bill-split-calculator", route: "bill-splitter" },
+    { slug: "savings-goal-calculator", route: "savings-goals" },
+    { slug: "cash-flow-calculator", route: "cash-flow" },
     { slug: "monthly-expense-calculator", route: "cash-log" },
   ];
 
@@ -215,6 +215,10 @@ test("all 9 free calculators have WebApplication free Offer JSON-LD, OG/Twitter 
     assert.ok(
       html.includes(`intent://${calc.route}#Intent;scheme=smartbillmanager;package=com.smartbillmanager;S.browser_fallback_url=`),
       `${calc.slug} missing Android intent:// deep link for route "${calc.route}"`
+    );
+    assert.ok(
+      html.includes(`deep_link_route%253D${calc.route}`),
+      `${calc.slug} missing deferred deep_link_route=${calc.route} in Play fallback URL`
     );
     assert.ok(html.includes(PLAY_URL), `${calc.slug} missing Google Play download link`);
     assert.ok(toolsHubHtml.includes(`/tools/${calc.slug}/`), `/tools/ hub missing link to ${calc.slug}`);
@@ -290,7 +294,7 @@ test("all 4 App vs. Spreadsheet comparison pages and desktop Play QR SVG bridge 
   const comparisons = [
     { slug: "bill-tracker-vs-spreadsheet", route: "bills" },
     { slug: "budget-app-vs-spreadsheet", route: "analytics" },
-    { slug: "subscription-tracker-vs-spreadsheet", route: "bills" },
+    { slug: "subscription-tracker-vs-spreadsheet", route: "subscriptions" },
     { slug: "expense-tracker-vs-spreadsheet", route: "cash-log" },
   ];
 

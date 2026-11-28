@@ -243,7 +243,7 @@ export default function Page() {
           </div>
           <div className="actions">
             <OpenInAppCta
-              route="bills"
+              route="savings-goals"
               placement="savings-goal-calculator-result-open"
               label="Track Savings Goals in App"
             />

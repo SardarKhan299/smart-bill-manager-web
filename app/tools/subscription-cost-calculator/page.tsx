@@ -231,7 +231,7 @@ export default function Page() {
           </div>
           <div className="actions">
             <OpenInAppCta
-              route="bills"
+              route="subscriptions"
               placement="subscription-calculator-result-open"
               label="Track Subscriptions in App"
             />

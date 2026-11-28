@@ -76,7 +76,7 @@ export default function Page() {
           </section>
         ))}
         <div className="actions">
-          <OpenInAppCta route="analytics" placement="cash-flow-forecast-open" label="Open Cash-Flow Analytics in App" />
+          <OpenInAppCta route="cash-flow" placement="cash-flow-forecast-open" label="Open Cash-Flow Forecast in App" />
           <PlayCta placement="cash-flow-forecast-play" label="Download on Google Play" secondary />
         </div>
         <p className="related">

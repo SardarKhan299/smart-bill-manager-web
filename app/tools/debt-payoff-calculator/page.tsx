@@ -306,7 +306,7 @@ export default function Page() {
           </div>
           <div className="actions">
             <OpenInAppCta
-              route="bills"
+              route="debt-tracker"
               placement="debt-payoff-calculator-result-open"
               label="Open Debt Tracker in App"
             />

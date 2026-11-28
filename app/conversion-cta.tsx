@@ -12,9 +12,17 @@ export function sanitizePlacement(placement: string): string {
   );
 }
 
-export function buildPlayStoreUrl(placement: string = "website"): string {
+export function buildPlayStoreUrl(
+  placement: string = "website",
+  deepLinkRoute?: string
+): string {
   const campaign = sanitizePlacement(placement);
-  const referrer = `utm_source=website&utm_medium=seo&utm_campaign=${campaign}`;
+  const cleanRoute = deepLinkRoute
+    ? sanitizePlacement(deepLinkRoute.replace(/^\/+|\/+$/g, ""))
+    : "";
+  const referrer = cleanRoute
+    ? `utm_source=website&utm_medium=seo&utm_campaign=${campaign}&deep_link_route=${cleanRoute}`
+    : `utm_source=website&utm_medium=seo&utm_campaign=${campaign}`;
   return `${PLAY_URL}&referrer=${encodeURIComponent(referrer)}`;
 }
 
@@ -58,11 +66,12 @@ export function OpenInAppCta({
   secondary?: boolean;
 }) {
   const cleanPlacement = sanitizePlacement(placement);
-  const fallbackPlayUrl = buildPlayStoreUrl(cleanPlacement);
+  const cleanRoute = route.replace(/^\/+|\/+$/g, "") || "bills";
+  const fallbackPlayUrl = buildPlayStoreUrl(cleanPlacement, cleanRoute);
   return (
     <a
       className={secondary ? "btn btn-secondary" : "btn btn-primary"}
-      href={buildAndroidIntentUrl(route, fallbackPlayUrl)}
+      href={buildAndroidIntentUrl(cleanRoute, fallbackPlayUrl)}
       data-conversion="open-in-app"
       data-conversion-placement={cleanPlacement}
     >

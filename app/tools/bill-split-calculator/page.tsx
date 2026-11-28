@@ -237,7 +237,7 @@ export default function Page() {
           </div>
           <div className="actions">
             <OpenInAppCta
-              route="bills"
+              route="bill-splitter"
               placement="bill-split-calculator-result-open"
               label="Split Bills & Track IOUs in App"
             />

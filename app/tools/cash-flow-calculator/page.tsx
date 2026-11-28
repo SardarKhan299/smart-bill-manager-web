@@ -332,7 +332,7 @@ export default function Page() {
           </div>
           <div className="actions">
             <OpenInAppCta
-              route="analytics"
+              route="cash-flow"
               placement="cash-flow-calculator-result-open"
               label="Open Cash-Flow Forecast in App"
             />
