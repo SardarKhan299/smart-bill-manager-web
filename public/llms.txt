@@ -33,6 +33,8 @@
 - Budget Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/budget-calculator/
 - Safe-to-Spend Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/safe-to-spend-calculator/
 - Subscription Cost Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/subscription-cost-calculator/
+- Debt Payoff Calculator (Snowball vs. Avalanche): https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/debt-payoff-calculator/
+- Bill Split Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/bill-split-calculator/
 
 ## Verified Android App Link Entry Points
 - Open Receipt Scanner: https://smart-bill-manager-web.sardar-khan299.workers.dev/scan/
@@ -45,5 +47,6 @@
 ## Trust, FAQ & Guides
 - FAQ: https://smart-bill-manager-web.sardar-khan299.workers.dev/faq/
 - Guides & Blog: https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/
+- Import Bank CSV Offline Guide: https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/import-bank-csv-offline-guide/
 - Privacy Policy: https://smart-bill-manager-web.sardar-khan299.workers.dev/privacy/
 - Support: https://smart-bill-manager-web.sardar-khan299.workers.dev/support/

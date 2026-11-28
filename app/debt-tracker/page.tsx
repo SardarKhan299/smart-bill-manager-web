@@ -62,6 +62,8 @@ export default function Page() {
         },
       ]}
       relatedLinks={[
+        { href: "/tools/debt-payoff-calculator/", label: "Debt Payoff Calculator (Snowball vs. Avalanche)" },
+        { href: "/tools/bill-split-calculator/", label: "Bill Split Calculator" },
         { href: "/offline-budget-app/", label: "Offline budget app" },
         { href: "/bill-reminder-app/", label: "Bill reminder app" },
         { href: "/daily-cash-tracker/", label: "Daily cash tracker" },

@@ -9,6 +9,8 @@ const requiredPaths = [
   "/budget-planner/", "/safe-to-spend/", "/cash-flow-forecast/", "/receipt-manager/",
   "/recurring-expense-tracker/", "/tools/", "/tools/bill-calculator/", "/tools/budget-calculator/",
   "/tools/safe-to-spend-calculator/", "/tools/subscription-cost-calculator/",
+  "/tools/debt-payoff-calculator/", "/tools/bill-split-calculator/",
+  "/blog/import-bank-csv-offline-guide/",
   "/offline-budget-app/", "/offline-receipt-scanner/", "/warranty-tracker/",
   "/bill-reminder-app/", "/daily-cash-tracker/", "/debt-tracker/",
   "/scan/", "/bills/", "/warranties/", "/cash-log/", "/analytics/", "/pro/"
@@ -76,7 +78,16 @@ const [robots, sitemap, ads, llms] = await Promise.all([
 ]);
 
 if (llms.status !== 200) failures.push("llms.txt returned HTTP " + llms.status);
-else if (!llms.body.includes("/tools/subscription-cost-calculator/")) failures.push("llms.txt missing /tools/subscription-cost-calculator/");
+else {
+  for (const expectedPath of [
+    "/tools/subscription-cost-calculator/",
+    "/tools/debt-payoff-calculator/",
+    "/tools/bill-split-calculator/",
+    "/blog/import-bank-csv-offline-guide/"
+  ]) {
+    if (!llms.body.includes(expectedPath)) failures.push("llms.txt missing " + expectedPath);
+  }
+}
 
 if (robots.status !== 200) failures.push("robots.txt returned HTTP " + robots.status);
 if (!robots.body.includes("Sitemap: " + SITE_URL + "/sitemap.xml")) failures.push("robots.txt does not reference the production sitemap");

@@ -1,6 +1,6 @@
 # Smart Bill Manager — Verified Product Knowledge Source
 
-- **Last Verified:** 2026-11-27
+- **Last Verified:** 2026-11-28
 - **Product Name:** Smart Bill Manager
 - **One-Sentence Description:** An offline-first Android app for tracking recurring household bills, scanning receipts with on-device AI OCR, logging daily cash expenses, managing subscriptions, tracking personal debts, and storing product warranties without requiring a bank login or cloud account.
 - **Official Website:** https://smart-bill-manager-web.sardar-khan299.workers.dev/
@@ -17,7 +17,7 @@
 6. **Subscription Tracker, Debt Tracker, Bill Splitter & Savings Goals:** Tracks recurring subscriptions (with annualized cost), personal IOUs/repayments, split bills, and savings goals.
 7. **Analytics & Statement Export:** Category breakdowns, cash flow forecast, and local PDF/CSV statement export plus CSV import.
 8. **Privacy & Security:** Local Room/SQLite storage, no account or bank login required, optional biometric/PIN app lock, and encrypted local backup export.
-9. **Free Browser-Only Web Calculators:** Bill Calculator, Budget Calculator, Safe-to-Spend Calculator, and Subscription Cost Calculator (weekly/bi-weekly/monthly/quarterly/yearly annualized cost estimator) running 100% client-side under `/tools/` with zero financial inputs sent to servers.
+9. **Free Browser-Only Web Calculators:** Bill Calculator, Budget Calculator, Safe-to-Spend Calculator, Subscription Cost Calculator (weekly/bi-weekly/monthly/quarterly/yearly annualized cost estimator), Debt Payoff Calculator (Snowball vs. Avalanche monthly rollover amortization), and Bill Split Calculator (shared rent/utility/dinner splitter with tip, fees & shareable summary) running 100% client-side under `/tools/` with zero financial inputs sent to servers.
 
 ## Verified Third-Party SDKs & Boundaries
 - **Google Play Billing & RevenueCat:** Handles optional Pro subscriptions (`monthly` `$1.49/mo` US + 7-day free trial, `yearly-annual` `$12.99/yr` US + 7-day free trial, and `lifetime` one-time unlock).

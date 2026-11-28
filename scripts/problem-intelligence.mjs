@@ -210,10 +210,14 @@ export function renderDashboardMarkdown(records) {
     "",
     "| ID | Score | Confidence | Format | Proposed Route | Action Summary & Evidence |",
     "|---|---:|---|---|---|---|",
-    ...reviewQueue.map(
-      (r) =>
-        `| \`${r.id}\` | **${r.opportunityScore.total}** | \`${r.confidence}\` | \`${r.suggestedAction.type}\` | \`${r.suggestedAction.targetRoute}\` | ${r.suggestedAction.summary} *(${r.evidenceNote})* |`
-    ),
+    ...(reviewQueue.length
+      ? reviewQueue.map(
+          (r) =>
+            `| \`${r.id}\` | **${r.opportunityScore.total}** | \`${r.confidence}\` | \`${r.suggestedAction.type}\` | \`${r.suggestedAction.targetRoute}\` | ${r.suggestedAction.summary} *(${r.evidenceNote})* |`
+        )
+      : [
+          "| — | — | — | — | — | All current queue items have been reviewed and published. Import new Search Console queries via `--gsc-csv` to queue next candidates. |",
+        ]),
     "",
     "## 3. Published Acquisition Assets & Deep-Link Mapping",
     "",

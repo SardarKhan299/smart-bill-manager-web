@@ -45,6 +45,7 @@ const posts = [
   ["recurring-expense-audit", "How to Audit Recurring Household Expenses", "A practical recurring-expense audit for finding repeated spending patterns and deciding what to monitor."],
   ["receipt-and-warranty-guide", "How to Organise Receipts and Warranties", "Keep proof of purchase, return deadlines and warranty information easier to find."],
   ["receipt-retention-warranty-guide", "How Long to Keep Receipts and Warranty Records", "A practical way to organise receipts, proof of purchase, return information and warranty records."],
+  ["import-bank-csv-offline-guide", "How to Import Bank CSV Statements Offline Without Linking Your Bank Account", "Batch-import monthly bank CSV exports into your Daily Cash Log or Bills on Android — with zero Plaid or cloud login."],
 ];
 
 export default function Blog() {

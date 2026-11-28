@@ -3,13 +3,15 @@ import { Breadcrumbs } from "../breadcrumbs";
 import { OpenInAppCta, PlayCta } from "../conversion-cta";
 
 export const metadata = {
-  title: "Free Household Finance Calculators — Bills, Subscriptions & Safe-to-Spend",
+  title: "Free Household Finance Calculators — Bills, Debt Payoff & Safe-to-Spend",
   description:
-    "Free browser-only household finance calculators for monthly bills, recurring subscription costs, budgets and Safe-to-Spend planning — no bank login required.",
+    "Free browser-only household finance calculators for monthly bills, subscription costs, Debt Snowball vs. Avalanche payoff, bill splitting, budgets and Safe-to-Spend — no bank login.",
   keywords: [
     "free financial calculators",
     "bill calculator",
     "subscription cost calculator",
+    "debt payoff calculator",
+    "bill split calculator",
     "budget calculator",
     "safe to spend calculator",
   ],
@@ -17,7 +19,7 @@ export const metadata = {
   openGraph: {
     title: "Free Household Finance Calculators | Smart Bill Manager",
     description:
-      "Estimate monthly bills, annualized subscription costs, category budgets and Safe-to-Spend privately in your browser.",
+      "Estimate monthly bills, annualized subscription costs, debt payoff timelines, shared bill splits, budgets and Safe-to-Spend privately in your browser.",
     url: "/tools/",
     type: "website",
     images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Free Financial Calculators — Smart Bill Manager" }],
@@ -26,7 +28,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Free Household Finance Calculators | Smart Bill Manager",
     description:
-      "Free browser-only calculators for monthly bills, subscription costs, budgets and Safe-to-Spend planning.",
+      "Free browser-only calculators for bills, subscriptions, debt payoff, bill splitting, budgets and Safe-to-Spend.",
     images: ["/og-image.svg"],
   },
 };
@@ -41,6 +43,16 @@ const tools = [
     href: "/tools/subscription-cost-calculator/",
     title: "Subscription Cost Calculator",
     text: "Convert weekly, monthly, quarterly and yearly subscriptions into monthly, annual and 5-year spend.",
+  },
+  {
+    href: "/tools/debt-payoff-calculator/",
+    title: "Debt Payoff Calculator",
+    text: "Compare Debt Snowball vs. Debt Avalanche to see months to debt-free and total interest saved.",
+  },
+  {
+    href: "/tools/bill-split-calculator/",
+    title: "Bill Split Calculator",
+    text: "Split rent, utilities or dinner with tip and fees and copy a clean per-person summary in 1 tap.",
   },
   {
     href: "/tools/budget-calculator/",

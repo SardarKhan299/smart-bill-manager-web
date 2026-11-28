@@ -10,6 +10,9 @@ import {
   calculateSafeToSpend,
   calculateSubscriptionCosts,
   calculateSubscriptionSummary,
+  calculateDebtPayoffPlan,
+  calculateBillSplit,
+  formatBillSplitShareSlip,
 } from "../app/tools/calculator-math.mjs";
 
 test("parseAmount handles zero, empty, missing, malformed, comma-separated, negative, decimal, and large values", () => {
@@ -168,4 +171,99 @@ test("formatMoney formats all supported currencies cleanly with 2 decimals", () 
     const formatted = formatMoney(1234.5, code, "en-US");
     assert.ok(formatted.includes("1,234.50"), `Expected 1,234.50 in ${code} output: ${formatted}`);
   }
+});
+
+test("Debt Payoff Calculator compares Snowball vs. Avalanche rollover amortization, min-payment fallback, and edge cases", () => {
+  const debts = [
+    { name: "Small Low-APR Loan", balance: "600", interestRate: "4", minimumPayment: "30" },
+    { name: "High-APR Card", balance: "4500", interestRate: "26.99", minimumPayment: "120" },
+  ];
+
+  const snowball = calculateDebtPayoffPlan(debts, "200", "snowball");
+  const avalanche = calculateDebtPayoffPlan(debts, "200", "avalanche");
+
+  assert.equal(snowball.totalDebt, 5100);
+  assert.equal(snowball.totalMinimumRequired, 150);
+  assert.equal(snowball.monthlyPaymentBudget, 350);
+  assert.equal(snowball.orderedDebts[0].name, "Small Low-APR Loan");
+  assert.equal(avalanche.orderedDebts[0].name, "High-APR Card");
+
+  assert.ok(
+    avalanche.totalInterestPaid < snowball.totalInterestPaid,
+    `Expected Avalanche interest (${avalanche.totalInterestPaid}) < Snowball interest (${snowball.totalInterestPaid})`
+  );
+  assert.ok(snowball.comparison.interestSavedWithAvalanche > 0);
+  assert.ok(
+    snowball.firstDebtPaidMonths < avalanche.firstDebtPaidMonths,
+    `Expected Snowball first win (${snowball.firstDebtPaidMonths}) < Avalanche first win (${avalanche.firstDebtPaidMonths})`
+  );
+
+  const zeroApr = calculateDebtPayoffPlan(
+    [{ name: "Family IOU", balance: "500", interestRate: "0", minimumPayment: "100" }],
+    "0",
+    "snowball"
+  );
+  assert.equal(zeroApr.totalMonths, 5);
+  assert.equal(zeroApr.totalInterestPaid, 0);
+  assert.equal(zeroApr.unpayableWarning, false);
+
+  const fallbackMin = calculateDebtPayoffPlan(
+    [{ name: "Card", balance: "2000", interestRate: "18", minimumPayment: "" }],
+    "50",
+    "avalanche"
+  );
+  assert.equal(fallbackMin.usedEstimatedMinimum, true);
+  assert.equal(fallbackMin.totalMinimumRequired, 40);
+
+  const empty = calculateDebtPayoffPlan([{ name: "", balance: "0", interestRate: "0", minimumPayment: "0" }], "100");
+  assert.equal(empty.totalDebt, 0);
+  assert.equal(empty.totalMonths, 0);
+  assert.equal(empty.unpayableWarning, false);
+
+  const unpayable = calculateDebtPayoffPlan(
+    [{ name: "Zero Payment IOU", balance: "1000", interestRate: "0", minimumPayment: "0" }],
+    "0"
+  );
+  assert.equal(unpayable.unpayableWarning, true);
+
+  const neg = calculateDebtPayoffPlan(
+    [{ name: "Card", balance: "500", interestRate: "-5", minimumPayment: "50" }],
+    "-20"
+  );
+  assert.equal(neg.hasNegativeInput, true);
+});
+
+test("Bill Split Calculator handles tip, extra fees, rounding remainders, people clamping, and share slip text", () => {
+  const even = calculateBillSplit("120", "15", "6", "4");
+  assert.equal(even.tipAmount, 18);
+  assert.equal(even.grandTotal, 144);
+  assert.equal(even.perPersonShare, 36);
+  assert.equal(even.roundingDifference, 0);
+  assert.equal(even.wasPeopleClamped, false);
+
+  const slip = formatBillSplitShareSlip("Group Dinner", even, "USD", "en-US");
+  assert.ok(slip.includes("Bill Split: Group Dinner"));
+  assert.ok(slip.includes("Tip (15%): $18.00"));
+  assert.ok(slip.includes("Extra Fee / Tax: $6.00"));
+  assert.ok(slip.includes("Grand Total: $144.00"));
+  assert.ok(slip.includes("Split Between: 4 people"));
+  assert.ok(slip.includes("Each Person Pays: $36.00"));
+
+  const oddThirds = calculateBillSplit("100", "0", "0", "3");
+  assert.equal(oddThirds.perPersonShare, 33.33);
+  assert.equal(oddThirds.roundingDifference, -0.01);
+
+  const clampedLow = calculateBillSplit("50", "0", "0", "0");
+  assert.equal(clampedLow.peopleCount, 1);
+  assert.equal(clampedLow.wasPeopleClamped, true);
+  assert.equal(clampedLow.perPersonShare, 50);
+
+  const clampedHigh = calculateBillSplit("1000", "0", "0", "250");
+  assert.equal(clampedHigh.peopleCount, 100);
+  assert.equal(clampedHigh.wasPeopleClamped, true);
+  assert.equal(clampedHigh.perPersonShare, 10);
+
+  const negative = calculateBillSplit("-50", "-10", "-5", "-2");
+  assert.equal(negative.grandTotal, 0);
+  assert.equal(negative.hasNegativeInput, true);
 });

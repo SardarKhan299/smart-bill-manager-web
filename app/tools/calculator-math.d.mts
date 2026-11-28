@@ -75,3 +75,77 @@ export function calculateSubscriptionSummary(
   incomeSharePercent: number | null;
   hasNegativeInput: boolean;
 };
+
+export interface DebtPayoffRowResult {
+  name: string;
+  balance: number;
+  apr: number;
+  minimumPayment: number;
+  usedEstimatedMinimum: boolean;
+  monthsToPayoff: number;
+  totalInterestPaid: number;
+  remainingUnpaid: number;
+}
+
+export function calculateDebtPayoffPlan(
+  debts: Array<{
+    name?: string;
+    balance?: string | number;
+    interestRate?: string | number;
+    minimumPayment?: string | number;
+  }>,
+  extraMonthlyPaymentRaw?: string | number,
+  strategy?: "snowball" | "avalanche" | string
+): {
+  strategy: "snowball" | "avalanche";
+  totalDebt: number;
+  totalMinimumRequired: number;
+  extraMonthlyPayment: number;
+  monthlyPaymentBudget: number;
+  totalMonths: number;
+  totalInterestPaid: number;
+  firstDebtPaidMonths: number;
+  cappedAtMaxMonths: boolean;
+  unpayableWarning: boolean;
+  hasNegativeInput: boolean;
+  usedEstimatedMinimum: boolean;
+  orderedDebts: DebtPayoffRowResult[];
+  comparison: {
+    snowballTotalMonths: number;
+    snowballTotalInterest: number;
+    snowballFirstDebtMonths: number;
+    avalancheTotalMonths: number;
+    avalancheTotalInterest: number;
+    avalancheFirstDebtMonths: number;
+    interestSavedWithAvalanche: number;
+    monthsSavedWithAvalanche: number;
+    fasterFirstWinMonthsWithSnowball: number;
+  };
+};
+
+export interface BillSplitResult {
+  baseAmount: number;
+  tipPercent: number;
+  tipAmount: number;
+  extraFee: number;
+  grandTotal: number;
+  peopleCount: number;
+  perPersonShare: number;
+  roundingDifference: number;
+  wasPeopleClamped: boolean;
+  hasNegativeInput: boolean;
+}
+
+export function calculateBillSplit(
+  baseAmountRaw: string | number,
+  tipPercentRaw?: string | number,
+  extraFeeRaw?: string | number,
+  peopleCountRaw?: string | number
+): BillSplitResult;
+
+export function formatBillSplitShareSlip(
+  title: string,
+  splitResult: BillSplitResult,
+  currency?: string,
+  locale?: string
+): string;

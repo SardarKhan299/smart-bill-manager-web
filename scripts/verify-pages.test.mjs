@@ -165,14 +165,28 @@ test("zero draft or placeholder text exists in production HTML, and /privacy/, /
     llms.includes(`${SITE_HOST}/tools/subscription-cost-calculator/`),
     "llms.txt missing subscription-cost-calculator URL"
   );
+  assert.ok(
+    llms.includes(`${SITE_HOST}/tools/debt-payoff-calculator/`),
+    "llms.txt missing debt-payoff-calculator URL"
+  );
+  assert.ok(
+    llms.includes(`${SITE_HOST}/tools/bill-split-calculator/`),
+    "llms.txt missing bill-split-calculator URL"
+  );
+  assert.ok(
+    llms.includes(`${SITE_HOST}/blog/import-bank-csv-offline-guide/`),
+    "llms.txt missing import-bank-csv-offline-guide URL"
+  );
 });
 
-test("all 4 free calculators have WebApplication free Offer JSON-LD, OG/Twitter tags, decimal inputs, aria-live, reset, and deep-link CTAs", () => {
+test("all 6 free calculators have WebApplication free Offer JSON-LD, OG/Twitter tags, decimal inputs, aria-live, reset, and deep-link CTAs", () => {
   const calculators = [
     { slug: "bill-calculator", route: "bills" },
     { slug: "budget-calculator", route: "analytics" },
     { slug: "safe-to-spend-calculator", route: "bills" },
     { slug: "subscription-cost-calculator", route: "bills" },
+    { slug: "debt-payoff-calculator", route: "bills" },
+    { slug: "bill-split-calculator", route: "bills" },
   ];
 
   const toolsHubHtml = fs.readFileSync(path.join(OUT, "tools", "index.html"), "utf8");
@@ -208,13 +222,16 @@ test("all 4 free calculators have WebApplication free Offer JSON-LD, OG/Twitter 
   }
 });
 
-test("all 14 blog articles and legacy feature pages include Android deep links, Play Install Referrer UTM attribution, skip-link, and SEO audit docs", () => {
+test("all 15 blog articles and legacy feature pages include Android deep links, Play Install Referrer UTM attribution, skip-link, and SEO audit docs", () => {
   const blogDir = path.join(OUT, "blog");
   const blogSlugs = fs
     .readdirSync(blogDir, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name);
-  assert.equal(blogSlugs.length, 14, `Expected 14 blog articles, found ${blogSlugs.length}`);
+  assert.equal(blogSlugs.length, 15, `Expected 15 blog articles, found ${blogSlugs.length}`);
+  assert.ok(blogSlugs.includes("import-bank-csv-offline-guide"), "Missing import-bank-csv-offline-guide blog directory");
+  const blogHubHtml = fs.readFileSync(path.join(OUT, "blog", "index.html"), "utf8");
+  assert.ok(blogHubHtml.includes("/blog/import-bank-csv-offline-guide/"), "/blog/ hub missing link to import-bank-csv-offline-guide");
 
   for (const slug of blogSlugs) {
     const html = fs.readFileSync(path.join(blogDir, slug, "index.html"), "utf8");

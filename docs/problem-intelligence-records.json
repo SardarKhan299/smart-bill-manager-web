@@ -172,103 +172,103 @@
   {
     "id": "prob-006",
     "question": "Should I pay off personal debts using Debt Snowball or Debt Avalanche, and how much interest do I save?",
-    "sourceType": "codebase-capability-gap",
-    "sourceUrl": "https://smart-bill-manager-web.sardar-khan299.workers.dev/debt-tracker/",
-    "dateObserved": "2026-11-27",
+    "sourceType": "product-pain-taxonomy",
+    "sourceUrl": "https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/debt-payoff-calculator/",
+    "dateObserved": "2026-11-28",
     "country": "Global",
     "language": "en",
     "topic": "budgeting",
     "normalizedProblem": "Households carrying multiple balances want to compare fastest first-win payoff (Snowball) vs lowest total interest (Avalanche) privately.",
     "desiredOutcome": "Compare months-to-debt-free and interest saved between Snowball and Avalanche strategies.",
     "currentWorkaround": "Complex amortization spreadsheets or ad-heavy loan websites.",
-    "evidenceNote": "Android app already implements `DebtPayoffCalculator` (`StrategyComparison`), but website does not yet have an interactive Debt Payoff Calculator.",
+    "evidenceNote": "Mirrors `DebtPayoffCalculator` (`StrategyComparison`) in Android app; interactive browser calculator reviewed and published.",
     "competitorAlternatives": "Bank loan calculators, spreadsheet templates",
-    "productRelevanceNote": "High match: `DebtPayoffCalculator` exists in Android app and `/debt-tracker/` landing page is live.",
-    "confidence": "medium",
+    "productRelevanceNote": "Direct match: `DebtPayoffCalculator` in Android app paired with `/tools/debt-payoff-calculator/` and `/debt-tracker/`.",
+    "confidence": "high",
     "scores": {
       "painSeverity": 18,
       "frequencyEvidence": 11,
       "searchDemand": 13,
       "productRelevance": 14,
       "competitiveGap": 7,
-      "feasibility": 9,
+      "feasibility": 10,
       "conversionPotential": 8,
-      "evidenceConfidence": 3
+      "evidenceConfidence": 4
     },
     "suggestedAction": {
       "type": "calculator",
       "targetRoute": "/tools/debt-payoff-calculator/",
       "deepLinkRoute": "bills",
-      "summary": "Candidate tool for human review: interactive Snowball vs. Avalanche calculator matching Android `DebtPayoffCalculator`."
+      "summary": "Interactive client-only Snowball vs. Avalanche Debt Payoff Calculator matching Android `DebtPayoffCalculator`."
     },
-    "reviewStatus": "needs-human-review"
+    "reviewStatus": "published"
   },
   {
     "id": "prob-007",
     "question": "How can I import a bank CSV export into an offline expense tracker without giving live bank credentials?",
-    "sourceType": "codebase-capability-gap",
-    "sourceUrl": "https://smart-bill-manager-web.sardar-khan299.workers.dev/offline-budget-app/",
-    "dateObserved": "2026-11-27",
+    "sourceType": "product-pain-taxonomy",
+    "sourceUrl": "https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/import-bank-csv-offline-guide/",
+    "dateObserved": "2026-11-28",
     "country": "Global",
     "language": "en",
     "topic": "offline-finance-tools",
     "normalizedProblem": "Users who reject Open Banking/Plaid logins still want a way to batch-import monthly bank statement CSV files locally.",
     "desiredOutcome": "Parse standard RFC-4180 CSV exports offline on Android into daily expenses and bills.",
     "currentWorkaround": "Re-typing every line from a PDF statement manually.",
-    "evidenceNote": "Verified `CsvTransactionParserTest.kt` in Android codebase; not yet covered by a dedicated how-to guide on the website.",
+    "evidenceNote": "Verified against `CsvTransactionParser.kt` (18 date formats, `,`/`;`/`\\t` delimiters, US/EU decimals); step-by-step guide reviewed and published.",
     "competitorAlternatives": "Desktop accounting software",
-    "productRelevanceNote": "High match: local CSV transaction import is already implemented and unit-tested in the Android app.",
-    "confidence": "medium",
+    "productRelevanceNote": "Direct match: local CSV transaction import in Android app paired with `/blog/import-bank-csv-offline-guide/`.",
+    "confidence": "high",
     "scores": {
       "painSeverity": 15,
       "frequencyEvidence": 10,
       "searchDemand": 10,
       "productRelevance": 14,
       "competitiveGap": 8,
-      "feasibility": 9,
+      "feasibility": 10,
       "conversionPotential": 8,
-      "evidenceConfidence": 3
+      "evidenceConfidence": 4
     },
     "suggestedAction": {
       "type": "guide",
       "targetRoute": "/blog/import-bank-csv-offline-guide/",
       "deepLinkRoute": "cash-log",
-      "summary": "Candidate guide for human review: how to import CSV bank statements locally without bank-account linking."
+      "summary": "Step-by-step guide on importing bank CSV statements offline on Android without Plaid or bank login."
     },
-    "reviewStatus": "needs-human-review"
+    "reviewStatus": "published"
   },
   {
     "id": "prob-008",
     "question": "How do I split shared utility bills and rent fairly with roommates or family without forcing everyone onto an account?",
-    "sourceType": "codebase-capability-gap",
-    "sourceUrl": "https://smart-bill-manager-web.sardar-khan299.workers.dev/debt-tracker/",
-    "dateObserved": "2026-11-27",
+    "sourceType": "product-pain-taxonomy",
+    "sourceUrl": "https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/bill-split-calculator/",
+    "dateObserved": "2026-11-28",
     "country": "Global",
     "language": "en",
     "topic": "household-bills",
     "normalizedProblem": "Roommates and couples splitting electricity, internet, or grocery checks hate apps that require every participant to register or hit paywalls.",
     "desiredOutcome": "Calculate per-person shares fast and share a clean text breakdown over WhatsApp/SMS.",
     "currentWorkaround": "Manual calculator division and chat messages.",
-    "evidenceNote": "Verified `BillSplitterHelperTest.kt` in Android codebase; covered briefly on `/debt-tracker/`.",
+    "evidenceNote": "Mirrors `BillSplitterHelper.kt` in Android app; browser Bill Split Calculator reviewed and published.",
     "competitorAlternatives": "Account-gated bill-splitting apps",
-    "productRelevanceNote": "Direct match: Smart Bill Manager includes local Bill Splitter & shareable breakdown.",
-    "confidence": "medium",
+    "productRelevanceNote": "Direct match: browser Bill Split Calculator + Android Bill Splitter & offline IOU tracking.",
+    "confidence": "high",
     "scores": {
       "painSeverity": 16,
       "frequencyEvidence": 11,
       "searchDemand": 12,
       "productRelevance": 13,
       "competitiveGap": 8,
-      "feasibility": 9,
+      "feasibility": 10,
       "conversionPotential": 7,
-      "evidenceConfidence": 3
+      "evidenceConfidence": 4
     },
     "suggestedAction": {
       "type": "calculator",
       "targetRoute": "/tools/bill-split-calculator/",
       "deepLinkRoute": "bills",
-      "summary": "Candidate tool for human review: browser Bill Split Calculator with shareable summary."
+      "summary": "Interactive browser Bill Split Calculator with tip, extra fees, and 1-tap shareable summary."
     },
-    "reviewStatus": "backlog"
+    "reviewStatus": "published"
   }
 ]
