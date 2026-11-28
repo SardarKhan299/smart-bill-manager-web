@@ -37,3 +37,4 @@ jobs:
           test -f out/app-ads.txt
           test -f out/.well-known/assetlinks.json
           test -f out/llms.txt
+          test -f out/play-qr.svg
