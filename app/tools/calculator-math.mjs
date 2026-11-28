@@ -8,6 +8,21 @@ export const SUBSCRIPTION_FREQUENCIES = [
   { value: "bi-weekly", label: "Bi-weekly (26x/yr)", annualMultiplier: 26 },
 ];
 
+export const EXPENSE_FREQUENCIES = [
+  { value: "daily", label: "Daily (365x/yr)", annualMultiplier: 365 },
+  { value: "weekly", label: "Weekly (52x/yr)", annualMultiplier: 52 },
+  { value: "bi-weekly", label: "Bi-weekly (26x/yr)", annualMultiplier: 26 },
+  { value: "monthly", label: "Monthly (12x/yr)", annualMultiplier: 12 },
+  { value: "yearly", label: "Yearly (1x/yr)", annualMultiplier: 1 },
+];
+
+export const INCOME_CADENCES = [
+  { value: "bi-weekly", label: "Bi-weekly (every 14 days)", periodDays: 14 },
+  { value: "monthly", label: "Monthly (every 30 days)", periodDays: 30 },
+  { value: "semi-monthly", label: "Semi-monthly (every 15 days)", periodDays: 15 },
+  { value: "weekly", label: "Weekly (every 7 days)", periodDays: 7 },
+];
+
 export function parseAmount(raw) {
   if (raw === null || raw === undefined) return 0;
   const cleaned = String(raw).trim().replace(/,/g, "");
@@ -434,4 +449,303 @@ export function formatBillSplitShareSlip(
   );
   lines.push(`Each Person Pays: ${fmt(splitResult.perPersonShare)}`);
   return lines.join("\n");
+}
+
+export function calculateSavingsGoalPlan(
+  targetAmountRaw,
+  savedAmountRaw = "0",
+  monthlyContributionRaw = "0",
+  targetMonthsRaw = ""
+) {
+  const rawTarget = parseAmount(targetAmountRaw);
+  const rawSaved = parseAmount(savedAmountRaw);
+  const rawMonthly = parseAmount(monthlyContributionRaw);
+  const rawMonths = parseAmount(targetMonthsRaw);
+
+  const hasNegativeInput =
+    rawTarget < 0 || rawSaved < 0 || rawMonthly < 0 || rawMonths < 0;
+
+  const targetAmount = roundCurrency(Math.max(0, rawTarget));
+  const savedAmount = roundCurrency(Math.max(0, rawSaved));
+  const monthlyContribution = roundCurrency(Math.max(0, rawMonthly));
+  const hasDeadline = String(targetMonthsRaw ?? "").trim() !== "" && rawMonths > 0;
+  const targetMonths = hasDeadline ? Math.max(1, Math.round(rawMonths)) : null;
+
+  const remainingAmount = roundCurrency(Math.max(0, targetAmount - savedAmount));
+  const progressPercent =
+    targetAmount > 0
+      ? roundCurrency(Math.min(100, (savedAmount / targetAmount) * 100))
+      : 0;
+
+  const monthsAtCurrentPace =
+    remainingAmount <= 0
+      ? 0
+      : monthlyContribution > 0
+      ? Math.ceil(remainingAmount / monthlyContribution)
+      : null;
+
+  let requiredMonthlyContribution = null;
+  let monthlyShortfall = 0;
+  let paceStatus = remainingAmount <= 0 && targetAmount > 0 ? "completed" : "no-deadline";
+
+  if (targetMonths !== null) {
+    requiredMonthlyContribution =
+      remainingAmount <= 0 ? 0 : roundCurrency(remainingAmount / targetMonths);
+    monthlyShortfall = roundCurrency(
+      Math.max(0, requiredMonthlyContribution - monthlyContribution)
+    );
+    if (remainingAmount <= 0 && targetAmount > 0) {
+      paceStatus = "completed";
+    } else if (monthlyContribution <= 0) {
+      paceStatus = "behind";
+    } else if (monthlyContribution >= requiredMonthlyContribution * 1.1) {
+      paceStatus = "ahead";
+    } else if (monthlyContribution >= requiredMonthlyContribution * 0.9) {
+      paceStatus = "on-track";
+    } else {
+      paceStatus = "behind";
+    }
+  }
+
+  let nextMilestonePercent = null;
+  if (targetAmount > 0 && progressPercent < 100) {
+    if (progressPercent < 25) nextMilestonePercent = 25;
+    else if (progressPercent < 50) nextMilestonePercent = 50;
+    else if (progressPercent < 75) nextMilestonePercent = 75;
+    else nextMilestonePercent = 100;
+  }
+
+  const amountToNextMilestone =
+    nextMilestonePercent !== null
+      ? roundCurrency(
+          Math.max(0, (targetAmount * nextMilestonePercent) / 100 - savedAmount)
+        )
+      : 0;
+
+  return {
+    targetAmount,
+    savedAmount,
+    remainingAmount,
+    progressPercent,
+    monthlyContribution,
+    targetMonths,
+    monthsAtCurrentPace,
+    requiredMonthlyContribution,
+    monthlyShortfall,
+    paceStatus,
+    nextMilestonePercent,
+    amountToNextMilestone,
+    hasNegativeInput,
+  };
+}
+
+export function calculateCashFlowForecast({
+  startingBalanceRaw = "0",
+  paycheckAmountRaw = "0",
+  incomeCadence = "bi-weekly",
+  daysUntilNextPaydayRaw = "10",
+  safetyFloorRaw = "200",
+  dailyExpenseRaw = "0",
+  horizonDaysRaw = "30",
+  bills = [],
+} = {}) {
+  const rawStart = parseAmount(startingBalanceRaw);
+  const rawPaycheck = parseAmount(paycheckAmountRaw);
+  const rawNextPay = parseAmount(daysUntilNextPaydayRaw);
+  const rawFloor = parseAmount(safetyFloorRaw);
+  const rawDaily = parseAmount(dailyExpenseRaw);
+  const rawHorizon = parseAmount(horizonDaysRaw);
+
+  const hasNegativeInput =
+    rawStart < 0 ||
+    rawPaycheck < 0 ||
+    rawNextPay < 0 ||
+    rawFloor < 0 ||
+    rawDaily < 0 ||
+    bills.some(
+      (b) => parseAmount(b?.amount) < 0 || parseAmount(b?.dueInDays) < 0
+    );
+
+  const startingBalance = roundCurrency(rawStart);
+  const paycheckAmount = roundCurrency(Math.max(0, rawPaycheck));
+  const safetyFloor = roundCurrency(Math.max(0, rawFloor));
+  const dailyExpense = roundCurrency(Math.max(0, rawDaily));
+  const horizonDays = Math.min(
+    90,
+    Math.max(7, Math.floor(rawHorizon > 0 ? rawHorizon : 30))
+  );
+  const daysUntilNextPayday = Math.min(
+    horizonDays,
+    Math.max(1, Math.floor(rawNextPay > 0 ? rawNextPay : 14))
+  );
+
+  const cadenceEntry =
+    INCOME_CADENCES.find((c) => c.value === incomeCadence) || INCOME_CADENCES[0];
+  const periodDays = cadenceEntry.periodDays;
+
+  const incomeByDay = new Array(horizonDays).fill(0);
+  if (paycheckAmount > 0) {
+    for (let d = daysUntilNextPayday; d < horizonDays; d += periodDays) {
+      if (d >= 1) incomeByDay[d] += paycheckAmount;
+    }
+  }
+
+  const billsByDay = Array.from({ length: horizonDays }, () => []);
+  let totalProjectedBills = 0;
+  for (const bill of bills) {
+    const amt = roundCurrency(Math.max(0, parseAmount(bill?.amount)));
+    if (amt <= 0) continue;
+    const rawDue = Math.floor(Math.max(0, parseAmount(bill?.dueInDays)));
+    if (rawDue >= horizonDays) continue;
+    billsByDay[rawDue].push({
+      name: String(bill?.name || "").trim() || "Bill",
+      amount: amt,
+    });
+    totalProjectedBills += amt;
+  }
+  totalProjectedBills = roundCurrency(totalProjectedBills);
+
+  let running = startingBalance;
+  let lowestBalance = startingBalance;
+  let lowestBalanceDay = 1;
+  let lowestBeforePayday = startingBalance;
+  let isCrunchDetected = false;
+  let isOverdraftDetected = false;
+  let maxDeficit = 0;
+  let dangerZoneDaysCount = 0;
+  let triggerBillTitle = null;
+
+  for (let day = 0; day < horizonDays; day++) {
+    const dayBills = billsByDay[day].reduce((s, b) => s + b.amount, 0);
+    running = roundCurrency(running + incomeByDay[day] - dayBills - dailyExpense);
+
+    if (running < lowestBalance) {
+      lowestBalance = running;
+      lowestBalanceDay = day + 1;
+    }
+    if (day < daysUntilNextPayday && running < lowestBeforePayday) {
+      lowestBeforePayday = running;
+    }
+    if (running < 0) isOverdraftDetected = true;
+    if (running < safetyFloor) {
+      isCrunchDetected = true;
+      dangerZoneDaysCount += 1;
+      const deficit = roundCurrency(safetyFloor - running);
+      if (deficit > maxDeficit) maxDeficit = deficit;
+      if (!triggerBillTitle) {
+        triggerBillTitle =
+          billsByDay[day][0]?.name ||
+          (dailyExpense > 0 ? "Daily Expenses" : "Safety Floor");
+      }
+    }
+  }
+
+  let runwayBalance = startingBalance;
+  let runwayDaysWithoutIncome = startingBalance <= 0 ? 0 : horizonDays;
+  if (startingBalance > 0) {
+    for (let day = 0; day < horizonDays; day++) {
+      const dayOutflow =
+        billsByDay[day].reduce((s, b) => s + b.amount, 0) + dailyExpense;
+      runwayBalance = roundCurrency(runwayBalance - dayOutflow);
+      if (runwayBalance <= 0) {
+        runwayDaysWithoutIncome = day + 1;
+        break;
+      }
+    }
+  }
+
+  const totalProjectedIncome = roundCurrency(
+    incomeByDay.reduce((s, v) => s + v, 0)
+  );
+  const totalDailyBurn = roundCurrency(dailyExpense * horizonDays);
+  const discretionaryBuffer = Math.max(0, lowestBeforePayday - safetyFloor);
+  const safeToSpendPerDay = roundCurrency(
+    discretionaryBuffer / Math.max(1, daysUntilNextPayday)
+  );
+
+  return {
+    horizonDays,
+    startingBalance,
+    endingBalance: running,
+    lowestBalance,
+    lowestBalanceDay,
+    lowestBeforePayday,
+    safetyFloor,
+    isCrunchDetected,
+    isOverdraftDetected,
+    crunchDeficit: maxDeficit,
+    dangerZoneDaysCount,
+    triggerBillTitle,
+    safeToSpendPerDay,
+    runwayDaysWithoutIncome,
+    totalProjectedIncome,
+    totalProjectedBills,
+    totalDailyBurn,
+    hasNegativeInput,
+  };
+}
+
+export function calculateMonthlyExpenses(items = [], monthlyIncomeRaw = "") {
+  const rawBreakdown = items.map((item, idx) => {
+    const rawAmt = parseAmount(item?.amount);
+    const amount = roundCurrency(Math.max(0, rawAmt));
+    const freq = String(item?.frequency || "monthly").trim().toLowerCase();
+    let annual = amount * 12;
+    if (freq === "daily") annual = amount * 365;
+    else if (freq === "weekly") annual = amount * 52;
+    else if (freq === "bi-weekly" || freq === "biweekly") annual = amount * 26;
+    else if (freq === "quarterly") annual = amount * 4;
+    else if (freq === "yearly" || freq === "annually") annual = amount * 1;
+
+    const annualTotal = roundCurrency(annual);
+    const monthlyEquivalent = roundCurrency(annual / 12);
+    return {
+      name: String(item?.name || "").trim() || `Category ${idx + 1}`,
+      frequency: freq,
+      amount,
+      monthlyEquivalent,
+      annualTotal,
+    };
+  });
+
+  const annualSum = rawBreakdown.reduce((s, x) => s + x.annualTotal, 0);
+  const annualTotal = roundCurrency(annualSum);
+  const monthlyTotal = roundCurrency(annualSum / 12);
+  const dailyAverage = roundCurrency(annualSum / 365);
+
+  const breakdown = rawBreakdown.map((x) => ({
+    ...x,
+    sharePercent:
+      monthlyTotal > 0 ? roundCurrency((x.monthlyEquivalent / monthlyTotal) * 100) : 0,
+  }));
+
+  const topItem = [...breakdown]
+    .filter((x) => x.monthlyEquivalent > 0)
+    .sort((a, b) => b.monthlyEquivalent - a.monthlyEquivalent)[0];
+
+  const hasIncome = String(monthlyIncomeRaw ?? "").trim() !== "";
+  const monthlyIncome = roundCurrency(parseAmount(monthlyIncomeRaw));
+  const remainingAfterExpenses = hasIncome
+    ? roundCurrency(monthlyIncome - monthlyTotal)
+    : null;
+  const incomeSharePercent =
+    hasIncome && monthlyIncome > 0
+      ? roundCurrency((monthlyTotal / monthlyIncome) * 100)
+      : null;
+
+  const hasNegativeInput =
+    (hasIncome && monthlyIncome < 0) ||
+    items.some((item) => parseAmount(item?.amount) < 0);
+
+  return {
+    breakdown,
+    monthlyTotal,
+    annualTotal,
+    dailyAverage,
+    topCategoryName: topItem ? topItem.name : null,
+    monthlyIncome: hasIncome ? monthlyIncome : null,
+    remainingAfterExpenses,
+    incomeSharePercent,
+    hasNegativeInput,
+  };
 }

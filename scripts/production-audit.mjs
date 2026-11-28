@@ -10,6 +10,9 @@ const requiredPaths = [
   "/recurring-expense-tracker/", "/tools/", "/tools/bill-calculator/", "/tools/budget-calculator/",
   "/tools/safe-to-spend-calculator/", "/tools/subscription-cost-calculator/",
   "/tools/debt-payoff-calculator/", "/tools/bill-split-calculator/",
+  "/tools/savings-goal-calculator/", "/tools/cash-flow-calculator/", "/tools/monthly-expense-calculator/",
+  "/compare/bill-tracker-vs-spreadsheet/", "/compare/budget-app-vs-spreadsheet/",
+  "/compare/subscription-tracker-vs-spreadsheet/", "/compare/expense-tracker-vs-spreadsheet/",
   "/blog/import-bank-csv-offline-guide/",
   "/offline-budget-app/", "/offline-receipt-scanner/", "/warranty-tracker/",
   "/bill-reminder-app/", "/daily-cash-tracker/", "/debt-tracker/",
@@ -70,12 +73,17 @@ function parseSitemap(xml) {
 
 console.log("C1 production audit: " + SITE_URL);
 
-const [robots, sitemap, ads, llms] = await Promise.all([
+const [robots, sitemap, ads, llms, qrSvg] = await Promise.all([
   fetchText(SITE_URL + "/robots.txt"),
   fetchText(SITE_URL + "/sitemap.xml"),
   fetchText(SITE_URL + "/app-ads.txt"),
-  fetchText(SITE_URL + "/llms.txt")
+  fetchText(SITE_URL + "/llms.txt"),
+  fetchText(SITE_URL + "/play-qr.svg")
 ]);
+
+if (qrSvg.status !== 200 || !qrSvg.body.includes("<svg")) {
+  failures.push("play-qr.svg failed check (HTTP " + qrSvg.status + ")");
+}
 
 if (llms.status !== 200) failures.push("llms.txt returned HTTP " + llms.status);
 else {
@@ -83,6 +91,10 @@ else {
     "/tools/subscription-cost-calculator/",
     "/tools/debt-payoff-calculator/",
     "/tools/bill-split-calculator/",
+    "/tools/savings-goal-calculator/",
+    "/tools/cash-flow-calculator/",
+    "/tools/monthly-expense-calculator/",
+    "/compare/bill-tracker-vs-spreadsheet/",
     "/blog/import-bank-csv-offline-guide/"
   ]) {
     if (!llms.body.includes(expectedPath)) failures.push("llms.txt missing " + expectedPath);

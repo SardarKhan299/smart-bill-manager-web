@@ -89,3 +89,28 @@ export function AppCta({
     </Link>
   );
 }
+
+export function DesktopQrBridge({
+  heading = "On a computer? Scan to install on Android",
+  body = "Point your Android phone camera at this QR code to open Smart Bill Manager directly in the Google Play Store — no typing or desktop sign-in needed.",
+}: {
+  heading?: string;
+  body?: string;
+}) {
+  return (
+    <aside className="desktop-qr-bridge" aria-label="QR code to install Smart Bill Manager on Android">
+      <img
+        src="/play-qr.svg"
+        width={136}
+        height={136}
+        loading="lazy"
+        decoding="async"
+        alt="QR code linking to Smart Bill Manager on Google Play"
+      />
+      <div>
+        <h3>{heading}</h3>
+        <p>{body}</p>
+      </div>
+    </aside>
+  );
+}

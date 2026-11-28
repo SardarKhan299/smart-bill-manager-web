@@ -94,6 +94,7 @@ export default function Page() {
         </div>
         <p className="related">
           <Link href="/tools/subscription-cost-calculator/">Subscription Cost Calculator</Link> ·{" "}
+          <Link href="/compare/subscription-tracker-vs-spreadsheet/">Subscription tracker vs spreadsheet</Link> ·{" "}
           <Link href="/bill-tracker/">Bill tracker</Link> ·{" "}
           <Link href="/expense-tracker/">Expense tracker</Link> ·{" "}
           <Link href="/budget-planner/">Budget planner</Link> ·{" "}

@@ -6,6 +6,18 @@ export const SUBSCRIPTION_FREQUENCIES: Array<{
   annualMultiplier: number;
 }>;
 
+export const EXPENSE_FREQUENCIES: Array<{
+  value: string;
+  label: string;
+  annualMultiplier: number;
+}>;
+
+export const INCOME_CADENCES: Array<{
+  value: string;
+  label: string;
+  periodDays: number;
+}>;
+
 export function parseAmount(raw: string | number | null | undefined): number;
 export function roundCurrency(value: number): number;
 export function formatMoney(value: number, currency?: string, locale?: string): string;
@@ -149,3 +161,84 @@ export function formatBillSplitShareSlip(
   currency?: string,
   locale?: string
 ): string;
+
+export function calculateSavingsGoalPlan(
+  targetAmountRaw: string | number,
+  savedAmountRaw?: string | number,
+  monthlyContributionRaw?: string | number,
+  targetMonthsRaw?: string | number
+): {
+  targetAmount: number;
+  savedAmount: number;
+  remainingAmount: number;
+  progressPercent: number;
+  monthlyContribution: number;
+  targetMonths: number | null;
+  monthsAtCurrentPace: number | null;
+  requiredMonthlyContribution: number | null;
+  monthlyShortfall: number;
+  paceStatus: "completed" | "ahead" | "on-track" | "behind" | "no-deadline";
+  nextMilestonePercent: number | null;
+  amountToNextMilestone: number;
+  hasNegativeInput: boolean;
+};
+
+export function calculateCashFlowForecast(params: {
+  startingBalanceRaw?: string | number;
+  paycheckAmountRaw?: string | number;
+  incomeCadence?: string;
+  daysUntilNextPaydayRaw?: string | number;
+  safetyFloorRaw?: string | number;
+  dailyExpenseRaw?: string | number;
+  horizonDaysRaw?: string | number;
+  bills?: Array<{
+    name?: string;
+    amount?: string | number;
+    dueInDays?: string | number;
+  }>;
+}): {
+  horizonDays: number;
+  startingBalance: number;
+  endingBalance: number;
+  lowestBalance: number;
+  lowestBalanceDay: number;
+  lowestBeforePayday: number;
+  safetyFloor: number;
+  isCrunchDetected: boolean;
+  isOverdraftDetected: boolean;
+  crunchDeficit: number;
+  dangerZoneDaysCount: number;
+  triggerBillTitle: string | null;
+  safeToSpendPerDay: number;
+  runwayDaysWithoutIncome: number;
+  totalProjectedIncome: number;
+  totalProjectedBills: number;
+  totalDailyBurn: number;
+  hasNegativeInput: boolean;
+};
+
+export function calculateMonthlyExpenses(
+  items: Array<{
+    name?: string;
+    amount?: string | number;
+    frequency?: string;
+  }>,
+  monthlyIncomeRaw?: string | number
+): {
+  breakdown: Array<{
+    name: string;
+    frequency: string;
+    amount: number;
+    monthlyEquivalent: number;
+    annualTotal: number;
+    sharePercent: number;
+  }>;
+  monthlyTotal: number;
+  annualTotal: number;
+  dailyAverage: number;
+  topCategoryName: string | null;
+  monthlyIncome: number | null;
+  remainingAfterExpenses: number | null;
+  incomeSharePercent: number | null;
+  hasNegativeInput: boolean;
+};

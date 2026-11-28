@@ -35,6 +35,16 @@
 - Subscription Cost Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/subscription-cost-calculator/
 - Debt Payoff Calculator (Snowball vs. Avalanche): https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/debt-payoff-calculator/
 - Bill Split Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/bill-split-calculator/
+- Savings Goal Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/savings-goal-calculator/
+- 30-Day Cash-Flow Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/cash-flow-calculator/
+- Monthly Expense Calculator: https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/monthly-expense-calculator/
+
+## App vs. Spreadsheet Comparisons
+- All Comparisons: https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/
+- Bill Tracker vs. Spreadsheet: https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/bill-tracker-vs-spreadsheet/
+- Budget App vs. Spreadsheet: https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/budget-app-vs-spreadsheet/
+- Subscription Tracker vs. Spreadsheet: https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/subscription-tracker-vs-spreadsheet/
+- Expense Tracker vs. Spreadsheet: https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/expense-tracker-vs-spreadsheet/
 
 ## Verified Android App Link Entry Points
 - Open Receipt Scanner: https://smart-bill-manager-web.sardar-khan299.workers.dev/scan/

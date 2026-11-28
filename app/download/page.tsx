@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Breadcrumbs } from "../breadcrumbs";
-import { OpenInAppCta, PlayCta } from "../conversion-cta";
+import { DesktopQrBridge, OpenInAppCta, PlayCta } from "../conversion-cta";
 
 export const metadata = {
   title: "Download Smart Bill Manager for Android",
@@ -53,6 +53,7 @@ export default function Page() {
             <OpenInAppCta route="bills" placement="download-open-app" label="Already installed? Open App" secondary />
           </div>
         </div>
+        <DesktopQrBridge />
         <h2>Jump straight to a screen in the app</h2>
         <p className="related">
           <Link href="/scan/">Scan Receipt</Link> · <Link href="/bills/">Upcoming Bills</Link> ·{" "}

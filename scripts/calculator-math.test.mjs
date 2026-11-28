@@ -13,6 +13,9 @@ import {
   calculateDebtPayoffPlan,
   calculateBillSplit,
   formatBillSplitShareSlip,
+  calculateSavingsGoalPlan,
+  calculateCashFlowForecast,
+  calculateMonthlyExpenses,
 } from "../app/tools/calculator-math.mjs";
 
 test("parseAmount handles zero, empty, missing, malformed, comma-separated, negative, decimal, and large values", () => {
@@ -266,4 +269,83 @@ test("Bill Split Calculator handles tip, extra fees, rounding remainders, people
   const negative = calculateBillSplit("-50", "-10", "-5", "-2");
   assert.equal(negative.grandTotal, 0);
   assert.equal(negative.hasNegativeInput, true);
+});
+
+test("Savings Goal Calculator computes deadline pacing, required monthly deposits, and 25%/50%/75%/100% milestones", () => {
+  const onTrack = calculateSavingsGoalPlan("6000", "1500", "375", "12");
+  assert.equal(onTrack.remainingAmount, 4500);
+  assert.equal(onTrack.progressPercent, 25);
+  assert.equal(onTrack.monthsAtCurrentPace, 12);
+  assert.equal(onTrack.requiredMonthlyContribution, 375);
+  assert.equal(onTrack.paceStatus, "on-track");
+  assert.equal(onTrack.nextMilestonePercent, 50);
+  assert.equal(onTrack.amountToNextMilestone, 1500);
+
+  const behind = calculateSavingsGoalPlan("5000", "500", "200", "10");
+  assert.equal(behind.requiredMonthlyContribution, 450);
+  assert.equal(behind.monthlyShortfall, 250);
+  assert.equal(behind.paceStatus, "behind");
+  assert.equal(behind.nextMilestonePercent, 25);
+  assert.equal(behind.amountToNextMilestone, 750);
+
+  const completed = calculateSavingsGoalPlan("1000", "1200", "100", "6");
+  assert.equal(completed.remainingAmount, 0);
+  assert.equal(completed.progressPercent, 100);
+  assert.equal(completed.paceStatus, "completed");
+  assert.equal(completed.nextMilestonePercent, null);
+
+  const flexible = calculateSavingsGoalPlan("3000", "0", "300", "");
+  assert.equal(flexible.paceStatus, "no-deadline");
+  assert.equal(flexible.monthsAtCurrentPace, 10);
+});
+
+test("30-Day Cash-Flow Calculator detects pre-payday safety floor dips, overdrafts, runway, and daily Safe-to-Spend", () => {
+  const crunch = calculateCashFlowForecast({
+    startingBalanceRaw: "1200",
+    paycheckAmountRaw: "1600",
+    incomeCadence: "bi-weekly",
+    daysUntilNextPaydayRaw: "10",
+    safetyFloorRaw: "300",
+    dailyExpenseRaw: "20",
+    horizonDaysRaw: "30",
+    bills: [{ name: "Rent", amount: "1000", dueInDays: "3" }],
+  });
+  // Before Day 10 payday: 1200 - 1000 rent - (10 * 20 = 200 daily burn) = 0 on Day 10 (day index 9)
+  assert.equal(crunch.lowestBalance, 0);
+  assert.equal(crunch.isCrunchDetected, true);
+  assert.equal(crunch.isOverdraftDetected, false);
+  assert.equal(crunch.crunchDeficit, 300);
+  assert.equal(crunch.safeToSpendPerDay, 0);
+
+  const healthy = calculateCashFlowForecast({
+    startingBalanceRaw: "3000",
+    paycheckAmountRaw: "2000",
+    incomeCadence: "monthly",
+    daysUntilNextPaydayRaw: "15",
+    safetyFloorRaw: "500",
+    dailyExpenseRaw: "10",
+    horizonDaysRaw: "30",
+    bills: [{ name: "Internet", amount: "80", dueInDays: "5" }],
+  });
+  assert.equal(healthy.isCrunchDetected, false);
+  assert.equal(healthy.isOverdraftDetected, false);
+  assert.ok(healthy.safeToSpendPerDay > 100);
+  assert.equal(healthy.runwayDaysWithoutIncome, 30);
+});
+
+test("Monthly Expense Calculator rolls up daily, weekly, bi-weekly, monthly, and yearly categories accurately", () => {
+  const res = calculateMonthlyExpenses(
+    [
+      { name: "Coffee", amount: "5", frequency: "daily" },
+      { name: "Groceries", amount: "120", frequency: "weekly" },
+      { name: "Gym", amount: "40", frequency: "monthly" },
+    ],
+    "4000"
+  );
+  // Annual: (5*365 = 1825) + (120*52 = 6240) + (40*12 = 480) = 8545
+  assert.equal(res.annualTotal, 8545);
+  assert.equal(res.monthlyTotal, 712.08);
+  assert.equal(res.dailyAverage, 23.41);
+  assert.equal(res.topCategoryName, "Groceries");
+  assert.equal(res.remainingAfterExpenses, 3287.92);
 });

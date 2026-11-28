@@ -40,6 +40,29 @@ const rows = [
   ["Custom pivot formulas", "Structured app views + CSV export", "Highly flexible", "Limited"],
 ];
 
+const deepDiveComparisons = [
+  {
+    href: "/compare/bill-tracker-vs-spreadsheet/",
+    title: "Bill Tracker vs. Spreadsheet",
+    text: "Compare automatic cycle rollover, due-date push alerts and home-screen widgets against manual monthly bill tabs.",
+  },
+  {
+    href: "/compare/budget-app-vs-spreadsheet/",
+    title: "Budget App vs. Spreadsheet",
+    text: "See when desktop templates win for multi-year modeling and when mobile Safe-to-Spend keeps monthly budgets on track.",
+  },
+  {
+    href: "/compare/subscription-tracker-vs-spreadsheet/",
+    title: "Subscription Tracker vs. Spreadsheet",
+    text: "Compare cancel-before renewal reminders and annualized drain insights against one-time audit sheets.",
+  },
+  {
+    href: "/compare/expense-tracker-vs-spreadsheet/",
+    title: "Expense Tracker vs. Spreadsheet",
+    text: "Compare 3-second Quick Cash logging and offline AI receipt OCR against typing paper receipts into Excel.",
+  },
+];
+
 export default function Compare() {
   return (
     <main className="page">
@@ -80,6 +103,23 @@ export default function Compare() {
             <h3>Use Smart Bill Manager if…</h3>
             <p>You want bills, subscriptions, cash spending, receipt OCR and warranties working together privately on Android.</p>
           </div>
+        </div>
+        <div className="section-head" style={{ marginTop: "56px" }}>
+          <div className="kicker">DEEP-DIVE COMPARISONS</div>
+          <h2>Detailed App vs. Spreadsheet breakdowns</h2>
+        </div>
+        <div className="grid-3 tool-grid">
+          {deepDiveComparisons.map((item) => (
+            <article className="card" key={item.href}>
+              <h3 className="card-title">{item.title}</h3>
+              <p>{item.text}</p>
+              <p style={{ marginTop: "16px" }}>
+                <Link className="btn btn-secondary" href={item.href}>
+                  Read comparison
+                </Link>
+              </p>
+            </article>
+          ))}
         </div>
         <div className="conversion-panel">
           <h2>Test the workflow in your browser or on Android</h2>

@@ -81,6 +81,7 @@ export default function Page() {
         </div>
         <p className="related">
           <Link href="/safe-to-spend/">Safe-to-Spend</Link> ·{" "}
+          <Link href="/tools/cash-flow-calculator/">30-Day Cash-Flow Calculator</Link> ·{" "}
           <Link href="/tools/safe-to-spend-calculator/">Safe-to-Spend Calculator</Link> ·{" "}
           <Link href="/bill-tracker/">Bill tracker</Link> ·{" "}
           <Link href="/budget-planner/">Budget planner</Link> ·{" "}

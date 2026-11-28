@@ -9,6 +9,10 @@
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/support/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/faq/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/bill-tracker-vs-spreadsheet/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/budget-app-vs-spreadsheet/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/subscription-tracker-vs-spreadsheet/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/compare/expense-tracker-vs-spreadsheet/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/how-to-track-monthly-bills/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/bill-tracking.svg</image:loc></image:image></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/blog/safe-to-spend-vs-bank-balance/</loc><image:image><image:loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/images/discover/safe-to-spend.svg</image:loc></image:image></url>
@@ -40,6 +44,9 @@
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/subscription-cost-calculator/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/debt-payoff-calculator/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/bill-split-calculator/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/savings-goal-calculator/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/cash-flow-calculator/</loc></url>
+  <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/tools/monthly-expense-calculator/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/offline-budget-app/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/warranty-tracker/</loc></url>
   <url><loc>https://smart-bill-manager-web.sardar-khan299.workers.dev/offline-receipt-scanner/</loc></url>

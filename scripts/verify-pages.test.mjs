@@ -179,7 +179,7 @@ test("zero draft or placeholder text exists in production HTML, and /privacy/, /
   );
 });
 
-test("all 6 free calculators have WebApplication free Offer JSON-LD, OG/Twitter tags, decimal inputs, aria-live, reset, and deep-link CTAs", () => {
+test("all 9 free calculators have WebApplication free Offer JSON-LD, OG/Twitter tags, decimal inputs, aria-live, reset, and deep-link CTAs", () => {
   const calculators = [
     { slug: "bill-calculator", route: "bills" },
     { slug: "budget-calculator", route: "analytics" },
@@ -187,6 +187,9 @@ test("all 6 free calculators have WebApplication free Offer JSON-LD, OG/Twitter 
     { slug: "subscription-cost-calculator", route: "bills" },
     { slug: "debt-payoff-calculator", route: "bills" },
     { slug: "bill-split-calculator", route: "bills" },
+    { slug: "savings-goal-calculator", route: "bills" },
+    { slug: "cash-flow-calculator", route: "analytics" },
+    { slug: "monthly-expense-calculator", route: "cash-log" },
   ];
 
   const toolsHubHtml = fs.readFileSync(path.join(OUT, "tools", "index.html"), "utf8");
@@ -280,5 +283,46 @@ test("all 15 blog articles and legacy feature pages include Android deep links, 
   ];
   for (const doc of requiredDocs) {
     assert.ok(fs.existsSync(path.resolve(doc)), `Missing required deliverable ${doc}`);
+  }
+});
+
+test("all 4 App vs. Spreadsheet comparison pages and desktop Play QR SVG bridge are valid and linked", () => {
+  const comparisons = [
+    { slug: "bill-tracker-vs-spreadsheet", route: "bills" },
+    { slug: "budget-app-vs-spreadsheet", route: "analytics" },
+    { slug: "subscription-tracker-vs-spreadsheet", route: "bills" },
+    { slug: "expense-tracker-vs-spreadsheet", route: "cash-log" },
+  ];
+
+  const compareHubHtml = fs.readFileSync(path.join(OUT, "compare", "index.html"), "utf8");
+  const sitemap = fs.readFileSync(path.join(OUT, "sitemap.xml"), "utf8");
+  const llms = fs.readFileSync(path.join(OUT, "llms.txt"), "utf8");
+
+  for (const cmp of comparisons) {
+    const file = path.join(OUT, "compare", cmp.slug, "index.html");
+    assert.ok(fs.existsSync(file), `Missing out/compare/${cmp.slug}/index.html`);
+    const html = fs.readFileSync(file, "utf8");
+    assert.ok(html.includes(`name="keywords"`), `${cmp.slug} missing keywords meta`);
+    assert.ok(html.includes(`"@type":"FAQPage"`), `${cmp.slug} missing FAQPage JSON-LD`);
+    assert.ok(html.includes(`"@type":"BreadcrumbList"`), `${cmp.slug} missing BreadcrumbList JSON-LD`);
+    assert.ok(html.includes(`class="actions"`), `${cmp.slug} missing .actions CTA block`);
+    assert.ok(html.includes(`intent://${cmp.route}#Intent;`), `${cmp.slug} missing intent://${cmp.route}`);
+    assert.ok(compareHubHtml.includes(`/compare/${cmp.slug}/`), `/compare/ hub missing link to ${cmp.slug}`);
+    assert.ok(sitemap.includes(`<loc>${SITE_HOST}/compare/${cmp.slug}/</loc>`), `sitemap missing /compare/${cmp.slug}/`);
+    assert.ok(llms.includes(`${SITE_HOST}/compare/${cmp.slug}/`), `llms.txt missing /compare/${cmp.slug}/`);
+  }
+
+  const qrSvgPath = path.join(OUT, "play-qr.svg");
+  assert.ok(fs.existsSync(qrSvgPath), "Missing out/play-qr.svg");
+  const qrSvg = fs.readFileSync(qrSvgPath, "utf8");
+  assert.ok(qrSvg.includes("<svg") && qrSvg.includes("<path"), "play-qr.svg must be a vector SVG path QR code");
+
+  for (const pageWithQr of [
+    path.join(OUT, "index.html"),
+    path.join(OUT, "download", "index.html"),
+    path.join(OUT, "tools", "index.html"),
+  ]) {
+    const html = fs.readFileSync(pageWithQr, "utf8");
+    assert.ok(html.includes(`src="/play-qr.svg"`), `${path.relative(OUT, pageWithQr)} missing desktop QR bridge`);
   }
 });

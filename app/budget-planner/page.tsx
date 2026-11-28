@@ -86,6 +86,8 @@ export default function Page() {
         <p className="related">
           <Link href="/offline-budget-app/">Offline budget app</Link> ·{" "}
           <Link href="/tools/budget-calculator/">Budget Calculator</Link> ·{" "}
+          <Link href="/tools/savings-goal-calculator/">Savings Goal Calculator</Link> ·{" "}
+          <Link href="/compare/budget-app-vs-spreadsheet/">Budget app vs spreadsheet</Link> ·{" "}
           <Link href="/expense-tracker/">Expense tracker</Link> ·{" "}
           <Link href="/safe-to-spend/">Safe-to-Spend</Link> ·{" "}
           <Link href="/blog/household-budget-guide/">Guide: household budgeting</Link> ·{" "}

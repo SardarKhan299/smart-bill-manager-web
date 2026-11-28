@@ -91,6 +91,7 @@ export default function Page() {
         <p className="related">
           <Link href="/bill-reminder-app/">Bill reminder app</Link> ·{" "}
           <Link href="/tools/bill-calculator/">Bill Calculator</Link> ·{" "}
+          <Link href="/compare/bill-tracker-vs-spreadsheet/">Bill tracker vs spreadsheet</Link> ·{" "}
           <Link href="/subscription-tracker/">Subscription tracker</Link> ·{" "}
           <Link href="/safe-to-spend/">Safe-to-Spend</Link> ·{" "}
           <Link href="/blog/how-to-track-monthly-bills/">Guide: how to track monthly bills</Link> ·{" "}

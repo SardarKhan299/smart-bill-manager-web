@@ -81,6 +81,8 @@ export default function Page() {
         </div>
         <p className="related">
           <Link href="/daily-cash-tracker/">Daily cash tracker &amp; streaks</Link> ·{" "}
+          <Link href="/tools/monthly-expense-calculator/">Monthly Expense Calculator</Link> ·{" "}
+          <Link href="/compare/expense-tracker-vs-spreadsheet/">Expense tracker vs spreadsheet</Link> ·{" "}
           <Link href="/offline-receipt-scanner/">Offline receipt scanner</Link> ·{" "}
           <Link href="/budget-planner/">Budget planner</Link> ·{" "}
           <Link href="/tools/budget-calculator/">Budget Calculator</Link> ·{" "}

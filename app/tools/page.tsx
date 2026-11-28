@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Breadcrumbs } from "../breadcrumbs";
-import { OpenInAppCta, PlayCta } from "../conversion-cta";
+import { DesktopQrBridge, OpenInAppCta, PlayCta } from "../conversion-cta";
 
 export const metadata = {
   title: "Free Household Finance Calculators — Bills, Debt Payoff & Safe-to-Spend",
@@ -64,6 +64,21 @@ const tools = [
     title: "Safe-to-Spend Calculator",
     text: "Subtract upcoming committed bills and essentials from your balance before you spend.",
   },
+  {
+    href: "/tools/cash-flow-calculator/",
+    title: "30-Day Cash-Flow Calculator",
+    text: "Simulate upcoming paydays, bill due dates and daily spending to catch mid-month cash dips early.",
+  },
+  {
+    href: "/tools/monthly-expense-calculator/",
+    title: "Monthly Expense Calculator",
+    text: "Convert daily coffee, weekly groceries and fuel into true monthly, daily-average and annual spend.",
+  },
+  {
+    href: "/tools/savings-goal-calculator/",
+    title: "Savings Goal Calculator",
+    text: "Plan emergency funds and annual bill sinking funds with target deadline pacing and milestones.",
+  },
 ];
 
 export default function Page() {
@@ -100,6 +115,7 @@ export default function Page() {
             <PlayCta placement="tools-hub-play" label="Download on Google Play" secondary />
           </div>
         </div>
+        <DesktopQrBridge />
 
         <h2>Use calculators as planning aids</h2>
         <p>

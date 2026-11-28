@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { OpenInAppCta, PlayCta } from "./conversion-cta";
+import { DesktopQrBridge, OpenInAppCta, PlayCta } from "./conversion-cta";
 
 export const metadata: Metadata = {
   title: "Smart Bill Manager – Offline Bill Tracker, Receipt Scanner & Budget App",
@@ -58,6 +58,10 @@ export default function Home() {
             <div className="conversion-trust">
               <strong>Private, local-first design.</strong> No bank login or cloud account is required for core household record-keeping.
             </div>
+            <DesktopQrBridge
+              heading="Browsing on desktop? Scan with your Android camera"
+              body="Open Smart Bill Manager straight in Google Play on your phone — 100% offline bill reminders, receipt OCR and Safe-to-Spend."
+            />
           </div>
           <div className="phone">
             <div className="phone-screen">
